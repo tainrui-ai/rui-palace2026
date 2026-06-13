@@ -204,7 +204,25 @@ nav a:hover {
     letter-spacing: 0.15em;    /* 增加字距 */
     font-family: "STKaiti", "KaiTi", serif;
 }
+/* 视频容器样式 - 保证 16:9 比例且自适应 */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 40px auto; /* 居中并上下留白 */
+    border-radius: 8px; /* 柔和边角 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 
 /* 9. 其他 */
