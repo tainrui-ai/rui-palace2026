@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (acceptBtn) {
         acceptBtn.onclick = function() {
             // 写入跨子域 Cookie 和 LocalStorage
-            document.cookie = "cookie_consent=true; domain=rui-palace.com; path=/; max-age=31536000; SameSite=Lax";
+            document.cookie = "cookie_consent=true; domain=www.rui-palace.com; path=/; max-age=31536000; SameSite=Lax";
             localStorage.setItem("cookie_consent", "true");
             dismiss();
         };
