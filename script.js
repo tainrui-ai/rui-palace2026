@@ -3,25 +3,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const acceptBtn = document.getElementById("accept-btn");
     const rejectBtn = document.getElementById("reject-btn");
 
-    // 检查缓存，若已同意，直接隐藏
-    if (localStorage.getItem("cookieConsent") === "true") {
-        modal.style.display = "none";
+    // 1. 统一检查逻辑：同时检查 Cookie 和 LocalStorage
+    // 注意：我们将标识符统一为 'cookie_consent' 以保持逻辑一致
+    const hasConsent = document.cookie.split('; ').find(row => row.startsWith('cookie_consent=true')) || 
+                       localStorage.getItem('cookie_consent') === 'true';
+
+    // 如果已确认，直接隐藏，不需要显示
+    if (hasConsent) {
+        if (modal) modal.style.display = "none";
+    } else {
+        // 未确认时显示
+        if (modal) modal.style.display = "flex";
     }
 
-    // 点击后直接消失
+    // 2. 淡出动画函数
     function dismiss() {
-        modal.style.opacity = "0";
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 500);
+        if (modal) {
+            modal.style.transition = "opacity 0.5s ease";
+            modal.style.opacity = "0";
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 500);
+        }
     }
 
-    acceptBtn.onclick = function() {
-        localStorage.setItem("cookieConsent", "true");
-        dismiss();
-    };
+    // 3. 绑定点击逻辑
+    if (acceptBtn) {
+        acceptBtn.onclick = function() {
+            // 写入跨子域 Cookie 和 LocalStorage
+            document.cookie = "cookie_consent=true; domain=ruigong.com; path=/; max-age=31536000; SameSite=Lax";
+            localStorage.setItem("cookie_consent", "true");
+            dismiss();
+        };
+    }
 
-    rejectBtn.onclick = function() {
-        dismiss();
-    };
+    if (rejectBtn) {
+        rejectBtn.onclick = function() {
+            dismiss();
+        };
+    }
 });
