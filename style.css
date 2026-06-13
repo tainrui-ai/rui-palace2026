@@ -224,21 +224,7 @@ nav a:hover {
     height: 100%;
 }
 
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; 
-    height: 0;
-    overflow: hidden;
-    
-    /* 核心修改点：限制最大宽度 */
-    max-width: 800px; 
-    
-    /* 核心修改点：居中显示，并控制外边距 */
-    margin: 40px auto; 
-    
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
+
 	
 /* 9. 其他 */
 .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px 5%; }
