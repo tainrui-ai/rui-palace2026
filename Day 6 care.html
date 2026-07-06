@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 6：灵犀内化</title>
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg-soft: #F9F7F2; 
+            --text-color: #1A1A1A; 
+        }
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 100px; 
+        }
+        
+        #container { display: flex; align-items: center; gap: 40px; max-width: 800px; padding: 40px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+        
+        #breath-sidebar { display: flex; flex-direction: column; align-items: center; padding-right: 40px; border-right: 1px solid #DED8CC; min-width: 120px; }
+        #ball { width: 60px; height: 60px; background: var(--gold); border-radius: 50%; animation: breathe 12s infinite ease-in-out; opacity: 0.6; }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 33%, 50% { transform: scale(1.5); } }
+        
+        #main-content { text-align: center; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; padding: 60px; transition: 1s; flex: 1; min-width: 300px; }
+        #pet-container { display: none; margin-top: 30px; animation: fadeIn 2s; }
+        video { width: 100%; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* 导航栏样式 */
+        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="breath-sidebar">
+        <div id="ball"></div>
+        <p style="font-size: 0.7em; margin-top: 15px;">呼吸归位</p>
+    </div>
+
+    <div id="main-content" onmouseover="startInternalization()">
+        <h2>Day 6：灵犀内化</h2>
+        <p>不必点击，不必寻找。只需在此静候。</p>
+        <p>让呼吸与左侧律动合一，在觉知中感受你私人磁场的静谧。</p>
+        <p style="color: #999; font-size: 0.9em;">（保持专注，当这份宁静沉淀，屏障将自动浮现）</p>
+        
+        <div id="pet-container">
+            <p>觉知已成，能量已内化。你已无需任何按钮，随时可得宁静。</p>
+            <video id="pet-video" autoplay loop muted playsinline>
+                <source src="my-cat-sleeping.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html">D1</a> · 
+    <a href="Day 2 care.html">D2</a> · 
+    <a href="Day 3 care.html">D3</a> · 
+    <a href="Day 4 care.html">D4</a> · 
+    <a href="Day 5 care.html">D5</a> · 
+    <a href="Day 6 care.html">D6</a> · 
+    <a href="Day 7 care.html">D7</a>
+</nav>
+
+<script>
+    let timer;
+    function startInternalization() {
+        if (!timer) {
+            timer = setTimeout(() => {
+                document.getElementById('pet-container').style.display = 'block';
+                document.getElementById('pet-video').play();
+                document.getElementById('main-content').style.borderColor = "#C5A059";
+                window.scrollTo(0, document.body.scrollHeight);
+            }, 8000); // 8秒无痕沉淀
+        }
+    }
+</script>
+</body>
+</html>
