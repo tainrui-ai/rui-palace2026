@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 4：情绪边界重构</title>
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg-soft: #F9F7F2; 
+            --text-color: #1A1A1A; 
+        }
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 100px; 
+        }
+        #app { width: 85%; max-width: 500px; padding: 40px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; text-align: center; margin-top: 40px; }
+        
+        h2 { font-weight: normal; letter-spacing: 0.2em; text-transform: uppercase; }
+        .declaration { margin: 25px 0; padding: 25px; border: 1px dashed var(--gold); color: #444; font-style: italic; }
+        .action-btn { padding: 15px 30px; border: 1px solid var(--gold); cursor: pointer; color: var(--gold); margin-top: 20px; transition: 0.5s; display: inline-block; font-family: inherit; }
+        
+        #pet-container { display: none; margin-top: 30px; animation: fadeIn 1s; }
+        video { width: 100%; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* 统一导航栏样式 */
+        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>Day 4：情绪边界重构</h2>
+    <div class="declaration">
+        <p><strong>我的边界宣言：</strong></p>
+        <p>“我不再为他人的坏情绪买单。我的能量，只为我的愿景与深爱的人而流淌。”</p>
+    </div>
+    <div class="action-btn" onclick="buildBoundary()">确认边界，点亮防御</div>
+    
+    <div id="pet-container">
+        <p>防御已升级，你的能量场已坚不可摧。</p>
+        <video id="pet-video" autoplay loop muted playsinline>
+            <source src="my-cat-sleeping.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html">D1</a> · 
+    <a href="Day 2 care.html">D2</a> · 
+    <a href="Day 3 care.html">D3</a> · 
+    <a href="Day 4 care.html">D4</a> · 
+    <a href="Day 5 care.html">D5</a> · 
+    <a href="Day 6 care.html">D6</a> · 
+    <a href="Day 7 care.html">D7</a>
+</nav>
+
+<script>
+    function buildBoundary() {
+        document.getElementById('pet-container').style.display = 'block';
+        document.getElementById('pet-video').play();
+        alert("边界已立。你已将昨日清理的痛楚，转化为守护今日的铠甲。");
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+</script>
+</body>
+</html>
