@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>归位：潜意识压力感知测试</title>
+    <style>
+        body { background: #F9F7F2; color: #1A1A1A; font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; padding: 60px 20px; line-height: 1.8; letter-spacing: 0.15em; display: flex; justify-content: center; }
+        #app { max-width: 500px; width: 100%; text-align: center; }
+        .intro, .quiz, .result { opacity: 0; transition: opacity 1s; display: none; }
+        .active { display: block; opacity: 1; }
+        .option { display: block; margin: 15px 0; padding: 15px; border: 1px solid #DED8CC; cursor: pointer; transition: 0.3s; color: #555; }
+        .option:hover { border-color: #C5A059; color: #1A1A1A; }
+        .btn { margin-top: 30px; padding: 12px 40px; border: 1px solid #1A1A1A; cursor: pointer; display: inline-block; }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!-- 开始页 -->
+    <div id="intro" class="intro active">
+        <h1>归位：潜意识压力感知测试</h1>
+        <p>身体往往先于大脑发出警报。<br>本次测试通过色彩、材质和空间的选择，绕过你的理性防御，直接触达潜意识的压力水位。<br>请保持呼吸平稳，根据第一直觉进行交互。</p>
+        <div class="btn" onclick="nextStep('quiz')">开始测试</div>
+    </div>
+
+    <!-- 测试页 -->
+    <div id="quiz" class="quiz">
+        <h2 id="q-text"></h2>
+        <div id="q-options"></div>
+    </div>
+
+    <!-- 结果页 -->
+    <div id="result" class="result">
+        <h2 id="res-title"></h2>
+        <p id="res-desc"></p>
+        <p id="res-sugg" style="font-weight: bold;"></p>
+        <a href="#" class="btn" style="text-decoration:none; color:inherit;">点击开启：7天情绪关怀蓝图</a>
+    </div>
+</div>
+
+<script>
+    const data = [
+        {q: "Q1. 宁静之色：此刻你最想粉刷哪种墙面色？", o: ["沉静雾蓝", "温暖杏仁"]},
+        {q: "Q2. 安抚之触：你渴望触碰哪种材质物件？", o: ["粗糙亚麻", "温润木头"]},
+        {q: "Q3. 隔绝之音：最想隔绝的声音？", o: ["车流声", "敲击声", "对话声", "闹钟声"]},
+        {q: "Q4. 独处之地：一小时独处你会去？", o: ["书店", "阳台", "影院", "浴缸"]},
+        {q: "Q5. 能量补给：渴望哪种补给？", o: ["热茶", "甜点", "冰水", "坚果"]},
+        {q: "Q6. 卸下防备的气味：", o: ["泥土", "柑橘", "沉香", "海水"]},
+        {q: "Q7. 身体察觉：最先察觉的紧绷部位？", o: ["肩颈", "呼吸", "胃部", "头皮"]},
+        {q: "Q8. 时间黑洞：最难熬的时间段？", o: ["晨起", "午后", "睡前", "周末"]},
+        {q: "Q9. 心事容器：", o: ["碎纸机", "焚烧炉", "漂流瓶", "密封袋"]},
+        {q: "Q10. 生命隐喻：", o: ["橡皮筋", "旧唱片", "油灯", "落叶"]}
+    ];
+
+    let idx = 0, score = 0;
+    function nextStep(target) {
+        document.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+        if(target === 'quiz') renderQ();
+    }
+
+// --- 请替换原有的 renderQ 和 finish 函数 ---
+
+function renderQ() {
+    document.getElementById('q-text').innerText = data[idx].q;
+    const optDiv = document.getElementById('q-options');
+    optDiv.innerHTML = '';
+    data[idx].o.forEach((text, i) => {
+        const btn = document.createElement('div');
+        btn.className = 'option';
+        btn.innerText = text;
+        // 修正：这里不再传入复杂的参数，仅调用 finish()
+        btn.onclick = () => { 
+            score += i; 
+            idx++; 
+            idx < data.length ? renderQ() : finish(); 
+        };
+        optDiv.appendChild(btn);
+    });
+}
+
+function finish() {
+    let t, d, s;
+    if (score <= 3) { t = "清平 · 春生 (低压)"; d = "心智状态：虚室生白，吉祥止止。你的自我防御系统健全。"; s = "关怀建议：建议进行预防性的“冥想深度练习”。"; }
+    else if (score <= 7) { t = "警示 · 霜落 (中压)"; d = "心智状态：气滞胸壑，风起青萍。身体已发出代偿信号。"; s = "关怀建议：需立即启动“感官屏障”计划，重点修复肩颈。"; }
+    else { t = "过载 · 深冬 (高压)"; d = "心智状态：燃油将尽，落叶萧索。你正处于情感极度疲惫期。"; s = "专家提醒：立即停止决策，进行“心理急救”。"; }
+    
+    document.getElementById('res-title').innerText = t;
+    document.getElementById('res-desc').innerText = d;
+    document.getElementById('res-sugg').innerText = s;
+    
+    // 修正：正确地设置链接目标
+    document.querySelector('.result a').href = "Day 1 care.html";
+    
+    nextStep('result');
+}
+
+</script>
+</body>
+</html>
