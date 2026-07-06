@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 3：身体对话</title>
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg-soft: #F9F7F2; 
+            --text-color: #1A1A1A; 
+        }
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 100px; 
+        }
+        #app { width: 85%; max-width: 500px; padding: 40px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; text-align: center; margin-top: 40px; }
+        
+        h2 { font-weight: normal; letter-spacing: 0.2em; text-transform: uppercase; }
+        .body-btn { display: block; width: 100%; margin: 12px 0; padding: 15px; border: 1px solid var(--gold); background: none; color: var(--gold); cursor: pointer; transition: 0.4s; font-family: inherit; letter-spacing: 0.1em; }
+        .body-btn:hover { background: var(--gold); color: white; }
+        
+        #dialogue-box { margin: 25px 0; padding: 20px; font-style: italic; color: #555; border-left: 3px solid var(--gold); display: none; text-align: left; }
+        #pet-container { display: none; margin-top: 30px; animation: fadeIn 1s; }
+        video { width: 100%; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* 导航栏样式 */
+        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>Day 3：身体对话</h2>
+    <p>请点击此刻你感到最紧绷的部位，与它完成一次和解：</p>
+    
+    <button class="body-btn" onclick="startDialogue('下颚')">下颚（压抑的言语）</button>
+    <button class="body-btn" onclick="startDialogue('肩颈')">肩颈（沉重的责任）</button>
+    <button class="body-btn" onclick="startDialogue('胃部')">胃部（难消化的情绪）</button>
+    
+    <div id="dialogue-box"></div>
+    
+    <div id="pet-container">
+        <p>那份负荷已随呼吸放下，此刻是只属于你的宁静时间。</p>
+        <video id="pet-video" autoplay loop muted playsinline>
+            <source src="my-cat-sleeping.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html">D1</a> · 
+    <a href="Day 2 care.html">D2</a> · 
+    <a href="Day 3 care.html">D3</a> · 
+    <a href="Day 4 care.html">D4</a> · 
+    <a href="Day 5 care.html">D5</a> · 
+    <a href="Day 6 care.html">D6</a> · 
+    <a href="Day 7 care.html">D7</a>
+</nav>
+
+<script>
+    function startDialogue(part) {
+        const box = document.getElementById('dialogue-box');
+        const container = document.getElementById('pet-container');
+        box.style.display = 'block';
+        box.innerHTML = `正在与 <strong>${part}</strong> 进行深度对话...<br><br>“我看见了你的紧绷。我不评判这份负荷，我允许它在这里，并邀请它随呼吸缓慢舒展。”`;
+        setTimeout(() => {
+            container.style.display = 'block';
+            document.getElementById('pet-video').play();
+            window.scrollTo(0, document.body.scrollHeight);
+        }, 2000);
+    }
+</script>
+</body>
+</html>
