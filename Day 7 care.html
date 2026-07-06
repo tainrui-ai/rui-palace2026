@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 7：生命共振报告</title>
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg-soft: #F9F7F2; 
+            --text-color: #1A1A1A; 
+        }
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 100px; 
+        }
+        
+        #container { display: flex; align-items: center; gap: 40px; max-width: 800px; padding: 40px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+        
+        #breath-sidebar { display: flex; flex-direction: column; align-items: center; padding-right: 40px; border-right: 1px solid #DED8CC; min-width: 120px; }
+        #ball { width: 60px; height: 60px; background: var(--gold); border-radius: 50%; animation: breathe 12s infinite ease-in-out; opacity: 0.6; }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 33%, 50% { transform: scale(1.5); } }
+        
+        #report-content { text-align: center; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; padding: 50px; flex: 1; min-width: 300px; }
+        .declaration-item { margin: 15px 0; font-style: italic; color: #444; border-bottom: 1px solid #EAE6DF; padding-bottom: 5px; }
+        #final-video { margin-top: 40px; width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        /* 导航栏样式 */
+        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="breath-sidebar">
+        <div id="ball"></div>
+        <p style="font-size: 0.7em; margin-top: 15px;">生命共振</p>
+    </div>
+
+    <div id="report-content">
+        <h2>Day 7：生命共振报告</h2>
+        <p>这是你七天构建的能量铠甲与纯净磁场：</p>
+        
+        <div class="declaration-item">1. 觉察：呼吸是切断干扰的利刃。</div>
+        <div class="declaration-item">2. 屏蔽：嫉妒的杂音，只在边界之外回荡。</div>
+        <div class="declaration-item">3. 清理：身体的每一次舒展，都是对压抑的释放。</div>
+        <div class="declaration-item">4. 边界：我的能量，只服务于我的热忱与所爱。</div>
+        <div class="declaration-item">5. 内化：宁静已成为我的本能呼吸。</div>
+        
+        <p style="margin-top: 30px; font-weight: bold; color: var(--gold);">你已成为自己的太阳。</p>
+        
+        <video id="final-video" autoplay loop muted playsinline>
+            <source src="my-cat-sleeping.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html">D1</a> · 
+    <a href="Day 2 care.html">D2</a> · 
+    <a href="Day 3 care.html">D3</a> · 
+    <a href="Day 4 care.html">D4</a> · 
+    <a href="Day 5 care.html">D5</a> · 
+    <a href="Day 6 care.html">D6</a> · 
+    <a href="Day 7 care.html">D7</a>
+</nav>
+
+</body>
+</html>
