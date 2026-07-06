@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 2：感官屏障</title>
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg-soft: #F9F7F2; 
+            --text-color: #1A1A1A; 
+        }
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 100px; 
+        }
+        #app { width: 85%; max-width: 500px; padding: 40px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; text-align: center; margin-top: 40px; }
+        
+        .shield-input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #DED8CC; background: rgba(255,255,255,0.5); box-sizing: border-box; }
+        .action-btn { padding: 15px 30px; border: 1px solid var(--gold); cursor: pointer; color: var(--gold); margin-top: 20px; transition: 0.5s; display: inline-block; }
+        
+        #pet-container { display: none; margin-top: 30px; }
+        video { width: 100%; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        
+        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>Day 2：感官屏障</h2>
+    <p>请输入三项今天必须过滤的干扰源，它们不应占用你的一寸心智：</p>
+    <input type="text" class="shield-input" placeholder="例如：嫉妒的言语...">
+    <input type="text" class="shield-input" placeholder="例如：焦虑的信息...">
+    <input type="text" class="shield-input" placeholder="例如：琐碎的决策...">
+    
+    <div class="action-btn" onclick="activateShield()">开启屏障·领受宁静</div>
+    
+    <div id="pet-container">
+        <p>屏障已锁闭，私人磁场已重置。</p>
+        <video id="pet-video" autoplay loop muted playsinline>
+            <source src="my-cat-sleeping.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html">D1</a> · 
+    <a href="Day 2 care.html">D2</a> · 
+    <a href="Day 3 care.html">D3</a> · 
+    <a href="Day 4 care.html">D4</a> · 
+    <a href="Day 5 care.html">D5</a> · 
+    <a href="Day 6 care.html">D6</a> · 
+    <a href="Day 7 care.html">D7</a>
+</nav>
+
+<script>
+    function activateShield() {
+        document.getElementById('pet-container').style.display = 'block';
+        document.getElementById('pet-video').play();
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+</script>
+</body>
+</html>
