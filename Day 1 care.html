@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root { --gold: #C5A059; --bg-soft: #F9F7F2; --text-color: #1A1A1A; }
+        
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; /* 调整为纵向排布，防止导航遮挡内容 */
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 80px; /* 为底部导航预留空间 */
+        }
+        
+        #app { width: 85%; max-width: 500px; padding: 40px; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; text-align: center; margin-top: 40px; }
+        
+        .heart-method { color: #555; font-size: 1.1em; margin-bottom: 25px; line-height: 1.6; border-bottom: 1px solid #DED8CC; padding-bottom: 15px; }
+        #ball { width: 80px; height: 80px; background: var(--gold); border-radius: 50%; margin: 20px auto; animation: breathe 12s infinite ease-in-out; opacity: 0.6; }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 33%, 50% { transform: scale(1.5); } }
+        
+        .task { text-align: left; margin: 20px 0; color: #444; }
+        .action-btn { padding: 15px 30px; border: 1px solid var(--gold); cursor: pointer; color: var(--gold); margin-top: 20px; transition: 0.5s; }
+        
+        /* 统一导航栏样式 */
+        #nav-bar { 
+            position: fixed; 
+            bottom: 15px; 
+            width: 100%; 
+            text-align: center; 
+            font-size: 0.7em; 
+            letter-spacing: 0.2em; 
+            opacity: 0.6; 
+            background: var(--bg-soft); 
+            padding: 10px 0; 
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h2>Day 1：觉察与急救</h2>
+    <div class="heart-method"><strong>强制性觉知：</strong>当身体发出警报，请即刻停止逻辑运作。</div>
+    <div id="breath-ball"><div id="ball"></div></div>
+    <p>跟随律动：吸气4秒(放大) → 屏息2秒 → 呼气6秒(缩小)。</p>
+    <div class="task">
+        <input type="checkbox" id="t1"> <label>完成呼吸训练，切断高压神经</label><br>
+        <input type="checkbox" id="t2"> <label>删除一项次要决策，减轻心智负担</label>
+    </div>
+    <div class="action-btn" onclick="reward()">确认完成·领取拥抱</div>
+    <div id="pet-container" style="display:none; margin-top:20px;">
+        <p>你已成功归位。这是给你的拥抱。</p>
+        <video id="pet-video" width="100%" autoplay loop muted playsinline><source src="my-cat.mp4" type="video/mp4"></video>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html" style="color:var(--text-color); text-decoration:none;">D1</a> · 
+    <a href="Day 2 care.html" style="color:var(--text-color); text-decoration:none;">D2</a> · 
+    <a href="Day 3 care.html" style="color:var(--text-color); text-decoration:none;">D3</a> · 
+    <a href="Day 4 care.html" style="color:var(--text-color); text-decoration:none;">D4</a> · 
+    <a href="Day 5 care.html" style="color:var(--text-color); text-decoration:none;">D5</a> · 
+    <a href="Day 6 care.html" style="color:var(--text-color); text-decoration:none;">D6</a> · 
+    <a href="Day 7 care.html" style="color:var(--text-color); text-decoration:none;">D7</a>
+</nav>
+
+<script>
+    function reward() {
+        if(document.getElementById('t1').checked && document.getElementById('t2').checked) {
+            document.getElementById('pet-container').style.display = 'block';
+            document.getElementById('pet-video').play();
+            window.scrollTo(0, document.body.scrollHeight);
+        } else { alert("请先跟随呼吸练习，并放下那件烦心事。"); }
+    }
+</script>
+</body>
+</html>
