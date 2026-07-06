@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 5：能量自动化管理</title>
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg-soft: #F9F7F2; 
+            --text-color: #1A1A1A; 
+        }
+        body { 
+            background-color: var(--bg-soft); 
+            color: var(--text-color); 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding-bottom: 100px; 
+        }
+        
+        /* 响应式容器布局 */
+        #container { display: flex; align-items: center; gap: 40px; max-width: 800px; padding: 40px; flex-wrap: wrap; justify-content: center; }
+        
+        #breath-sidebar { display: flex; flex-direction: column; align-items: center; padding-right: 40px; border-right: 1px solid #DED8CC; min-width: 120px; }
+        #ball { width: 60px; height: 60px; background: var(--gold); border-radius: 50%; animation: breathe 12s infinite ease-in-out; opacity: 0.6; }
+        @keyframes breathe { 0%, 100% { transform: scale(1); } 33%, 50% { transform: scale(1.5); } }
+        
+        #main-content { text-align: center; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; padding: 40px; flex: 1; min-width: 300px; }
+        .action-btn { padding: 15px 30px; border: 1px solid var(--gold); cursor: pointer; color: var(--gold); margin-top: 20px; display: inline-block; font-family: inherit; }
+        
+        #pet-container { display: none; margin-top: 30px; }
+        video { width: 100%; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        
+        /* 统一导航栏样式 */
+        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="breath-sidebar">
+        <div id="ball"></div>
+        <p style="font-size: 0.7em; margin-top: 15px;">呼吸归位</p>
+    </div>
+
+    <div id="main-content">
+        <h2>Day 5：能量自动化管理</h2>
+        <p><strong>核心心法：</strong>构建能量闭环。</p>
+        <p>通过左侧的持续律动，你正在将“觉察、屏蔽、清理”转化为神经回路的默认配置。</p>
+        <p>当干扰出现，心智将自动触发屏障。这已不再是练习，而是你的一部分。</p>
+        <div class="action-btn" onclick="automate()">确认闭环·自动化运行</div>
+        
+        <div id="pet-container">
+            <p>自动化系统已激活。这只猫咪代表你内心永恒的宁静。</p>
+            <video id="pet-video" autoplay loop muted playsinline>
+                <source src="my-cat-sleeping.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
+<nav id="nav-bar">
+    <a href="Day 1 care.html">D1</a> · 
+    <a href="Day 2 care.html">D2</a> · 
+    <a href="Day 3 care.html">D3</a> · 
+    <a href="Day 4 care.html">D4</a> · 
+    <a href="Day 5 care.html">D5</a> · 
+    <a href="Day 6 care.html">D6</a> · 
+    <a href="Day 7 care.html">D7</a>
+</nav>
+
+<script>
+    function automate() {
+        document.getElementById('pet-container').style.display = 'block';
+        document.getElementById('pet-video').play();
+        alert("长期自动化管理已生效。无论外界如何变动，你的核心能量已由你掌控。");
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+</script>
+</body>
+</html>
