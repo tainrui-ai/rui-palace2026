@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <title>归位：潜意识压力感知测试</title>
     <style>
-        body { background: #F9F7F2; color: #1A1A1A; font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; padding: 60px 20px; line-height: 1.8; letter-spacing: 0.15em; display: flex; justify-content: center; }
-        #app { max-width: 500px; width: 100%; text-align: center; }
+        /* 布局微调：使用 flex-column 确保页脚始终在页面底部 */
+        body { 
+            margin: 0;
+            min-height: 100vh;
+            background: #F9F7F2; 
+            color: #1A1A1A; 
+            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        #app { 
+            flex: 1; 
+            max-width: 500px; 
+            width: 100%; 
+            text-align: center; 
+            padding: 60px 20px; 
+            line-height: 1.8; 
+            letter-spacing: 0.15em; 
+        }
         .intro, .quiz, .result { opacity: 0; transition: opacity 1s; display: none; }
         .active { display: block; opacity: 1; }
         .option { display: block; margin: 15px 0; padding: 15px; border: 1px solid #DED8CC; cursor: pointer; transition: 0.3s; color: #555; }
@@ -38,6 +56,15 @@
     </div>
 </div>
 
+<!-- 页脚放在 app 容器外，body 内部 -->
+<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; border-top: 1px solid #e0e0e0; width: 100%;">
+    <div style="margin-bottom: 10px;">
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+    </div>
+    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+</footer>
+
 <script>
     const data = [
         {q: "Q1. 宁静之色：此刻你最想粉刷哪种墙面色？", o: ["沉静雾蓝", "温暖杏仁"]},
@@ -59,48 +86,35 @@
         if(target === 'quiz') renderQ();
     }
 
-// --- 请替换原有的 renderQ 和 finish 函数 ---
+    function renderQ() {
+        document.getElementById('q-text').innerText = data[idx].q;
+        const optDiv = document.getElementById('q-options');
+        optDiv.innerHTML = '';
+        data[idx].o.forEach((text, i) => {
+            const btn = document.createElement('div');
+            btn.className = 'option';
+            btn.innerText = text;
+            btn.onclick = () => { 
+                score += i; 
+                idx++; 
+                idx < data.length ? renderQ() : finish(); 
+            };
+            optDiv.appendChild(btn);
+        });
+    }
 
-function renderQ() {
-    document.getElementById('q-text').innerText = data[idx].q;
-    const optDiv = document.getElementById('q-options');
-    optDiv.innerHTML = '';
-    data[idx].o.forEach((text, i) => {
-        const btn = document.createElement('div');
-        btn.className = 'option';
-        btn.innerText = text;
-        // 修正：这里不再传入复杂的参数，仅调用 finish()
-        btn.onclick = () => { 
-            score += i; 
-            idx++; 
-            idx < data.length ? renderQ() : finish(); 
-        };
-        optDiv.appendChild(btn);
-    });
-}
-
-function finish() {
-    let t, d, s;
-    if (score <= 3) { t = "清平 · 春生 (低压)"; d = "心智状态：虚室生白，吉祥止止。你的自我防御系统健全。"; s = "关怀建议：建议进行预防性的“冥想深度练习”。"; }
-    else if (score <= 7) { t = "警示 · 霜落 (中压)"; d = "心智状态：气滞胸壑，风起青萍。身体已发出代偿信号。"; s = "关怀建议：需立即启动“感官屏障”计划，重点修复肩颈。"; }
-    else { t = "过载 · 深冬 (高压)"; d = "心智状态：燃油将尽，落叶萧索。你正处于情感极度疲惫期。"; s = "专家提醒：立即停止决策，进行“心理急救”。"; }
-    
-    document.getElementById('res-title').innerText = t;
-    document.getElementById('res-desc').innerText = d;
-    document.getElementById('res-sugg').innerText = s;
-    
-    // 修正：正确地设置链接目标
-    document.querySelector('.result a').href = "Day 1 care.html";
-    
-    nextStep('result');
-}
-         <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
-        <div style="margin-bottom: 10px;">
-            <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
-            | 
-            <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
-        </div>
-        <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
-    </footer>
+    function finish() {
+        let t, d, s;
+        if (score <= 3) { t = "清平 · 春生 (低压)"; d = "心智状态：虚室生白，吉祥止止。你的自我防御系统健全。"; s = "关怀建议：建议进行预防性的“冥想深度练习”。"; }
+        else if (score <= 7) { t = "警示 · 霜落 (中压)"; d = "心智状态：气滞胸壑，风起青萍。身体已发出代偿信号。"; s = "关怀建议：需立即启动“感官屏障”计划，重点修复肩颈。"; }
+        else { t = "过载 · 深冬 (高压)"; d = "心智状态：燃油将尽，落叶萧索。你正处于情感极度疲惫期。"; s = "专家提醒：立即停止决策，进行“心理急救”。"; }
+        
+        document.getElementById('res-title').innerText = t;
+        document.getElementById('res-desc').innerText = d;
+        document.getElementById('res-sugg').innerText = s;
+        document.querySelector('.result a').href = "Day 1 care.html";
+        nextStep('result');
+    }
+</script>
 </body>
 </html>
