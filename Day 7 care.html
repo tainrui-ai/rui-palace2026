@@ -19,23 +19,25 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            min-height: 100vh; 
-            padding-bottom: 100px; 
+            min-height: 100vh;
         }
         
-        #container { display: flex; align-items: center; gap: 40px; max-width: 800px; padding: 40px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+        #container { display: flex; align-items: center; gap: 40px; max-width: 800px; padding: 40px; flex-wrap: wrap; justify-content: center; margin-top: 40px; flex: 1 0 auto; }
         
         #breath-sidebar { display: flex; flex-direction: column; align-items: center; padding-right: 40px; border-right: 1px solid #DED8CC; min-width: 120px; }
         #ball { width: 60px; height: 60px; background: var(--gold); border-radius: 50%; animation: breathe 12s infinite ease-in-out; opacity: 0.6; }
         @keyframes breathe { 0%, 100% { transform: scale(1); } 33%, 50% { transform: scale(1.5); } }
         
         #report-content { text-align: center; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid #DED8CC; padding: 50px; flex: 1; min-width: 300px; }
-        .declaration-item { margin: 15px 0; font-style: italic; color: #444; border-bottom: 1px solid #EAE6DF; padding-bottom: 5px; }
-        #final-video { margin-top: 40px; width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        /* 已取消 font-style: italic */
+        .declaration-item { margin: 15px 0; color: #444; border-bottom: 1px solid #EAE6DF; padding-bottom: 5px; }
+      
         
-        /* 导航栏样式 */
-        #nav-bar { position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.7em; letter-spacing: 0.2em; opacity: 0.6; }
+        /* 导航栏样式调整：增加上方间距，不再使用绝对定位，避免重叠 */
+        #nav-bar { margin: 40px 0 20px 0; text-align: center; font-size: 0.8em; letter-spacing: 0.2em; opacity: 0.6; }
         #nav-bar a { margin: 0 8px; color: var(--text-color); text-decoration: none; }
+        
+        footer { text-align: center; padding: 20px 20px 40px 20px; font-size: 0.8rem; color: #8c8c8c; border-top: 1px solid #e0e0e0; width: 100%; }
     </style>
 </head>
 <body>
@@ -73,13 +75,15 @@
     <a href="Day 6 care.html">D6</a> · 
     <a href="Day 7 care.html">D7</a>
 </nav>
-   <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
-        <div style="margin-bottom: 10px;">
-            <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
-            | 
-            <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
-        </div>
-        <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
-    </footer>
+
+<footer>
+    <div style="margin-bottom: 10px;">
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
+        | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+    </div>
+    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+</footer>
+
 </body>
 </html>
