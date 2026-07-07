@@ -87,7 +87,7 @@
 
     <script>
         const colors = [{hex:'#4A6741',name:'南阳艾绿'},{hex:'#6B8E60',name:'苍青草色'},{hex:'#8FA984',name:'晨露浅草'},{hex:'#B2C6A8',name:'薄青云雾'},{hex:'#D6E3CF',name:'初荷凝露'},{hex:'#F0F5EF',name:'凝露白'}];
-        const poetries = ["清明时节雨纷纷，艾草芬芳润如尘。", "手持艾叶驱寒气，正气存内百邪除。", "绿叶丛中藏仙草，清风徐来药韵长。", "晨露凝青如玉润，静守本真待岁长。", "万物静观皆自得，草木青青显正气。", "愿君如艾怀仙骨，历尽风霜骨亦青。", "采药归来山月高，艾香入梦魂亦销。"];
+        const poetries = ["绿叶丛中藏仙草，清风徐来药韵长。"，"清明时节雨纷纷，艾草芬芳润如尘。", "手持艾叶驱寒气，正气存内百邪除。", "晨露凝青如玉润，静守本真待岁长。", "万物静观皆自得，草木青青显正气。", "愿君如艾怀仙骨，历尽风霜骨亦青。", "采药归来山月高，艾香入梦魂亦销。"];
         function copy(text){ navigator.clipboard.writeText(text); alert('已复制色号: ' + text); }
         // 仅放大色块比例：从 h-12 增加至 h-24
         document.getElementById('color-grid').innerHTML = colors.map(c => `<div onclick="copy('${c.hex}')" class="cursor-pointer p-4 bg-white/60 rounded-xl border border-neutral-200/50 hover:border-[#4A6741]/50 transition"><div class="h-24 mb-3 rounded" style="background-color:${c.hex}"></div><p class="text-[11px] font-bold">${c.name}</p><p class="text-[10px] text-neutral-400 font-mono">${c.hex}</p></div>`).join('');
