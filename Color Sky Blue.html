@@ -105,7 +105,13 @@
     function copy(text){ navigator.clipboard.writeText(text); alert('已复制色号: ' + text); }
     document.getElementById('color-grid').innerHTML = colors.map(c => `<div onclick="copy('${c.hex}')" class="cursor-pointer p-4 bg-white/5 rounded-xl border border-white/10 hover:border-blue-500/50 transition"><div class="h-24 mb-3 rounded" style="background-color:${c.hex}"></div><p class="text-[11px] font-bold text-white">${c.name}</p><p class="text-[10px] text-blue-400 font-mono">${c.hex}</p></div>`).join('');
     document.getElementById('color-slider').oninput = function(){ const c=colors[this.value]; document.getElementById('dynamic-pad').style.backgroundColor=c.hex; document.getElementById('dynamic-name').innerText=c.name; document.getElementById('dynamic-hex').innerText=c.hex; };
-    document.getElementById('next-poetry').onclick = () => { document.getElementById('poetry-text').innerText = '“' + poetries[Math.floor(Math.random()*poetries.length)] + '”'; };
+    // 诗句与来源切换逻辑
+    document.getElementById('next-poetry').onclick = () => { 
+        const p = poetries[Math.floor(Math.random() * poetries.length)];
+        // 这里必须分别引用 p.text 和 p.source
+        document.getElementById('poetry-text').innerText = '“' + p.text + '”'; 
+        document.getElementById('poetry-source').innerText = p.source;
+    }; = () => { document.getElementById('poetry-text').innerText = '“' + poetries[Math.floor(Math.random()*poetries.length)] + '”'; };
 </script>
 </body>
 </html>
