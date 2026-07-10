@@ -132,7 +132,7 @@
         document.getElementById('color-slider').oninput = function(){ const c=colors[this.value]; document.getElementById('dynamic-pad').style.backgroundColor=c.hex; document.getElementById('dynamic-name').innerText=c.name; document.getElementById('dynamic-hex').innerText=c.hex; };
         document.getElementById('next-poetry').onclick = () => { const p = poetries[Math.floor(Math.random()*poetries.length)]; document.getElementById('poetry-text').innerText = '“' + p.text + '”'; document.getElementById('poetry-source').innerText = p.source; };
     </script>
-    <footer class="w-full max-w-7xl mx-auto px-6 py-6 border-t border-white/10 flex justify-between items-center text-[10px] text-green-400 tracking-[0.3em]">
+    <footer class="w-full max-w-7xl mx-auto px-6 py-6 border-t border-white/10 flex justify-between items-center text-[10px] text-neutral-400 tracking-[0.3em]">
     <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
     <p><a href="#">法律声明 (Impressum)</a> | <a href="#">隐私政策 (Datenschutz)</a></p>
 </footer>
