@@ -34,6 +34,7 @@
         于药田深处与晨露微凉之间，寻得一抹斩断寒邪、静守本真的草木风骨。
     </p>
 
+    
     <!-- 右侧：已强制修复竖排样式 -->
     <div class="hidden lg:flex absolute right-8 top-1/2 -translate-y-1/2 items-center space-x-2">
         <span style="writing-mode: vertical-rl; text-orientation: upright;" class="text-[10px] text-neutral-500 tracking-[0.3em] font-light">仙草怀真 · 正气长存</span>
@@ -42,12 +43,16 @@
 </header>
 
     <main class="w-full max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <section class="chinese-border p-8 rounded-2xl">
+
+
+        
+                <section class="chinese-border p-8 rounded-2xl">
             <h2 class="text-md font-semibold tracking-[0.2em] mb-6 flex items-center">
                 <span class="w-2.5 h-2.5 bg-[#4A6741] rounded-full mr-2"></span>西阁 · 艾青凝露色卡
             </h2>
             <div id="color-grid" class="grid grid-cols-2 gap-4"></div>
         </section>
+
 
         <section class="chinese-border p-8 rounded-2xl flex flex-col space-y-6">
     <h2 class="text-md font-semibold tracking-[0.2em]">东阁 · 听风听雨观象台</h2>
@@ -84,9 +89,13 @@
     
             <input type="range" id="color-slider" min="0" max="5" value="0" class="w-full h-1 bg-neutral-300 rounded-lg appearance-none cursor-pointer">
             <div class="border-t border-neutral-200 pt-4">
-                <p id="poetry-text" class="text-sm tracking-widest text-neutral-600 mb-2">"绿叶丛中藏仙草，清风徐来药韵长。"</p>
-                <button id="next-poetry" class="text-[10px] text-[#4A6741] hover:underline tracking-widest">换一首诗 ➔</button>
-            </div>
+    <!-- 将此处的 p 标签修改为下面这样 -->
+    <div id="poetry-container" class="text-sm tracking-widest text-neutral-600 mb-2">
+        <p id="poetry-text">“清明时节雨纷纷，艾草芬芳润如尘。”</p>
+        <p id="poetry-source" class="text-[10px] text-neutral-400 tracking-widest mt-2 text-right">—— 佚名《清明》</p>
+    </div>
+    <button id="next-poetry" class="text-[10px] text-[#4A6741] hover:underline tracking-widest">换一首诗 ➔</button>
+</div>
         </section>
     </main>
 
@@ -96,13 +105,38 @@
     </footer>
 
     <script>
-        const colors = [{hex:'#4A6741',name:'南阳艾绿'},{hex:'#6B8E60',name:'苍青草色'},{hex:'#8FA984',name:'晨露浅草'},{hex:'#B2C6A8',name:'薄青云雾'},{hex:'#D6E3CF',name:'初荷凝露'},{hex:'#F0F5EF',name:'凝露白'}];
-        const poetries = ["绿叶丛中藏仙草，清风徐来药韵长。", "清明时节雨纷纷，艾草芬芳润如尘。", "手持艾叶驱寒气，正气存内百邪除。", "绿叶丛中藏仙草，清风徐来药韵长。", "晨露凝青如玉润，静守本真待岁长。", "万物静观皆自得，草木青青显正气。", "愿君如艾怀仙骨，历尽风霜骨亦青。", "采药归来山月高，艾香入梦魂亦销。"];
-        function copy(text){ navigator.clipboard.writeText(text); alert('已复制色号: ' + text); }
-        // 仅放大色块比例：从 h-12 增加至 h-24
-        document.getElementById('color-grid').innerHTML = colors.map(c => `<div onclick="copy('${c.hex}')" class="cursor-pointer p-4 bg-white/60 rounded-xl border border-neutral-200/50 hover:border-[#4A6741]/50 transition"><div class="h-24 mb-3 rounded" style="background-color:${c.hex}"></div><p class="text-[11px] font-bold">${c.name}</p><p class="text-[10px] text-neutral-400 font-mono">${c.hex}</p></div>`).join('');
-        document.getElementById('color-slider').oninput = function(){ const c=colors[this.value]; document.getElementById('dynamic-pad').style.backgroundColor=c.hex; document.getElementById('dynamic-name').innerText=c.name; document.getElementById('dynamic-hex').innerText=c.hex; };
-        document.getElementById('next-poetry').onclick = () => { document.getElementById('poetry-text').innerText = '“' + poetries[Math.floor(Math.random()*poetries.length)] + '”'; };
-    </script>
+    const colors = [{hex:'#4A6741',name:'南阳艾绿'},{hex:'#6B8E60',name:'苍青草色'},{hex:'#8FA984',name:'晨露浅草'},{hex:'#B2C6A8',name:'薄青云雾'},{hex:'#D6E3CF',name:'初荷凝露'},{hex:'#F0F5EF',name:'凝露白'}];
+    
+    // 诗句与来源对象数组
+    const poetries = [
+        { text: "清明时节雨纷纷，艾草芬芳润如尘。", source: "—— 佚名《清明》" },
+        { text: "手持艾叶驱寒气，正气存内百邪除。", source: "—— 医家语" },
+        { text: "绿叶丛中藏仙草，清风徐来药韵长。", source: "—— 采药人语" },
+        { text: "晨露凝青如玉润，静守本真待岁长。", source: "—— 灵犀鉴" },
+        { text: "万物静观皆自得，草木青青显正气。", source: "—— 程颢《秋日》" },
+        { text: "愿君如艾怀仙骨，历尽风霜骨亦青。", source: "—— 瑞宫诗集" },
+        { text: "采药归来山月高，艾香入梦魂亦销。", source: "—— 山中即事" }
+    ];
+
+    function copy(text){ navigator.clipboard.writeText(text); alert('已复制色号: ' + text); }
+
+    // 渲染色卡
+    document.getElementById('color-grid').innerHTML = colors.map(c => `<div onclick="copy('${c.hex}')" class="cursor-pointer p-4 bg-white/60 rounded-xl border border-neutral-200/50 hover:border-[#4A6741]/50 transition"><div class="h-24 mb-3 rounded" style="background-color:${c.hex}"></div><p class="text-[11px] font-bold">${c.name}</p><p class="text-[10px] text-neutral-400 font-mono">${c.hex}</p></div>`).join('');
+
+    // 滑块联动逻辑
+    document.getElementById('color-slider').oninput = function(){ 
+        const c=colors[this.value]; 
+        document.getElementById('dynamic-pad').style.backgroundColor=c.hex; 
+        document.getElementById('dynamic-name').innerText=c.name; 
+        document.getElementById('dynamic-hex').innerText=c.hex; 
+    };
+
+    // 诗句切换逻辑
+    document.getElementById('next-poetry').onclick = () => { 
+        const p = poetries[Math.floor(Math.random()*poetries.length)];
+        document.getElementById('poetry-text').innerText = '“' + p.text + '”'; 
+        document.getElementById('poetry-source').innerText = p.source;
+    };
+</script>
 </body>
 </html>
