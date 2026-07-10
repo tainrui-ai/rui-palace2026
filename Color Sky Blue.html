@@ -63,10 +63,17 @@
             <span class="text-xs text-[#3B82F6] font-bold transform group-hover:translate-x-1 transition-transform">➔</span>
         </a>
 
-        <div id="dynamic-pad" class="w-full h-24 rounded-xl flex flex-col justify-end p-4 text-white transition-colors duration-500" style="background-color: #1E3A8A;">
-            <p id="dynamic-name" class="text-xs font-bold tracking-[0.2em]">涌帝青</p>
-            <p id="dynamic-hex" class="text-[10px] font-mono opacity-80">#1E3A8A</p>
-        </div>
+        <!-- 修改后的动态色板区域：添加了显式的色号显示与点击复制 -->
+            <div id="dynamic-pad" 
+     onclick="copy(document.getElementById('dynamic-hex').innerText)" 
+     class="w-full h-24 rounded-xl flex flex-col justify-end p-4 text-white transition-colors duration-500 cursor-pointer hover:opacity-90 active:scale-[0.99]" 
+     style="background-color: #1E3A8A;">
+    <p id="dynamic-name" class="text-xs font-bold tracking-[0.2em]">涌帝青</p>
+    <div class="flex items-center space-x-2">
+        <p id="dynamic-hex" class="text-[10px] font-mono opacity-80">#1E3A8A</p>
+        <span class="text-[8px] border border-white/30 px-1 rounded uppercase">点击复制</span>
+    </div>
+</div>
         <input type="range" id="color-slider" min="0" max="5" value="0" class="w-full h-1 bg-blue-900 rounded-lg appearance-none cursor-pointer">
         <div class="border-t border-blue-900 pt-4">
             <p id="poetry-text" class="text-sm tracking-widest text-blue-100 mb-2">“天道无亲，常与善人。”</p>
