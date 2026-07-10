@@ -64,7 +64,7 @@
         </a>
 
         <!-- 修改后的动态色板区域：添加了显式的色号显示与点击复制 -->
-            <div id="dynamic-pad" 
+           <div id="dynamic-pad" 
      onclick="copy(document.getElementById('dynamic-hex').innerText)" 
      class="w-full h-24 rounded-xl flex flex-col justify-end p-4 text-white transition-colors duration-500 cursor-pointer hover:opacity-90 active:scale-[0.99]" 
      style="background-color: #1E3A8A;">
@@ -76,9 +76,13 @@
 </div>
         <input type="range" id="color-slider" min="0" max="5" value="0" class="w-full h-1 bg-blue-900 rounded-lg appearance-none cursor-pointer">
         <div class="border-t border-blue-900 pt-4">
-            <p id="poetry-text" class="text-sm tracking-widest text-blue-100 mb-2">“天道无亲，常与善人。”</p>
-            <button id="next-poetry" class="text-[10px] text-[#3B82F6] hover:underline tracking-widest">换一首诗 ➔</button>
-        </div>
+    <!-- 增加 poetry-container 容器，内部包含诗句和出处 -->
+    <div id="poetry-container" class="text-sm tracking-widest text-blue-100 mb-2">
+        <p id="poetry-text">“天道无亲，常与善人。”</p>
+        <p id="poetry-source" class="text-[10px] text-blue-400 tracking-widest mt-2 text-right">—— 老子《道德经》</p>
+    </div>
+    <button id="next-poetry" class="text-[10px] text-[#3B82F6] hover:underline tracking-widest">换一首诗 ➔</button>
+</div>
     </section>
 </main>
 
