@@ -92,28 +92,39 @@
 </footer>
 
 <script>
-    const colors = [{hex:'#1E3A8A',name:'涌帝青'},{hex:'#2563EB',name:'天坛正蓝'},{hex:'#3B82F6',name:'苍穹湛色'},{hex:'#60A5FA',name:'云破浅蓝'},{hex:'#93C5FD',name:'如天霁青'},{hex:'#DBEAFE',name:'凝露琉璃'}];
-    const poetries = [
-    { text: "天道无亲，常与善人。", source: "—— 老子《道德经》" },
-    { text: "祈年殿上苍穹阔，万物生发显正气。", source: "—— 蕊宫原创" },
-    { text: "三重飞檐接紫气，琉璃映月洗尘心。", source: "—— 蕊宫原创" },
-    { text: "顺应天道无狂傲，自得真诚待岁长。", source: "—— 蕊宫原创" },
-    { text: "万物静观皆自得，草木青青显正气。", source: "—— 程颢《秋日偶成》" },
-    { text: "心存敬畏苍穹下，历尽风霜骨亦青。", source: "—— 蕊宫原创" },
-    { text: "采药归来山月高，艾香入梦魂亦销。", source: "—— 蕊宫原创" }
-];
-    function copy(text){ navigator.clipboard.writeText(text); alert('已复制色号: ' + text); }
-    document.getElementById('color-grid').innerHTML = colors.map(c => `<div onclick="copy('${c.hex}')" class="cursor-pointer p-4 bg-white/5 rounded-xl border border-white/10 hover:border-blue-500/50 transition"><div class="h-24 mb-3 rounded" style="background-color:${c.hex}"></div><p class="text-[11px] font-bold text-white">${c.name}</p><p class="text-[10px] text-blue-400 font-mono">${c.hex}</p></div>`).join('');
-    document.getElementById('color-slider').oninput = function(){ const c=colors[this.value]; document.getElementById('dynamic-pad').style.backgroundColor=c.hex; document.getElementById('dynamic-name').innerText=c.name; document.getElementById('dynamic-hex').innerText=c.hex; };
-    // 诗句与来源切换逻辑
+    document.addEventListener('DOMContentLoaded', () => {
+        const colors = [{hex:'#1E3A8A',name:'涌帝青'},{hex:'#2563EB',name:'天坛正蓝'},{hex:'#3B82F6',name:'苍穹湛色'},{hex:'#60A5FA',name:'云破浅蓝'},{hex:'#93C5FD',name:'如天霁青'},{hex:'#DBEAFE',name:'凝露琉璃'}];
+        const poetries = [
+            { text: "天道无亲，常与善人。", source: "—— 老子《道德经》" },
+            { text: "祈年殿上苍穹阔，万物生发显正气。", source: "—— 蕊宫原创" },
+            { text: "三重飞檐接紫气，琉璃映月洗尘心。", source: "—— 蕊宫原创" },
+            { text: "顺应天道无狂傲，自得真诚待岁长。", source: "—— 蕊宫原创" },
+            { text: "万物静观皆自得，草木青青显正气。", source: "—— 程颢《秋日偶成》" },
+            { text: "心存敬畏苍穹下，历尽风霜骨亦青。", source: "—— 蕊宫原创" },
+            { text: "采药归来山月高，艾香入梦魂亦销。", source: "—— 蕊宫原创" }
+        ];
 
-    // 诗句与来源切换逻辑
-    document.getElementById('next-poetry').onclick = () => { 
-        const p = poetries[Math.floor(Math.random() * poetries.length)];
-        document.getElementById('poetry-text').innerText = '“' + p.text + '”'; 
-        document.getElementById('poetry-source').innerText = p.source;
-    };
-    
+        function copy(text){ navigator.clipboard.writeText(text); alert('已复制色号: ' + text); }
+        window.copy = copy; // 确保函数挂载到全局，供 onclick 调用
+
+        // 渲染色卡
+        document.getElementById('color-grid').innerHTML = colors.map(c => `<div onclick="copy('${c.hex}')" class="cursor-pointer p-4 bg-white/5 rounded-xl border border-white/10 hover:border-blue-500/50 transition"><div class="h-24 mb-3 rounded" style="background-color:${c.hex}"></div><p class="text-[11px] font-bold text-white">${c.name}</p><p class="text-[10px] text-blue-400 font-mono">${c.hex}</p></div>`).join('');
+
+        // 滑块联动逻辑
+        document.getElementById('color-slider').oninput = function(){ 
+            const c = colors[this.value]; 
+            document.getElementById('dynamic-pad').style.backgroundColor = c.hex; 
+            document.getElementById('dynamic-name').innerText = c.name; 
+            document.getElementById('dynamic-hex').innerText = c.hex; 
+        };
+
+        // 诗句切换逻辑
+        document.getElementById('next-poetry').onclick = () => { 
+            const p = poetries[Math.floor(Math.random() * poetries.length)];
+            document.getElementById('poetry-text').innerText = '“' + p.text + '”'; 
+            document.getElementById('poetry-source').innerText = p.source;
+        };
+    });
 </script>
 </body>
 </html>
