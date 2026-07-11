@@ -9,26 +9,17 @@
     <style>
         body {
             font-family: "Songti SC", "SimSun", "STSong", "KaiTi", "Georgia", "Times New Roman", serif;
-            /* 浅淡的宫墙暖雪底色 */
             background-color: #FBF2F1; 
-            /* 精密如意云纹 SVG 铺底 */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' opacity='0.45'%3E%3Cpath d='M30,50 C30,35 45,25 60,25 C75,25 85,35 85,45 C85,55 75,60 65,60 C55,60 50,55 50,50 C50,45 55,40 60,40 C65,40 70,45 70,50 M30,50 C15,50 5,60 5,75 C5,90 20,100 40,100 C60,100 70,90 70,75 C70,68 65,62 60,60 M60,25 C60,10 75,2 90,2 C105,2 115,12 115,25 M115,25 C115,35 105,45 90,45 C80,45 75,38 75,30'/%3E%3Cpath d='M120,130 C120,115 135,105 150,105 C165,105 175,115 175,125 C175,135 165,140 155,140 C145,140 140,135 140,130 C140,125 145,120 150,120 C155,120 160,125 160,130 M120,130 C105,130 95,140 95,155 C95,170 110,180 130,180 M150,105 C150,90 165,82 180,82 M150,140 C135,140 125,150 125,165'/%3E%3Cpath d='M120,50 C120,35 135,25 150,25 C165,25 175,35 175,45 C175,55 165,60 155,60 C145,60 140,55 140,50 C140,45 145,40 150,40 C155,40 160,45 160,50 M120,50 C105,50 95,60 95,75 C95,90 110,100 130,100 M150,25 C150,10 165,2 180,2 M150,60 C135,60 125,70 125,85'/%3E%3Cpath d='M30,130 C30,115 45,105 60,105 C75,105 85,115 85,125 C85,135 75,140 65,140 C55,140 50,135 50,130 C50,125 55,120 60,120 C65,120 70,125 70,130 M30,130 C15,130 5,140 5,155 C5,170 20,180 40,180 M60,105 C60,90 75,82 90,82 M60,140 C45,140 35,150 35,165'/%3E%3C/g%3E%3C/svg%3E");
             background-attachment: fixed;
         }
-        
-<!-- 其余 HTML 内容保持原样 -->
-
-
-        /* 渐变过渡平滑 */
         .color-transition {
             transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        /* 中式竖排排版 */
         .vertical-text {
             writing-mode: vertical-rl;
             text-orientation: mixed;
         }
-        /* 自定义滑块 */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -44,7 +35,6 @@
         input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.15);
         }
-        /* 16:9 比例视频 */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
@@ -59,7 +49,6 @@
             width: 100%;
             height: 100%;
         }
-        /* 传统画轴双边线装饰 */
         .chinese-border {
             border: 1px solid rgba(177, 34, 36, 0.15);
             outline: 3px double rgba(177, 34, 36, 0.08);
@@ -68,12 +57,9 @@
     </style>
 </head>
 
-
-
 <body class="text-neutral-800 min-h-screen flex flex-col justify-between selection:bg-[#B12224]/10">
 
     <header class="w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center text-center border-b border-neutral-200/50 relative">
-        <!-- 左侧中式装饰线条 -->
         <div class="hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 items-center space-x-2">
             <span class="w-[1px] h-12 bg-neutral-300"></span>
             <span class="vertical-text text-[10px] text-neutral-500 tracking-[0.3em] font-light">蕊宫 · 宫红格物</span>
@@ -93,7 +79,6 @@
             </p>
         </div>
 
-        <!-- 右侧中式装饰线条 -->
         <div class="hidden lg:flex absolute right-8 top-1/2 -translate-y-1/2 items-center space-x-2">
             <span class="vertical-text text-[10px] text-neutral-500 tracking-[0.3em] font-light">赤子怀真 · 守白知黑</span>
             <span class="w-[1px] h-12 bg-neutral-300"></span>
@@ -102,7 +87,6 @@
 
     <main class="w-full max-w-7xl mx-auto px-6 py-12 flex-grow grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
         
-        <!-- 左翼（西阁）：六色格物色卡 -->
         <section class="chinese-border bg-white/40 backdrop-blur-md p-8 rounded-2xl flex flex-col justify-between space-y-8 color-transition">
             <div class="flex justify-between items-end border-b border-neutral-200/60 pb-4">
                 <h2 class="text-md font-semibold tracking-[0.2em] text-neutral-900 flex items-center">
@@ -112,9 +96,8 @@
                 <span class="text-[10px] text-neutral-500 tracking-wider">点击色块复制 HEX 并唤醒诗意</span>
             </div>
 
-            <!-- 对称分布的色卡网格 (2列对称) -->
             <div class="grid grid-cols-2 gap-6 flex-grow content-center" id="color-grid">
-                <!-- 由JS渲染出的精美古典卡片 -->
+                <!-- 由JS渲染 -->
             </div>
 
             <div class="pt-4 border-t border-neutral-100 flex justify-between items-center text-[10px] text-neutral-400 tracking-widest">
@@ -123,7 +106,6 @@
             </div>
         </section>
 
-        <!-- 右翼（东阁）：交互式研墨台与经典视听 -->
         <section class="chinese-border bg-white/40 backdrop-blur-md p-8 rounded-2xl flex flex-col justify-between space-y-8 color-transition">
             <div class="flex justify-between items-end border-b border-neutral-200/60 pb-4">
                 <h2 class="text-md font-semibold tracking-[0.2em] text-neutral-900 flex items-center">
@@ -133,9 +115,7 @@
                 <span class="text-[10px] text-neutral-500 tracking-wider">动态声振 · 外部安全视听</span>
             </div>
 
-            <!-- 视觉发生器与 YouTube 视频嵌入 -->
             <div class="border border-neutral-200/40 p-4 rounded-xl space-y-4 bg-white/30 backdrop-blur-sm">
-                <!-- 视频播放容器：已完美转换为免Cookie标准嵌入格式，彻底解决 refuse to connect 错位问题 -->
                 <div class="video-wrapper">
                     <iframe 
                         src="https://www.youtube-nocookie.com/embed/wzuLC07jp18" 
@@ -146,11 +126,8 @@
                     </iframe>
                 </div>
 
-                <!-- 相对路径链接，点击流转薛涛绯红 -->
-
-                // 修改 renderColorGrid 中的模板
-<div onclick="window.location.href='ColorXueTaoRed.html'" class="group cursor-pointer ...">
-                <a href="Color%20Xue%20Tao%20Red.html" class="flex items-center justify-between group p-3.5 border border-[#5D7A8A]/20 hover:border-[#5D7A8A]/50 bg-gradient-to-r from-white/10 to-[#5D7A8A]/5 rounded-lg transition-all duration-300 cursor-pointer">
+                <!-- 修复后的链接，指向无空格文件名 -->
+                <a href="ColorXueTaoRed.html" class="flex items-center justify-between group p-3.5 border border-[#5D7A8A]/20 hover:border-[#5D7A8A]/50 bg-gradient-to-r from-white/10 to-[#5D7A8A]/5 rounded-lg transition-all duration-300 cursor-pointer">
                     <div class="flex items-center space-x-3">
                         <span class="w-2 h-2 rounded-full bg-[#5D7A8A] group-hover:animate-ping"></span>
                         <div>
@@ -175,7 +152,6 @@
                     </div>
                 </div>
 
-                <!-- 滑块 -->
                 <div class="space-y-2">
                     <input type="range" id="color-slider" min="0" max="100" value="50" class="w-full h-1 bg-neutral-200/80 rounded-lg appearance-none cursor-pointer">
                     <div class="flex justify-between text-[10px] text-neutral-500 tracking-widest font-light">
@@ -186,7 +162,6 @@
                 </div>
             </div>
 
-            <!-- 诗词对齐卡片 -->
             <div class="border border-neutral-200/40 p-5 rounded-xl space-y-2 relative overflow-hidden bg-white/20" id="poetry-card">
                 <div class="absolute right-3 top-2 opacity-[0.02] select-none text-6xl font-black text-[#B12224]">
                     赤子
@@ -208,19 +183,16 @@
         </section>
     </main>
 
-    <!-- 提示框组件 -->
     <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-neutral-900/90 text-[#FAF6F0] text-xs tracking-widest rounded-full opacity-0 pointer-events-none transition-all duration-300 shadow-lg flex items-center space-x-2">
         <span class="w-1.5 h-1.5 bg-[#B12224] rounded-full animate-ping"></span>
         <span id="toast-text">已成功复制色值</span>
     </div>
 
-    <!-- 专属中式美学副页脚（对应 image_77a664.png 的高雅设计，永不遗漏） -->
     <div class="w-full max-w-7xl mx-auto px-6 py-4 border-t border-neutral-200/40 flex flex-col sm:flex-row justify-between items-center text-[10px] text-neutral-400 tracking-[0.3em] font-light">
         <p>© 2026 蕊宫 · 朱砂凝脂美学馆</p>
         <p class="mt-2 sm:mt-0">避开浮华喧嚣，以赤诚风骨向下扎根</p>
     </div>
 
-    <!-- 法律合规主页脚 -->
     <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; border-top: 1px solid #e0e0e0;" class="w-full max-w-7xl mx-auto">
         <div style="margin-bottom: 10px;">
             <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
@@ -231,7 +203,6 @@
     </footer>
 
     <script>
-        // 中国红 -> 凝脂白 色谱数据
         const colors = [
             { hex: '#B12224', rgb: 'RGB(177, 34, 36)', name: '朱砂红', desc: '大国朱砂之本色，承载着历史的厚重与无尽的赤诚。', pIndex: 0 },
             { hex: '#C82C2E', rgb: 'RGB(200, 44, 46)', name: '宫墙红', desc: '红墙斑驳，斜阳拂过禁城宫阙，深锁时光的暖红。', pIndex: 1 },
@@ -241,7 +212,6 @@
             { hex: '#F9F3EB', rgb: 'RGB(249, 243, 235)', name: '凝脂白', desc: '似白非白，温润如羊脂白玉，极红之后的寂静空灵。', pIndex: 5 }
         ];
 
-        // 经典诗词库
         const poetries = [
             { text: '“只恐夜深花睡去，故烧高烛照红妆。”', author: '苏轼 · 《海棠》' },
             { text: '“朱实陨秋露，红叶卷春风。”', author: '杜甫 · 《秋野》' },
@@ -251,7 +221,6 @@
             { text: '“愿君如火怀赤子，历尽千帆骨仍红。”', author: '蕊宫随笔 · 《向内生长》' }
         ];
 
-        // 获取元素
         const colorGrid = document.getElementById('color-grid');
         const colorSlider = document.getElementById('color-slider');
         const blendPercentage = document.getElementById('blend-percentage');
@@ -265,7 +234,6 @@
         const toast = document.getElementById('toast');
         const toastText = document.getElementById('toast-text');
 
-        // 初始化渲染色卡
         function renderColorGrid() {
             colorGrid.innerHTML = colors.map((color, index) => `
                 <div onclick="selectColor(${index})" class="group cursor-pointer bg-white/70 border border-neutral-200/50 p-4 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500">
@@ -378,10 +346,8 @@
             }, 300);
         });
 
-        // 监听滑块事件
         colorSlider.addEventListener('input', updateInkMixer);
 
-        // 页面初始化
         window.onload = function() {
             renderColorGrid();
             updateInkMixer();
