@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <title>归位：潜意识压力感知测试</title>
     <style>
-
-        
-        /* 布局微调：使用 flex-column 确保页脚始终在页面底部 */
+        /* 布局微调 */
         body { 
-            margin: 0;
-            min-height: 100vh;
-            background: #F9F7F2; 
-            color: #1A1A1A; 
-            font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+            margin: 0; min-height: 100vh; background: #F9F7F2; 
+            color: #1A1A1A; font-family: 'Adobe Garamond Pro', 'Baskerville', 'Songti SC', serif; 
+            display: flex; flex-direction: column; align-items: center; 
         }
+        
+        /* 蕊宫返回按键样式 */
+        .ruigong-btn { 
+            position: absolute; top: 20px; left: 20px; 
+            background-color: #a8d5ba; color: white; 
+            padding: 8px 20px; border-radius: 50px; 
+            text-decoration: none; font-weight: bold; font-size: 0.9rem;
+            display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
         #app { 
-            flex: 1; 
-            max-width: 500px; 
-            width: 100%; 
-            text-align: center; 
-            padding: 60px 20px; 
-            line-height: 1.8; 
-            letter-spacing: 0.15em; 
+            flex: 1; max-width: 500px; width: 100%; 
+            text-align: center; padding: 60px 20px; 
+            line-height: 1.8; letter-spacing: 0.15em; 
         }
         .intro, .quiz, .result { opacity: 0; transition: opacity 1s; display: none; }
         .active { display: block; opacity: 1; }
@@ -33,16 +33,10 @@
         .btn { margin-top: 30px; padding: 12px 40px; border: 1px solid #1A1A1A; cursor: pointer; display: inline-block; }
     </style>
 </head>
-
-     /* 蕊宫返回按键 - 左上角 */
-        .ruigong-btn { 
-            position: absolute; top: 20px; left: 20px; 
-            background-color: #a8d5ba; color: white; 
-            padding: 8px 20px; border-radius: 50px; 
-            text-decoration: none; font-weight: bold; font-size: 0.9rem;
-            display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
 <body>
+
+<!-- 添加蕊宫按钮 -->
+<a href="https://www.rui-palace.com/child" class="ruigong-btn">← 蕊宫</a>
 
 <div id="app">
     <!-- 开始页 -->
@@ -67,7 +61,6 @@
     </div>
 </div>
 
-<!-- 页脚放在 app 容器外，body 内部 -->
 <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; border-top: 1px solid #e0e0e0; width: 100%;">
     <div style="margin-bottom: 10px;">
         <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a> | 
