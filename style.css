@@ -224,59 +224,28 @@ nav a:hover {
     height: 100%;
 }
 
-9.
-.list {
-    text-align: left;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-}
-.row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.item {
-    width: 48%; /* 给两个并列的项留出空间 */
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    text-align: center;
-}
-.item a {
-    color: #5d5d5d;
-    text-decoration: none;
-    font-size: 14px;
-}
-.item a:hover {
-    color: #a8d5ba;
-}
-
-	
-9.
-	<style>
-    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fdfbf7; color: #4a4a4a; line-height: 1.6; padding: 20px; text-align: center; }
+/* 内在小孩T1/T10 */	
+<style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fdfbf7; color: #4a4a4a; padding: 20px; text-align: center; }
     .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    h1 { color: #8e9eab; font-size: 24px; margin-bottom: 10px; }
-    p { color: #888; margin-bottom: 30px; }
-    .btn { display: inline-block; background-color: #a8d5ba; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-bottom: 30px; transition: background 0.3s; }
-    .btn:hover { background-color: #8ccba4; }
+    h1 { color: #8e9eab; font-size: 24px; }
+    .btn { display: inline-block; background-color: #a8d5ba; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-bottom: 20px; }
     
-    /* 核心修复部分 */
-    .list { text-align: left; border-top: 1px solid #eee; padding-top: 20px; }
+    /* 核心布局修复 */
+    .list { border-top: 1px solid #eee; padding-top: 20px; }
     .row { 
-        display: flex; /* 关键：开启弹性布局 */
-        justify-content: space-between; /* 关键：让两个链接左右对齐 */
-        margin-bottom: 10px; 
+        display: flex;             /* 启用弹性布局 */
+        justify-content: space-between; /* 两端对齐 */
+        margin-bottom: 15px;       /* 行间距 */
     }
     .item { 
-        width: 48%; /* 确保每个 item 占据不到一半的空间 */
+        width: 45%;                /* 控制宽度，留出中间间隙 */
         padding: 10px; 
-        border: 1px solid #f9f9f9; 
-        border-radius: 5px;
-        text-align: center;
+        background: #fdfbf7; 
+        border: 1px solid #eee;
+        border-radius: 8px;
     }
     .item a { color: #5d5d5d; text-decoration: none; display: block; }
-    .item a:hover { color: #a8d5ba; }
 </style>
 
 	
