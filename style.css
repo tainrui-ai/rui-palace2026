@@ -225,6 +225,34 @@ nav a:hover {
 }
 
 9.
+.list {
+    text-align: left;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.item {
+    width: 48%; /* 给两个并列的项留出空间 */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+}
+.item a {
+    color: #5d5d5d;
+    text-decoration: none;
+    font-size: 14px;
+}
+.item a:hover {
+    color: #a8d5ba;
+}
+
+	
+9.
 	<style>
     body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fdfbf7; color: #4a4a4a; line-height: 1.6; padding: 20px; text-align: center; }
     .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
