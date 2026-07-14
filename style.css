@@ -231,23 +231,23 @@ nav a:hover {
     h1 { color: #8e9eab; font-size: 24px; }
     .btn { display: inline-block; background-color: #a8d5ba; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-bottom: 20px; }
     
-    /* 核心布局修复 */
-    .list { border-top: 1px solid #eee; padding-top: 20px; }
+    /* 核心布局修复 - 增加 !important 强制覆盖冲突样式 */
+    .list { border-top: 1px solid #eee !important; padding-top: 20px !important; }
     .row { 
-        display: flex;             /* 启用弹性布局 */
-        justify-content: space-between; /* 两端对齐 */
-        margin-bottom: 15px;       /* 行间距 */
+        display: flex !important; 
+        justify-content: space-between !important; 
+        margin-bottom: 15px !important; 
     }
     .item { 
-        width: 45%;                /* 控制宽度，留出中间间隙 */
-        padding: 10px; 
-        background: #fdfbf7; 
-        border: 1px solid #eee;
-        border-radius: 8px;
+        width: 45% !important; 
+        padding: 10px !important; 
+        background: #fdfbf7 !important; 
+        border: 1px solid #eee !important;
+        border-radius: 8px !important;
+        display: block !important;
     }
-    .item a { color: #5d5d5d; text-decoration: none; display: block; }
+    .item a { color: #5d5d5d !important; text-decoration: none !important; display: block !important; }
 </style>
-
 	
 /* 10. 其他 */
 .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px 5%; }
