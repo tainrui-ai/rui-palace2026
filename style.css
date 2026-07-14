@@ -224,9 +224,35 @@ nav a:hover {
     height: 100%;
 }
 
+9.
+	.list {
+    text-align: left;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.item {
+    width: 48%; /* 给两个并列的项留出空间 */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-align: center;
+}
+.item a {
+    color: #5d5d5d;
+    text-decoration: none;
+    font-size: 14px;
+}
+.item a:hover {
+    color: #a8d5ba;
+}
 
 	
-/* 9. 其他 */
+/* 10. 其他 */
 .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px 5%; }
 .course-card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
 footer { text-align: center; padding: 20px; font-size: 0.6rem; color: #777; }
