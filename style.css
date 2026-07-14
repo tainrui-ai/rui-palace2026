@@ -226,27 +226,29 @@ nav a:hover {
 
 /* 内在小孩T1/T10 */	
 <style>
-    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fdfbf7; color: #4a4a4a; padding: 20px; text-align: center; }
-    .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    h1 { color: #8e9eab; font-size: 24px; }
-    .btn { display: inline-block; background-color: #a8d5ba; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-bottom: 20px; }
+    /* 清除可能干扰的全局样式 */
+    .my-list { border-top: 1px solid #eee; padding-top: 20px; }
     
-    /* 核心布局修复 - 增加 !important 强制覆盖冲突样式 */
-    .list { border-top: 1px solid #eee !important; padding-top: 20px !important; }
-    .row { 
+    /* 强制指定布局规则 */
+    .my-row { 
         display: flex !important; 
+        flex-direction: row !important; 
         justify-content: space-between !important; 
         margin-bottom: 15px !important; 
+        width: 100% !important;
     }
-    .item { 
-        width: 45% !important; 
+    
+    .my-item { 
+        width: 47% !important; 
         padding: 10px !important; 
         background: #fdfbf7 !important; 
         border: 1px solid #eee !important;
         border-radius: 8px !important;
-        display: block !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
     }
-    .item a { color: #5d5d5d !important; text-decoration: none !important; display: block !important; }
+    
+    .my-item a { color: #5d5d5d !important; text-decoration: none !important; display: block !important; }
 </style>
 	
 /* 10. 其他 */
