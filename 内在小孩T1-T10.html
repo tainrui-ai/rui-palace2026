@@ -1,10 +1,5 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>内在小孩疗愈之旅</title>
     <style>
         body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fdfbf7; color: #4a4a4a; line-height: 1.6; padding: 20px; text-align: center; }
         .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -20,9 +15,46 @@
 </head>
 <body>
     <div class="container">
-        <h1>内在小孩疗愈之旅</h1>
+        <body>
+    <h1>内在小孩疗愈之旅</h1>
+    <!-- 增加一个 ID，通过 JS 点击触发 -->
 <p>开启为期10天的自我关怀之旅，每晚21:30准时陪伴。</p>
-<a href="inner_child_plan.ics" class="btn" download>点击一键导入日历提醒</a>
+    <button id="downloadBtn" class="btn">点击一键导入日历提醒</button>
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const links = [
+                "https://www.youtube.com/watch?v=WtIZKUVoheI", "https://www.youtube.com/watch?v=u2RfXVLwI9o",
+                "https://www.youtube.com/watch?v=90_1BIaKFc0", "https://www.youtube.com/watch?v=SB3sEU78L_A",
+                "https://www.youtube.com/watch?v=3FRswWLbCxU", "https://www.youtube.com/watch?v=YDwliHXq0CI",
+                "https://www.youtube.com/watch?v=hb1ewOQNi6c", "https://www.youtube.com/watch?v=wumjOlf4U9A",
+                "https://www.youtube.com/watch?v=snikBrEiPPM", "https://www.youtube.com/watch?v=rFRZe4N5p-g&t=80s"
+            ];
+            
+            let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//InnerChild//EN\nMETHOD:PUBLISH\n";
+            let today = new Date();
+
+            for (let i = 0; i < links.length; i++) {
+                let d = new Date(today);
+                d.setDate(today.getDate() + i);
+                
+                // 格式化日期为 YYYYMMDDTHHMMSS
+                let start = d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                let end = new Date(d.getTime() + 30*60000).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                
+                icsContent += `BEGIN:VEVENT\nSUMMARY:内在小孩第${i+1}天\nDTSTART:${start}\nDTEND:${end}\nDESCRIPTION:点击练习: ${links[i]}\nEND:VEVENT\n`;
+            }
+            icsContent += "END:VCALENDAR";
+
+            // 在浏览器中触发下载
+            const blob = new Blob([icsContent], { type: 'text/calendar' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "inner_child.ics";
+            a.click();
+        });
+    </script>
+</body>
 
 <div class="my-list">
     <div class="my-row">
