@@ -315,6 +315,15 @@
 
         try {
             // 向我们的后端发送请求（假设后端运行在 localhost:5000）
+            # 新增根路径健康检查，解决外部保活和误触 500 报错的问题
+@app.route('/', methods=['GET', 'OPTIONS'])
+def index():
+    response = make_response(jsonify({
+        "status": "healthy",
+        "message": "Rui Palace YouTube PDF API is running flawlessly."
+    }))
+    response.headers.add('Access-Control-Allow-Origin', 'https://www.rui-palace.com')
+    return response
             const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com/api/generate-pdf', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
