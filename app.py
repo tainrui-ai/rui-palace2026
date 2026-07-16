@@ -57,17 +57,25 @@ def generate_pdf():
         topMargin=40, bottomMargin=40
     )
 
-    # 注册系统自带字体（确保支持中文字符）
+# === 修复：使用免费商用字体，彻底解决版权与 Linux 部署乱码问题 ===
     from reportlab.pdfbase import pdfmetrics
     from reportlab.pdfbase.ttfonts import TTFont
     
-    # 兼容 Windows 和 Linux 的字体路径
-    font_path = "C:\\Windows\\Fonts\\msyh.ttc"
-    if os.path.exists(font_path):
-        pdfmetrics.registerFont(TTFont('msyh', font_path))
-        font_name = 'msyh'
+    # 优先加载你项目里打包的免费商用思源黑体
+    local_font_path = os.path.join(os.path.dirname(__file__), 'fonts', 'SourceHanSans-Regular.ttf')
+    
+    if os.path.exists(local_font_path):
+        pdfmetrics.registerFont(TTFont('SourceHanSans', local_font_path))
+        font_name = 'SourceHanSans'
     else:
-        font_name = 'Helvetica' # 备用字体
+        # 如果本地没找到，再尝试读取系统字体（作为备用）
+        win_msyh = "C:\\Windows\\Fonts\\msyh.ttc"
+        if os.path.exists(win_msyh):
+            pdfmetrics.registerFont(TTFont('msyh', win_msyh))
+            font_name = 'msyh'
+        else:
+            font_name = 'Helvetica'  # 英文备用
+
 
     # 双语转换配置
     texts = {
