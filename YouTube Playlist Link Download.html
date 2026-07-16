@@ -315,7 +315,7 @@
 
         try {
             // 向我们的后端发送请求（假设后端运行在 localhost:5000）
-            const response = await fetch('http://127.0.0.1:5000/api/generate-pdf', {
+            const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url, lang: currentLang })
