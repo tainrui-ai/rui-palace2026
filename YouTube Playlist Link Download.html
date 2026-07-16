@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Playlist PDF Generator - Dual Language</title>
+    <style>
+        :root {
+            --bg-color: #FDF6F0;          /* 柔和杏花白 */
+            --apricot-pink: #F4D1C6;      /* 杏花初绽粉 */
+            --apricot-hover: #E8BFA2;     /* 蜜杏色 */
+            --branch-brown: #4A3E3D;      /* 枝干深褐 */
+            --text-muted: #8C7A78;        /* 灰褐 */
+            --white: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--branch-brown);
+            font-family: "Microsoft YaHei", -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;       /* 核心修复：修改为垂直排列 */
+            align-items: center;          /* 水平居中 */
+            justify-content: center;      /* 垂直居中 */
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* 页面主要内容容器包装器，避免 Footer 在页面极高时紧贴卡片 */
+        .main-content {
+            flex: 1;                     /* 让内容区域撑满屏幕剩余高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--white);
+            border: 1px solid var(--apricot-pink);
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 540px;
+            box-shadow: 0 10px 30px rgba(74, 62, 61, 0.05);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 语言切换按钮放置于右上角 */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        select {
+            background-color: var(--apricot-pink);
+            color: var(--branch-brown);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+            font-weight: bold;
+        }
+
+        select:hover {
+            background-color: var(--apricot-hover);
+        }
+
+        h1 {
+            font-size: 22px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--branch-brown);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--apricot-pink);
+            border-radius: 6px;
+            background-color: var(--white);
+            color: var(--branch-brown);
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="url"]::placeholder {
+            color: #C0B2B0;
+        }
+
+        input[type="url"]:focus {
+            border-color: var(--apricot-hover);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--apricot-pink);
+            color: var(--branch-brown);
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--apricot-hover);
+        }
+
+        .btn-submit:disabled {
+            background-color: #EFE5DC;
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .status-area {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            min-height: 20px;
+        }
+
+        /* 模拟 Tkinter 的进度条 */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #EFE5DC;
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--apricot-pink);
+            transition: width 0.3s ease;
+        }
+
+        .footer-logo-text {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* 修复后的底部统一 Footer 样式 */
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 0.8rem;
+            color: #8c8c8c;
+            border-top: 1px solid rgba(74, 62, 61, 0.1); /* 采用柔和色融合 */
+            box-sizing: border-box;
+            margin-top: auto; /* 在 flex-col 下，自动推至最底部 */
+        }
+
+        .site-footer a {
+            text-decoration: none;
+            color: #8c8c8c;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .site-footer a:hover {
+            color: var(--apricot-hover);
+        }
+    </style>
+</head>
+<body>
+
+<!-- 页面主体工具 -->
+<div class="main-content">
+    <div class="container">
+        <div class="lang-switch">
+            <select id="langSelect">
+                <option value="zh">中文 (简体)</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <h1 id="title">YouTube Playlist PDF Generator</h1>
+        <div class="subtitle" id="subTitle">粘贴播放列表链接，一键生成精美可跳转的 PDF 报告:</div>
+
+        <div class="input-group">
+            <input type="url" id="playlistUrl" placeholder="https://www.youtube.com/playlist?list=...">
+        </div>
+
+        <button class="btn-submit" id="submitBtn">提取并生成 PDF 文档</button>
+
+        <div class="status-area" id="statusLabel">状态: 待机中，静候指令</div>
+        
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="footer-logo-text" id="footerText"></div>
+    </div>
+</div>
+
+<!-- 完美贴底的 Footer 声明 -->
+<footer class="site-footer">
+    <div style="margin-bottom: 10px;">
+        <a href="impressum.html">法律声明 (Impressum)</a>
+        | 
+        <a href="Datenschutz.html">隐私政策 (Datenschutz)</a>
+    </div>
+    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+</footer>
+
+<script>
+    // 双语字典
+    const langDict = {
+        zh: {
+            title: "YouTube Playlist PDF Generator",
+            subTitle: "粘贴播放列表链接，一键生成精美可跳转的 PDF 报告:",
+            placeholder: "https://www.youtube.com/playlist?list=...",
+            btnNormal: "提取并生成 PDF 文档",
+            btnLoading: "正在化雨解析...",
+            statusIdle: "状态: 待机中，静候指令",
+            statusParsing: "状态: 正在解析 YouTube 数据...",
+            statusGenerating: "状态: 准备生成并导出 PDF 文件",
+            statusSuccess: "状态: PDF 导出成功！",
+            statusError: "状态: 解析或导出失败",
+            warnEmpty: "请输入播放列表链接！",
+            footer: "蕊宫 专属定制工具 · 杏花春雨版"
+        },
+        en: {
+            title: "YouTube Playlist PDF Generator",
+            subTitle: "Paste playlist link to generate interactive PDF report:",
+            placeholder: "https://www.youtube.com/playlist?list=...",
+            btnNormal: "Extract and Generate PDF",
+            btnLoading: "Extracting and Parsing...",
+            statusIdle: "Status: Idle, waiting for command",
+            statusParsing: "Status: Parsing YouTube data...",
+            statusGenerating: "Status: Preparing PDF document...",
+            statusSuccess: "Status: PDF successfully exported!",
+            statusError: "Status: Failed to generate PDF",
+            warnEmpty: "Please enter a playlist URL!",
+            footer: "Customized by Rui Palace · Apricot Blossom Edition"
+        }
+    };
+
+    let currentLang = 'zh';
+
+    // 切换语言
+    function updateUI() {
+        const texts = langDict[currentLang];
+        document.getElementById('title').textContent = texts.title;
+        document.getElementById('subTitle').textContent = texts.subTitle;
+        document.getElementById('playlistUrl').placeholder = texts.placeholder;
+        document.getElementById('submitBtn').textContent = texts.btnNormal;
+        document.getElementById('statusLabel').textContent = texts.statusIdle;
+        document.getElementById('footerText').textContent = texts.footer;
+    }
+
+    document.getElementById('langSelect').addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        updateUI();
+    });
+
+    // 初始化界面
+    updateUI();
+
+    // 核心提交事件
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+        const url = document.getElementById('playlistUrl').value.trim();
+        const texts = langDict[currentLang];
+
+        if (!url) {
+            alert(texts.warnEmpty);
+            return;
+        }
+
+        const submitBtn = document.getElementById('submitBtn');
+        const statusLabel = document.getElementById('statusLabel');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+
+        // UI 载入状态[cite: 2]
+        submitBtn.disabled = true;
+        submitBtn.textContent = texts.btnLoading;
+        statusLabel.textContent = texts.statusParsing;
+        statusLabel.style.color = "var(--branch-brown)";
+        progressContainer.style.display = 'block';
+        progressBar.style.width = '50%'; // 模拟解析中
+
+        try {
+            // 向我们的后端发送请求（假设后端运行在 localhost:5000）
+            const response = await fetch('http://127.0.0.1:5000/api/generate-pdf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: url, lang: currentLang })
+            });
+
+            if (!response.ok) {
+                throw new Error('API Request Failed');
+            }
+
+            statusLabel.textContent = texts.statusGenerating;
+            progressBar.style.width = '90%';
+
+            // 将返回的二进制流转化为 PDF 自动下载
+            const blob = await response.blob();
+            const downloadUrl = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            
+            // 自动命名下载文件
+            a.download = `Youtube_Playlist_Export_${Date.now()}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            // 成功状态[cite: 2]
+            progressBar.style.width = '100%';
+            statusLabel.textContent = texts.statusSuccess;
+            statusLabel.style.color = "#27ae60";
+        } catch (error) {
+            console.error(error);
+            statusLabel.textContent = texts.statusError;
+            statusLabel.style.color = "#e74c3c";
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = texts.btnNormal;
+            setTimeout(() => {
+                progressContainer.style.display = 'none';
+                progressBar.style.width = '0%';
+            }, 3000);
+        }
+    });
+</script>
+
+</body>
+</html>
