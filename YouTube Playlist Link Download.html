@@ -324,7 +324,7 @@ def index():
     }))
     response.headers.add('Access-Control-Allow-Origin', 'https://www.rui-palace.com')
     return response
-            const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com/api/generate-pdf', { 
+            const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url, lang: currentLang })
