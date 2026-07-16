@@ -21,16 +21,16 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;       /* 核心修复：修改为垂直排列 */
+            flex-direction: column;       /* 核心：垂直排列 */
             align-items: center;          /* 水平居中 */
             justify-content: center;      /* 垂直居中 */
             min-height: 100vh;
             box-sizing: border-box;
         }
 
-        /* 页面主要内容容器包装器，避免 Footer 在页面极高时紧贴卡片 */
+        /* 页面主要内容容器包装器 */
         .main-content {
-            flex: 1;                     /* 让内容区域撑满屏幕剩余高度 */
+            flex: 1;                      /* 让内容区域撑满屏幕剩余高度 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -87,6 +87,7 @@
             color: var(--text-muted);
             text-align: center;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .input-group {
@@ -143,6 +144,7 @@
             font-size: 13px;
             color: var(--text-muted);
             min-height: 20px;
+            line-height: 1.4;
         }
 
         /* 模拟 Tkinter 的进度条 */
@@ -160,7 +162,7 @@
             width: 0%;
             height: 100%;
             background-color: var(--apricot-pink);
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.1, 0.8, 0.25, 1);
         }
 
         .footer-logo-text {
@@ -171,16 +173,16 @@
             font-style: italic;
         }
 
-        /* 修复后的底部统一 Footer 样式 */
+        /* 统一底部 Footer 样式 */
         .site-footer {
             width: 100%;
             text-align: center;
             padding: 20px 10px;
             font-size: 0.8rem;
             color: #8c8c8c;
-            border-top: 1px solid rgba(74, 62, 61, 0.1); /* 采用柔和色融合 */
+            border-top: 1px solid rgba(74, 62, 61, 0.1); 
             box-sizing: border-box;
-            margin-top: auto; /* 在 flex-col 下，自动推至最底部 */
+            margin-top: auto; /* 推至底部 */
         }
 
         .site-footer a {
@@ -197,7 +199,6 @@
 </head>
 <body>
 
-<!-- 页面主体工具 -->
 <div class="main-content">
     <div class="container">
         <div class="lang-switch">
@@ -226,7 +227,6 @@
     </div>
 </div>
 
-<!-- 完美贴底的 Footer 声明 -->
 <footer class="site-footer">
     <div style="margin-bottom: 10px;">
         <a href="impressum.html">法律声明 (Impressum)</a>
@@ -247,10 +247,11 @@
             btnLoading: "正在化雨解析...",
             statusIdle: "状态: 待机中，静候指令",
             statusParsing: "状态: 正在解析 YouTube 数据...",
-            statusGenerating: "状态: 准备生成并导出 PDF 文件",
+            statusGenerating: "状态: 准备生成并导出 PDF 文件...",
             statusSuccess: "状态: PDF 导出成功！",
             statusError: "状态: 解析或导出失败",
             warnEmpty: "请输入播放列表链接！",
+            warnInvalidUrl: "请输入有效的 YouTube 播放列表链接 (必须包含 list= 参数)！",
             footer: "蕊宫 专属定制工具 · 杏花春雨版"
         },
         en: {
@@ -265,6 +266,7 @@
             statusSuccess: "Status: PDF successfully exported!",
             statusError: "Status: Failed to generate PDF",
             warnEmpty: "Please enter a playlist URL!",
+            warnInvalidUrl: "Please enter a valid YouTube playlist URL (must contain the 'list=' parameter)!",
             footer: "Customized by Rui Palace · Apricot Blossom Edition"
         }
     };
@@ -290,13 +292,32 @@
     // 初始化界面
     updateUI();
 
+    // 校验 YouTube 列表链接的正则
+    function isValidYoutubePlaylist(url) {
+        try {
+            const parsedUrl = new URL(url);
+            const isYoutube = parsedUrl.hostname.includes('youtube.com') || parsedUrl.hostname.includes('youtu.be');
+            const hasListParam = parsedUrl.searchParams.has('list');
+            return isYoutube && hasListParam;
+        } catch (_) {
+            return false;
+        }
+    }
+
     // 核心提交事件
     document.getElementById('submitBtn').addEventListener('click', async () => {
         const url = document.getElementById('playlistUrl').value.trim();
         const texts = langDict[currentLang];
 
+        // 1. 空值校验
         if (!url) {
             alert(texts.warnEmpty);
+            return;
+        }
+
+        // 2. 链接格式校验
+        if (!isValidYoutubePlaylist(url)) {
+            alert(texts.warnInvalidUrl);
             return;
         }
 
@@ -311,24 +332,46 @@
         statusLabel.textContent = texts.statusParsing;
         statusLabel.style.color = "var(--branch-brown)";
         progressContainer.style.display = 'block';
-        progressBar.style.width = '50%'; // 模拟解析中
+        
+        // 3. 动态模拟进度条滑行，增强交互实感
+        let progress = 5;
+        progressBar.style.width = `${progress}%`;
+        const progressInterval = setInterval(() => {
+            if (progress < 85) {
+                progress += Math.floor(Math.random() * 8) + 2; // 随机前行，模拟真实解析
+                if (progress > 85) progress = 85;
+                progressBar.style.width = `${progress}%`;
+            }
+        }, 800);
 
         try {
-            // 核心修复：1. 剥离了错误的 Python 语法 2. 补齐了后端 API 路由后缀 /api/generate-pdf
+            // 请求后端 API
             const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com/api/generate-pdf', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url, lang: currentLang })
             });
 
+            clearInterval(progressInterval);
+
+            // 4. 解析后端具体返回的错误信息
             if (!response.ok) {
-                throw new Error('API Request Failed');
+                let errorMessage = texts.statusError;
+                try {
+                    const errData = await response.json();
+                    if (errData && errData.error) {
+                        errorMessage += `: ${errData.error}`;
+                    }
+                } catch(_) {
+                    // 如果不是 JSON，直接回退使用标准错误
+                }
+                throw new Error(errorMessage);
             }
 
             statusLabel.textContent = texts.statusGenerating;
-            progressBar.style.width = '90%';
+            progressBar.style.width = '95%';
 
-            // 将返回的二进制流转化为 PDF 自动下载
+            // 转化为 PDF 自动下载
             const blob = await response.blob();
             const downloadUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -345,8 +388,9 @@
             statusLabel.textContent = texts.statusSuccess;
             statusLabel.style.color = "#27ae60";
         } catch (error) {
+            clearInterval(progressInterval);
             console.error(error);
-            statusLabel.textContent = texts.statusError;
+            statusLabel.textContent = error.message || texts.statusError;
             statusLabel.style.color = "#e74c3c";
         } finally {
             submitBtn.disabled = false;
@@ -354,7 +398,7 @@
             setTimeout(() => {
                 progressContainer.style.display = 'none';
                 progressBar.style.width = '0%';
-            }, 3000);
+            }, 4000); // 留出足够时间让用户看到 100% 的成功反馈
         }
     });
 </script>
