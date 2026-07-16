@@ -305,7 +305,7 @@
         const progressContainer = document.getElementById('progressContainer');
         const progressBar = document.getElementById('progressBar');
 
-        // UI 载入状态[cite: 2]
+        // UI 载入状态
         submitBtn.disabled = true;
         submitBtn.textContent = texts.btnLoading;
         statusLabel.textContent = texts.statusParsing;
@@ -314,17 +314,8 @@
         progressBar.style.width = '50%'; // 模拟解析中
 
         try {
-            // 向我们的后端发送请求（假设后端运行在 localhost:5000）
-            
-@app.route('/', methods=['GET', 'OPTIONS'])
-def index():
-    response = make_response(jsonify({
-        "status": "healthy",
-        "message": "Rui Palace YouTube PDF API is running flawlessly."
-    }))
-    response.headers.add('Access-Control-Allow-Origin', 'https://www.rui-palace.com')
-    return response
-            const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com', { 
+            // 核心修复：1. 剥离了错误的 Python 语法 2. 补齐了后端 API 路由后缀 /api/generate-pdf
+            const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com/api/generate-pdf', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: url, lang: currentLang })
@@ -349,7 +340,7 @@ def index():
             a.click();
             a.remove();
 
-            // 成功状态[cite: 2]
+            // 成功状态
             progressBar.style.width = '100%';
             statusLabel.textContent = texts.statusSuccess;
             statusLabel.style.color = "#27ae60";
