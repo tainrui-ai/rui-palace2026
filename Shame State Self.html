@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蕊宫 - 内在局促感评估与5天日常自我关怀 | Rui Palace - Self-Assessment & Daily Care</title>
+    <style>
+        :root {
+            --bg-color: #f7f9fc;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #4a5568;
+            --accent-gold: #b78103;
+            --accent-gold-hover: #976a02;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            background: #e2e8f0;
+            border-radius: 20px;
+            padding: 3px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 17px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-gold);
+            color: #ffffff;
+        }
+
+        header h1 {
+            font-size: 1.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .step-page {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .step-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            margin: 20px 0 10px 0;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .question-title {
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.98rem;
+        }
+
+        .options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            cursor: pointer;
+            background: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .options label:hover {
+            border-color: var(--accent-gold);
+            color: var(--text-main);
+        }
+
+        input[type="radio"] {
+            accent-color: var(--accent-gold);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .btn {
+            background-color: var(--accent-gold);
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            letter-spacing: 1px;
+            flex: 1;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-gold-hover);
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fef9c3;
+            border: 1px solid #facc15;
+            border-radius: 8px;
+            color: #713f12;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .day-hero-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+
+        .day-tag {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .day-hero-card h3 {
+            color: var(--accent-gold);
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .page-indicator {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        [data-lang] {
+            display: none;
+        }
+        body.lang-zh [data-lang="zh"],
+        body.lang-en [data-lang="en"] {
+            display: inline;
+        }
+        div.step-page [data-lang="zh"], div.step-page [data-lang="en"],
+        header [data-lang="zh"], header [data-lang="en"],
+        footer [data-lang="zh"], footer [data-lang="en"],
+        .day-hero-card [data-lang="zh"], .day-hero-card [data-lang="en"],
+        .question-block [data-lang="zh"], .question-block [data-lang="en"],
+        .btn [data-lang="zh"], .btn [data-lang="en"],
+        .page-indicator [data-lang="zh"], .page-indicator [data-lang="en"] {
+            display: none;
+        }
+        body.lang-zh div.step-page [data-lang="zh"], body.lang-zh header [data-lang="zh"], body.lang-zh footer [data-lang="zh"], body.lang-zh .day-hero-card [data-lang="zh"], body.lang-zh .question-block [data-lang="zh"], body.lang-zh .btn [data-lang="zh"], body.lang-zh .page-indicator [data-lang="zh"] {
+            display: block;
+        }
+        body.lang-zh span[data-lang="zh"], body.lang-zh strong[data-lang="zh"], body.lang-zh em[data-lang="zh"] {
+            display: inline;
+        }
+        body.lang-en div.step-page [data-lang="en"], body.lang-en header [data-lang="en"], body.lang-en footer [data-lang="en"], body.lang-en .day-hero-card [data-lang="en"], body.lang-en .question-block [data-lang="en"], body.lang-en .btn [data-lang="en"], body.lang-en .page-indicator [data-lang="en"] {
+            display: block;
+        }
+        body.lang-en span[data-lang="en"], body.lang-en strong[data-lang="en"], body.lang-en em[data-lang="en"] {
+            display: inline;
+        }
+    </style>
+</head>
+<body class="lang-zh">
+
+<div class="container">
+    <header>
+        <div class="lang-switch">
+            <button class="lang-btn active" id="btnZh" onclick="setLanguage('zh')">中文</button>
+            <button class="lang-btn" id="btnEn" onclick="setLanguage('en')">English</button>
+        </div>
+        <h1>
+            <span data-lang="zh">蕊宫 · 羞耻感状态自测与日常修护空间</span>
+            <span data-lang="en">Rui Palace · Shame State Self-Assessment & Daily Care</span>
+        </h1>
+        <p>
+            <span data-lang="zh">专注于内在局促感与羞耻感的认知自测，以及5天日常自我修护与松弛之旅</span>
+            <span data-lang="en">Focusing on self-assessment of inner constriction and shame, and a 5-day daily self-repair journey</span>
+        </p>
+    </header>
+
+    <!-- 第 1 页：导言 -->
+    <div class="step-page active" id="page-1">
+        <h2>
+            <span data-lang="zh">一、 认识内在局促感与羞耻体验</span>
+            <span data-lang="en">I. Understanding Inner Constriction & Shame Experience</span>
+        </h2>
+        <p>
+            <span data-lang="zh">在日常生活中，<strong>外在过错感（Guilt）</strong>通常针对具体行为——<em>“我做了一件不妥的事”</em>；而<strong>内在羞耻感（Shame）</strong>则常常指向整体自我——<em>“我这个人本身是否不够完美、不够好”</em>。</span>
+            <span data-lang="en">In daily life, <strong>guilt</strong> targets specific actions — <em>"I did something improper"</em>; whereas <strong>shame</strong> often points toward the overall self — <em>"Am I inherently imperfect or not good enough."</em></span>
+        </p>
+        <p>
+            <span data-lang="zh">这种微妙的隐秘紧绷感往往会带来精力内耗。接下来的测试将帮助你清晰地觉察当下的状态，并带你走过专属的5天日常修护与自我关怀方案。</span>
+            <span data-lang="en">This subtle hidden tension often leads to energy depletion. The following test will help you clearly observe your current state and guide you through an exclusive 5-day daily self-repair and care program.</span>
+        </p>
+        
+        <div class="btn-group">
+            <button class="btn" onclick="nextPage(2)">
+                <span data-lang="zh">开始羞耻感状态自测 &rarr;</span>
+                <span data-lang="en">Start Shame Self-Assessment &rarr;</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 1 页 / 共 7 页</span>
+            <span data-lang="en">Page 1 of 7</span>
+        </div>
+    </div>
+
+    <!-- 第 2 页：羞耻感自测问卷 -->
+    <div class="step-page" id="page-2">
+        <h2>
+            <span data-lang="zh">二、 个人羞耻感与内在局促自测问卷</span>
+            <span data-lang="en">II. Personal Shame & Inner Constriction Self-Assessment</span>
+        </h2>
+        <p>
+            <span data-lang="zh">请根据最近两周的真实内心体验进行选择（1分=从不，3分=有时，5分=总是）：</span>
+            <span data-lang="en">Please select based on your true inner experiences over the past two weeks (1 = Never, 3 = Sometimes, 5 = Always):</span>
+        </p>
+
+        <form id="quizForm">
+            <div class="question-block">
+                <div class="question-title">
+                    <span data-lang="zh">1. 全盘自我否定：当某件事没做好时，是否立刻觉得是自己整个人“能力不行”或“不够优秀”？</span>
+                    <span data-lang="en">1. Total Self-Rejection: When something fails, do you immediately feel that you as a whole are "incompetent" or "not good enough"?</span>
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="1"> 1分</label>
+                    <label><input type="radio" name="q1" value="2"> 2分</label>
+                    <label><input type="radio" name="q1" value="3"> 3分</label>
+                    <label><input type="radio" name="q1" value="4"> 4分</label>
+                    <label><input type="radio" name="q1" value="5"> 5分</label>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">
+                    <span data-lang="zh">2. 隐匿与想要消失：在公众场合感到尴尬或表现不佳时，是否强烈地想要找个地缝钻进去、立刻隐身？</span>
+                    <span data-lang="en">2. Concealment & Desire to Disappear: When feeling awkward or performing poorly in public, do you strongly wish to vanish or hide?</span>
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="1"> 1分</label>
+                    <label><input type="radio" name="q2" value="2"> 2分</label>
+                    <label><input type="radio" name="q2" value="3"> 3分</label>
+                    <label><input type="radio" name="q2" value="4"> 4分</label>
+                    <label><input type="radio" name="q2" value="5"> 5分</label>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">
+                    <span data-lang="zh">3. 身体化紧缩反应：当回想起某些不愿提及的负面经历时，身体是否会伴随胃部紧缩、胸闷或面红耳赤？</span>
+                    <span data-lang="en">3. Bodily Constriction: When recalling unwanted negative experiences, do you experience stomach tightening, chest tightness, or flushing?</span>
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="1"> 1分</label>
+                    <label><input type="radio" name="q3" value="2"> 2分</label>
+                    <label><input type="radio" name="q3" value="3"> 3分</label>
+                    <label><input type="radio" name="q3" value="4"> 4分</label>
+                    <label><input type="radio" name="q3" value="5"> 5分</label>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">
+                    <span data-lang="zh">4. 严苛的内在评判：脑海中是否常常有一个声音在挑剔自己，觉得自己怎么努力都达不到完美的标准？</span>
+                    <span data-lang="en">4. Harsh Inner Criticism: Is there often a voice in your mind picking at you, feeling no matter how hard you try you fall short of perfection?</span>
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="1"> 1分</label>
+                    <label><input type="radio" name="q4" value="2"> 2分</label>
+                    <label><input type="radio" name="q4" value="3"> 3分</label>
+                    <label><input type="radio" name="q4" value="4"> 4分</label>
+                    <label><input type="radio" name="q4" value="5"> 5分</label>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">
+                    <span data-lang="zh">5. 社交防御与距离感：为了不让别人发现自己“不完美”的一面，是否常常在人际交往中保持防备或刻意疏离？</span>
+                    <span data-lang="en">5. Social Defense & Distance: To avoid letting others see your "imperfect" side, do you often maintain defense or deliberate distance?</span>
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="1"> 1分</label>
+                    <label><input type="radio" name="q5" value="2"> 2分</label>
+                    <label><input type="radio" name="q5" value="3"> 3分</label>
+                    <label><input type="radio" name="q5" value="4"> 4分</label>
+                    <label><input type="radio" name="q5" value="5"> 5分</label>
+                </div>
+            </div>
+
+            <button type="button" class="btn" style="width: 100%; margin-top: 10px;" onclick="calculateScore()">
+                <span data-lang="zh">计算羞耻感评估结果</span>
+                <span data-lang="en">Calculate Assessment Result</span>
+            </button>
+        </form>
+
+        <div id="resultBox" class="result-box"></div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="prevPage(1)">
+                <span data-lang="zh">&larr; 上一页</span>
+                <span data-lang="en">&larr; Previous</span>
+            </button>
+            <button class="btn" onclick="nextPage(3)">
+                <span data-lang="zh">进入第1天修护建议 &rarr;</span>
+                <span data-lang="en">Day 1 Repair Guide &rarr;</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 2 页 / 共 7 页</span>
+            <span data-lang="en">Page 2 of 7</span>
+        </div>
+    </div>
+
+    <!-- 第 3 页：第 1 天修护 -->
+    <div class="step-page" id="page-3">
+        <h2>
+            <span data-lang="zh">三、 5天日常自我修护与松弛建议</span>
+            <span data-lang="en">III. 5-Day Daily Self-Repair & Relaxation Recommendations</span>
+        </h2>
+        <div class="day-hero-card">
+            <span class="day-tag">DAY 1</span>
+            <h3>
+                <span data-lang="zh">觉察与命名：把隐秘的羞耻感请到阳光下</span>
+                <span data-lang="en">Awareness & Naming: Bringing Hidden Shame into the Light</span>
+            </h3>
+            <p>
+                <span data-lang="zh"><strong>修护小贴士：</strong>羞耻感最害怕被清晰地看看见。当模糊的紧绷感被赋予名字，它便不再是一个巨大的怪物，而只是一段可以被理解的日常体验。</span>
+                <span data-lang="en"><strong>Tip:</strong> Shame fears being clearly seen. Once named, the vague tension ceases to be a monster and becomes an understandable daily experience.</span>
+            </p>
+            <p>
+                <span data-lang="zh"><strong>今日行动：</strong>寻找一个安静角落，写下一个近期让你感到羞耻或局促的瞬间。看着文字对自己说：<em>“这只是一种普通的局促感，它不代表我的价值，它只是路过。”</em></span>
+                <span data-lang="en"><strong>Action Today:</strong> Find a quiet corner, write down a recent moment of shame or constriction. Look at the text and tell yourself: <em>"This is just an ordinary feeling of constriction, it does not define my value."</em></span>
+            </p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="prevPage(2)">
+                <span data-lang="zh">&larr; 上一页</span>
+                <span data-lang="en">&larr; Previous</span>
+            </button>
+            <button class="btn" onclick="nextPage(4)">
+                <span data-lang="zh">进入第2天修护 &rarr;</span>
+                <span data-lang="en">Day 2 Repair &rarr;</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 3 页 / 共 7 页（第 1 天）</span>
+            <span data-lang="en">Page 3 of 7 (Day 1)</span>
+        </div>
+    </div>
+
+    <!-- 第 4 页：第 2 天修护 -->
+    <div class="step-page" id="page-4">
+        <h2>
+            <span data-lang="zh">三、 5天日常自我修护与松弛建议</span>
+            <span data-lang="en">III. 5-Day Daily Self-Repair & Relaxation Recommendations</span>
+        </h2>
+        <div class="day-hero-card">
+            <span class="day-tag">DAY 2</span>
+            <h3>
+                <span data-lang="zh">行为解构：将“事件本身”与“自我评价”剥离</span>
+                <span data-lang="en">Behavioral Deconstruction: Separating "The Event" from "Self-Evaluation"</span>
+            </h3>
+            <p>
+                <span data-lang="zh"><strong>修护小贴士：</strong>羞耻感常常制造幻觉，让我们把“事情没做好”等同于“我这个人一无是处”。打破这个链接，就能找回客观边界。</span>
+                <span data-lang="en"><strong>Tip:</strong> Shame creates the illusion that "doing poorly" equals "being worthless." Breaking this link restores objective boundaries.</span>
+            </p>
+            <p>
+                <span data-lang="zh"><strong>今日行动：</strong>复盘一次过去的失误，在纸上明确分栏：左边写“客观发生的事件是什么”，右边写“情绪放大后的自我否定是什么”。然后划掉右边，告诉自己：<em>“失误只代表技术或当下的局限，不代表我的人格。”</em></span>
+                <span data-lang="en"><strong>Action Today:</strong> Review a past mistake, write down the objective event on the left and the magnified self-rejection on the right. Cross out the right and tell yourself: <em>"Mistakes reflect current limits, not my personality."</em></span>
+            </p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="prevPage(3)">
+                <span data-lang="zh">&larr; 上一页</span>
+                <span data-lang="en">&larr; Previous</span>
+            </button>
+            <button class="btn" onclick="nextPage(5)">
+                <span data-lang="zh">进入第3天修护 &rarr;</span>
+                <span data-lang="en">Day 3 Repair &rarr;</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 4 页 / 共 7 页（第 2 天）</span>
+            <span data-lang="en">Page 4 of 7 (Day 2)</span>
+        </div>
+    </div>
+
+    <!-- 第 5 页：第 3 天修护 -->
+    <div class="step-page" id="page-5">
+        <h2>
+            <span data-lang="zh">三、 5天日常自我修护与松弛建议</span>
+            <span data-lang="en">III. 5-Day Daily Self-Repair & Relaxation Recommendations</span>
+        </h2>
+        <div class="day-hero-card">
+            <span class="day-tag">DAY 3</span>
+            <h3>
+                <span data-lang="zh">身体安抚：释放紧绷肌肉与神经系统</span>
+                <span data-lang="en">Physical Soothing: Releasing Tense Muscles & Nervous System</span>
+            </h3>
+            <p>
+                <span data-lang="zh"><strong>修护小贴士：</strong>羞耻和局促感在生理上往往表现为身体收缩。通过呼吸和肢体放松，可以向身体发送“现在很安全”的信号。</span>
+                <span data-lang="en"><strong>Tip:</strong> Shame and constriction physically manifest as bodily contraction. Breathing and physical relaxation send a signal of safety to the body.</span>
+            </p>
+            <p>
+                <span data-lang="zh"><strong>今日行动：</strong>进行3分钟的顺畅深呼吸。闭上眼，将注意力放在双手和肩颈，伴随呼气将紧绷感向下释放，对自己默念：<em>“身体，你可以放松了，此刻没有任何审判。”</em></span>
+                <span data-lang="en"><strong>Action Today:</strong> Practice 3 minutes of deep breathing. Close your eyes, focus on hands and shoulders, release tension downward with each exhale, whispering: <em>"Body, you can relax, there is no judgment here."</em></span>
+            </p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="prevPage(4)">
+                <span data-lang="zh">&larr; 上一页</span>
+                <span data-lang="en">&larr; Previous</span>
+            </button>
+            <button class="btn" onclick="nextPage(6)">
+                <span data-lang="zh">进入第4天修护 &rarr;</span>
+                <span data-lang="en">Day 4 Repair &rarr;</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 5 页 / 共 7 页（第 3 天）</span>
+            <span data-lang="en">Page 5 of 7 (Day 3)</span>
+        </div>
+    </div>
+
+    <!-- 第 6 页：第 4 天修护 -->
+    <div class="step-page" id="page-6">
+        <h2>
+            <span data-lang="zh">三、 5天日常自我修护与松弛建议</span>
+            <span data-lang="en">III. 5-Day Daily Self-Repair & Relaxation Recommendations</span>
+        </h2>
+        <div class="day-hero-card">
+            <span class="day-tag">DAY 4</span>
+            <h3>
+                <span data-lang="zh">内在挚友对话：用包容替代严苛评判</span>
+                <span data-lang="en">Inner Friend Dialogue: Replacing Harsh Judgment with Acceptance</span>
+            </h3>
+            <p>
+                <span data-lang="zh"><strong>修护小贴士：</strong>我们在面对朋友犯错时往往充满同理心，但对自己却极其严苛。今天，尝试把这份温柔分给自己一份。</span>
+                <span data-lang="en"><strong>Tip:</strong> We are empathetic when friends make mistakes, yet extremely harsh on ourselves. Today, try sharing that gentleness with yourself.</span>
+            </p>
+            <p>
+                <span data-lang="zh"><strong>今日行动：</strong>想象你最珍视的朋友正因为同样的“不够完美”而感到羞耻，你会对她说些什么？把这段安慰的话一字不差地写下来，读给自己听。</span>
+                <span data-lang="en"><strong>Action Today:</strong> Imagine your dearest friend feeling ashamed of imperfection, what would you say to her? Write down those comforting words word-for-word and read them to yourself.</span>
+            </p>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="prevPage(5)">
+                <span data-lang="zh">&larr; 上一页</span>
+                <span data-lang="en">&larr; Previous</span>
+            </button>
+            <button class="btn" onclick="nextPage(7)">
+                <span data-lang="zh">进入第5天修护 &rarr;</span>
+                <span data-lang="en">Day 5 Repair &rarr;</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 6 页 / 共 7 页（第 4 天）</span>
+            <span data-lang="en">Page 6 of 7 (Day 4)</span>
+        </div>
+    </div>
+
+    <!-- 第 7 页：第 5 天修护与结语 -->
+    <div class="step-page" id="page-7">
+        <h2>
+            <span data-lang="zh">三、 5天日常自我修护与松弛建议</span>
+            <span data-lang="en">III. 5-Day Daily Self-Repair & Relaxation Recommendations</span>
+        </h2>
+        <div class="day-hero-card">
+            <span class="day-tag">DAY 5</span>
+            <h3>
+                <span data-lang="zh">自主权回归：建立温和笃定的生活宣言</span>
+                <span data-lang="en">Reclaiming Autonomy: Establishing a Gentle & Firm Living Declaration</span>
+            </h3>
+            <p>
+                <span data-lang="zh"><strong>修护小贴士：</strong>当羞耻感的冰山逐渐消融，生活的主动权便重新回到了你的手中。接纳不完美的自己，是通往松弛的必经之路。</span>
+                <span data-lang="en"><strong>Tip:</strong> As the iceberg of shame melts, initiative returns to your hands. Accepting an imperfect self is the path to ease.</span>
+            </p>
+            <p>
+                <span data-lang="zh"><strong>今日行动：</strong>写下一张专属的“松弛生活宣言”，列出3件能让自己感到平静和快乐的小事（如漫步、听音乐、喝一杯热茶），并对自己说：<em>“我允许自己不完美，我的价值由我自己定义。”</em></span>
+                <span data-lang="en"><strong>Action Today:</strong> Write a "Relaxed Living Declaration" listing 3 simple joys (walking, music, tea) and tell yourself: <em>"I allow myself to be imperfect, my value is defined by me."</em></span>
+            </p>
+        </div>
+
+        <p style="text-align: center; margin-top: 25px; color: var(--accent-gold); font-weight: 600;">
+            <span data-lang="zh">愿你在每一个日常中，卸下局促，重获内心的开阔与安宁。</span>
+            <span data-lang="en">May you shed constriction in every daily moment and regain inner openness.</span>
+        </p>
+
+        <div class="btn-group">
+            <button class="btn btn-secondary" onclick="prevPage(6)">
+                <span data-lang="zh">&larr; 上一页</span>
+                <span data-lang="en">&larr; Previous</span>
+            </button>
+            <button class="btn" onclick="nextPage(1)">
+                <span data-lang="zh">返回首页重温</span>
+                <span data-lang="en">Back to Start</span>
+            </button>
+        </div>
+        <div class="page-indicator">
+            <span data-lang="zh">第 7 页 / 共 7 页（第 5 天）</span>
+            <span data-lang="en">Page 7 of 7 (Day 5)</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            <span data-lang="zh">&copy; 2026 蕊宫版权所有 | 个人成长与自我关怀空间</span>
+            <span data-lang="en">&copy; 2026 Rui Palace All Rights Reserved | Personal Growth & Self-Care Space</span>
+        </p>
+    </footer>
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 7;
+
+    function showPage(pageNo) {
+        for (let i = 1; i <= totalPages; i++) {
+            const page = document.getElementById('page-' + i);
+            if (i === pageNo) {
+                page.classList.add('active');
+            } else {
+                page.classList.remove('active');
+            }
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextPage(pageNo) {
+        currentPage = pageNo;
+        showPage(currentPage);
+    }
+
+    function prevPage(pageNo) {
+        currentPage = pageNo;
+        showPage(currentPage);
+    }
+
+    function setLanguage(lang) {
+        const body = document.body;
+        const btnZh = document.getElementById('btnZh');
+        const btnEn = document.getElementById('btnEn');
+
+        if (lang === 'en') {
+            body.className = 'lang-en';
+            btnEn.classList.add('active');
+            btnZh.classList.remove('active');
+        } else {
+            body.className = 'lang-zh';
+            btnZh.classList.add('active');
+            btnEn.classList.remove('active');
+        }
+    }
+
+    function calculateScore() {
+        const form = document.getElementById('quizForm');
+        let totalScore = 0;
+        let answeredCount = 0;
+
+        for (let i = 1; i <= 5; i++) {
+            const radios = form.elements['q' + i];
+            let answered = false;
+            for (const radio of radios) {
+                if (radio.checked) {
+                    totalScore += parseInt(radio.value);
+                    answered = true;
+                    break;
+                }
+            }
+            if (answered) answeredCount++;
+        }
+
+        const resultBox = document.getElementById('resultBox');
+        const currentLang = document.body.classList.contains('lang-en') ? 'en' : 'zh';
+
+        if (answeredCount < 5) {
+            resultBox.style.display = 'block';
+            resultBox.style.borderColor = '#ef4444';
+            resultBox.style.background = '#fee2e2';
+            resultBox.style.color = '#991b1b';
+            resultBox.innerHTML = currentLang === 'en' 
+                ? 'Please complete all 5 assessment questions for an accurate result.' 
+                : '请完成所有5道自测题的打分，以便获得完整的羞耻感状态评估。';
+            return;
+        }
+
+        let levelText = '';
+        let descText = '';
+
+        if (totalScore >= 5 && totalScore <= 10) {
+            levelText = currentLang === 'en' ? `[Relaxed & Open State] (Total: ${totalScore} pts)` : `【轻松开阔状态】（总分：${totalScore}分）`;
+            descText = currentLang === 'en' 
+                ? 'You maintain a healthy psychological boundary, smoothly separating behavioral results from your overall self-worth.' 
+                : '你拥有健康的自我边界，能够自然地将具体事件的表现与整体自我价值区分开，内心比较松弛。';
+        } else if (totalScore >= 11 && totalScore <= 18) {
+            levelText = currentLang === 'en' ? `[Moderate Constriction] (Total: ${totalScore} pts)` : `【温和局促状态】（总分：${totalScore}分）`;
+            descText = currentLang === 'en' 
+                ? 'You may occasionally be influenced by high inner standards or slight shame triggers in high-pressure environments. Recommended to follow the 5-day repair guide.' 
+                : '你有时可能会在压力环境下受到内在严苛标准的触动，产生轻微的局促感。建议参考接下来的5天日常修护方案进行自我调节。';
+        } else {
+            levelText = currentLang === 'en' ? `[High Focus/Shame Tendency] (Total: ${totalScore} pts)` : `【深度紧绷状态】（总分：${totalScore}分）`;
+            descText = currentLang === 'en' 
+                ? 'Your energy may have been heavily taxed by high self-expectations recently. Please gently begin the self-care practice and treat yourself with warmth.' 
+                : '近期高强度的自我期许可能在一定程度上消耗了你的精力。请开启日常自我修护练习，用温柔和耐心拥抱自己。';
+        }
+
+        resultBox.style.display = 'block';
+        resultBox.style.borderColor = '#facc15';
+        resultBox.style.background = '#fef9c3';
+        resultBox.style.color = '#713f12';
+        resultBox.innerHTML = `<strong>${levelText}</strong><br><span style="font-size: 0.95rem;">${descText}</span>`;
+    }
+</script>
+
+</body>
+</html>
