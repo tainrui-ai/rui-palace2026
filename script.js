@@ -47,62 +47,51 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // ==========================================
-// 蕊宫 - 访问统计与时长记录模块（即时测试版）
+// 蕊宫 - 访问统计调试版
 // ==========================================
-
 const SUPABASE_URL = 'https://tbridsdkmqcbhnqodwzt.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_FmUorhl55A1wfmL3K4nB5w_t3NwSa9S';
 
 window.addEventListener('DOMContentLoaded', () => {
+    // 动态加载 Supabase SDK
     if (typeof supabase === 'undefined') {
-        let script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-        document.head.appendChild(script);
+        let tag = document.createElement('script');
+        tag.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        document.head.appendChild(tag);
     }
 
     const fileName = window.location.pathname.split("/").pop() || "index.html";
     const clickDate = new Date().toISOString().split('T')[0];
-    let startTime = Date.now();
 
-    function sendVisitData(durationSeconds) {
+    // 延时 1 秒直接发送测试数据，方便我们在控制台看结果
+    setTimeout(() => {
         try {
-            const url = `${SUPABASE_URL}/rest/v1/page_stats`;
-            const data = JSON.stringify({
-                file_name: fileName,
-                click_date: clickDate,
-                duration: durationSeconds
-            });
-
-            // 用标准 fetch 替代，方便在控制台看请求结果
-            fetch(url, {
+            fetch(`${SUPABASE_URL}/rest/v1/page_stats`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'apikey': SUPABASE_KEY,
-                    'Authorization': `Bearer ${SUPABASE_KEY},
+                    'Authorization': `Bearer ${SUPABASE_KEY}`,
                     'Prefer': 'return=minimal'
                 },
-                body: data
-            }).then(res => {
-                console.log("数据上报状态:", res.status);
-            }).catch(err => {
-                console.error("上报出错:", err);
+                body: JSON.stringify({
+                    file_name: fileName,
+                    click_date: clickDate,
+                    duration: 5
+                })
+            })
+            .then(response => {
+                console.log("Supabase 响应状态码:", response.status);
+                return response.text();
+            })
+            .then(text => {
+                console.log("Supabase 返回内容:", text);
+            })
+            .catch(err => {
+                console.error("网络请求报错:", err);
             });
-        } catch (err) {
-            console.error("异常", err);
+        } catch (e) {
+            console.error("捕获到异常:", e);
         }
-    }
-
-    // 【测试修改】页面一加载完就立刻发送一条 1 秒的测试记录，确保能马上在后台看到！
-    setTimeout(() => {
-        sendVisitData(1);
-    }, 1500);
-
-    // 正常离开时再报一次真实时长
-    window.addEventListener('beforeunload', () => {
-        let durationSeconds = Math.round((Date.now() - startTime) / 1000);
-        if (durationSeconds > 0) {
-            sendVisitData(durationSeconds);
-        }
-    });
+    }, 1000);
 });
