@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵犀鉴 | Rui Palace - 🌿妒嫉心理测试与自我警醒方案 (🌿 Jealousy Psychological Test & Self-Vigilance Program)</title>
+    <style>
+        :root {
+            --bg-color: #fcf9f5;         
+            --card-bg: #fff5ee;         
+            --text-main: #2d2a29;       
+            --text-muted: #7c726c;      
+            --accent: #b86b51;          
+            --accent-hover: #9e5740;    
+            --border: #e6d7cd;          
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(184, 107, 81, 0.08);
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .lang-switch:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .question-box, .healing-plan {
+            display: none;
+        }
+
+        .question-box.active, .healing-plan.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .q-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 14px 18px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 15px;
+        }
+
+        .option-btn:hover {
+            border-color: var(--accent);
+            background: #fdfaf7;
+            color: var(--accent);
+        }
+
+        .result-box {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .result-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .result-score {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .result-content {
+            background: #ffffff;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+        .plan-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .day-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .day-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .day-desc {
+            font-size: 14px;
+            color: var(--text-main);
+            white-space: pre-line;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            flex: 1;
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .action-btn.secondary {
+            background: #d8c8bd;
+            color: var(--text-main);
+        }
+
+        .action-btn.secondary:hover {
+            background: #c5b4a8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+
+        .page-nav-btns {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">EN / 中文</button>
+    
+    <h1 id="mainTitle">灵犀鉴 · 🌿妒嫉心理测试与自我警醒方案</h1>
+    <div class="subtitle" id="mainSubtitle">穿透迷雾与创伤，看见内在小孩，找回属于自己的光芒</div>
+    
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- 答题区域 -->
+    <div id="quizContainer">
+        <!-- 题 1 -->
+        <div class="question-box active" data-index="0">
+            <div class="q-title" id="q1Title">1. 当你在暗中掌握了某个优秀、有才华或与你无关的人的隐私、秘密时，内心的第一冲动是什么？</div>
+            <div class="options" id="q1Options">
+                <button class="option-btn" onclick="selectOption(1, this)">A. 觉得对方也不过如此，产生一种短暂的虚幻安全感。</button>
+                <button class="option-btn" onclick="selectOption(2, this)">B. 想要把这些信息作为暗号或筹码，暗示对方“我什么都知道”。</button>
+                <button class="option-btn" onclick="selectOption(0, this)">C. 觉得索然无味，别人的隐私与我无关，立刻抛之脑后。</button>
+            </div>
+            <div class="page-nav-btns">
+                <a href="http://www.rui-palace.com/child" class="action-btn secondary" id="prevBtn1">上一页</a>
+                <button class="action-btn" style="opacity: 0.5; cursor: not-allowed;" disabled id="nextBtn1" onclick="nextQuestion()">下一页（请先选择答案）</button>
+            </div>
+        </div>
+
+        <!-- 题 2 -->
+        <div class="question-box" data-index="1">
+            <div class="q-title" id="q2Title">2. 当你发现周围有人在精神世界、创作或生活质感上远超于你，且你无法企及时，你的潜意识反应是？</div>
+            <div class="options" id="q2Options">
+                <button class="option-btn" onclick="selectOption(2, this)">A. 感到深深的刺痛与失落，试图通过模仿或贬低对方来掩饰自卑。</button>
+                <button class="option-btn" onclick="selectOption(3, this)">B. 产生强烈的不平衡感，想要通过指桑骂槐、恶意围猎，试图拉近差距。</button>
+                <button class="option-btn" onclick="selectOption(0, this)">C. 欣赏并认可对方的优秀，激发自己去提升，或者坦然接受差距。</button>
+            </div>
+            <div class="page-nav-btns">
+                <button class="action-btn secondary" onclick="prevQuestion()" id="prevBtn2">上一页</button>
+                <button class="action-btn" style="opacity: 0.5; cursor: not-allowed;" disabled id="nextBtn2" onclick="nextQuestion()">下一页（请先选择答案）</button>
+            </div>
+        </div>
+
+        <!-- 题 3 -->
+        <div class="question-box" data-index="2">
+            <div class="q-title" id="q3Title">3. 当别人指出你的行为越界或缺乏边界时，你的第一防御机制是什么？</div>
+            <div class="options" id="q3Options">
+                <button class="option-btn" onclick="selectOption(3, this)">A. 产生强烈的抗拒或无赖化防卫，觉得“大家都这样”，以此保护自己。</button>
+                <button class="option-btn" onclick="selectOption(2, this)">B. 感到恼羞成怒，甚至想要寻找对方的软肋进行争辩或回击。</button>
+                <button class="option-btn" onclick="selectOption(0, this)">C. 感到羞愧，反思自己的行为是否伤害了他人，并及时收手。</button>
+            </div>
+            <div class="page-nav-btns">
+                <button class="action-btn secondary" onclick="prevQuestion()" id="prevBtn3">上一页</button>
+                <button class="action-btn" style="opacity: 0.5; cursor: not-allowed;" disabled id="nextBtn3" onclick="nextQuestion()">下一页（请先选择答案）</button>
+            </div>
+        </div>
+
+        <!-- 题 4 -->
+        <div class="question-box" data-index="3">
+            <div class="q-title" id="q4Title">4. 这种盯着别人、关注别人动态的行为，对你而言是否变成了一种难以克制的习惯？</div>
+            <div class="options" id="q4Options">
+                <button class="option-btn" onclick="selectOption(3, this)">A. 常常身不由己，明知折磨自己但只要不关注就感到焦虑不安。</button>
+                <button class="option-btn" onclick="selectOption(1, this)">B. 偶尔会陷入其中，需要花费较多精力去克制。</button>
+                <button class="option-btn" onclick="selectOption(0, this)">C. 从不关注，精力完全放在自己的生活和真实创作上。</button>
+            </div>
+            <div class="page-nav-btns">
+                <button class="action-btn secondary" onclick="prevQuestion()" id="prevBtn4">上一页</button>
+                <button class="action-btn" style="opacity: 0.5; cursor: not-allowed;" disabled id="nextBtn4" onclick="nextQuestion()">下一页（请先选择答案）</button>
+            </div>
+        </div>
+
+        <!-- 题 5 -->
+        <div class="question-box" data-index="4">
+            <div class="q-title" id="q5Title">5. 回顾你的童年或成长经历，你是否常常感到孤独、缺乏陪伴、或在情感上长期被忽视？</div>
+            <div class="options" id="q5Options">
+                <button class="option-btn" onclick="selectOption(3, this)">A. 是的，我的童年有很多缺憾，长期缺乏真正的爱、安全感与精神寄托。</button>
+                <button class="option-btn" onclick="selectOption(2, this)">B. 过往有一些不愉快经历，导致我成年后极度缺乏安全感。</button>
+                <button class="option-btn" onclick="selectOption(0, this)">C. 没有，我的成长环境相对健康，拥有基本的爱与边界感。</button>
+            </div>
+            <div class="page-nav-btns">
+                <button class="action-btn secondary" onclick="prevQuestion()" id="prevBtn5">上一页</button>
+                <button class="action-btn" style="opacity: 0.5; cursor: not-allowed;" disabled id="nextBtn5" onclick="nextQuestion()">查看结果（请先选择答案）</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结果展示区域 -->
+    <div class="result-box" id="resultBox">
+        <div class="result-header" id="resHeader">【 自测分析与疗愈指引 】</div>
+        <div class="result-score" id="resultScore"></div>
+        <div class="result-content" id="resultContent"></div>
+        <div class="action-btns">
+            <button class="action-btn secondary" onclick="backToQuizFromResult()" id="btnBackToQuiz">上一页</button>
+            <button class="action-btn" id="btnViewPlan" onclick="showHealingPlan()">查看 7 天温柔修复计划</button>
+            <button class="action-btn secondary" id="btnRestart1" onclick="restartTest()">重新测验</button>
+        </div>
+    </div>
+
+    <!-- 7天温柔疗愈计划区域 -->
+    <div class="healing-plan" id="healingPlanBox">
+        <div class="plan-title" id="planTitleText">🌱 找回自我的 7 天温柔行动计划</div>
+        
+        <div class="day-card">
+            <div class="day-title" id="d1Title">Day 1：温和隔离 —— 关掉喧嚣的窗</div>
+            <div class="day-desc" id="d1Desc">今天，尝试把视线从别人的生活中收回。不再去搜索、不再去关注。告诉自己：“外面的声音与我无关，今天我想把宁静留给自己。”</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title" id="d2Title">Day 2：空间整理 —— 拂去内心的尘埃</div>
+            <div class="day-desc" id="d2Desc">把自己的房间或书桌彻底打扫干净，清理掉手机里不必要的截图和负面信息。用整洁的物理环境，轻轻安抚紧绷焦虑的神经。</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title" id="d3Title">Day 3：看见脆弱 —— 写一封与自己的和解信</div>
+            <div class="day-desc" id="d3Desc">找一张纸，写下内心深处的委屈与疲惫：“我以前总是抓着别人的秘密不放，其实是因为我太害怕被忽视、太缺乏安全感了。”写完后将它撕掉，释放压力。</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title" id="d4Title">Day 4：温柔拥抱 —— 哀悼那个不被爱的内在小孩</div>
+            <div class="day-desc" id="d4Desc">闭上眼，去回想童年那些孤单、不被理解或缺少陪伴的时刻。对当年的自己 say：“在那样的环境下，你辛苦了。但现在的你已经长大了，我会好好爱护你。”</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title" id="d5Title">Day 5：能量回流 —— 找回身体的真实感</div>
+            <div class="day-desc" id="d5Desc">去进行一次畅快的户外散步、跑步，或者专注于读一本好书。用真实的汗水和专注的劳动，填补精神上的荒芜，找回掌控感。</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title" id="d6Title">Day 6：重塑尊严 —— 重新找回纯净的边界</div>
+            <div class="day-desc" id="d6Desc">认真梳洗，穿上一身干净得体的衣服。对着镜子对自己说：“我有独立的大脑和属于自己的人生，我不需要靠窥探别人来获得价值。”</div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-title" id="d7Title">Day 7：向光而生 —— 开启属于自己的新秩序</div>
+            <div class="day-desc" id="d7Desc">确立全新的生活铁律：“别人的花园有多美、别人的故事有多长，都与我无关。我只专注于自己的土地，干净、清白、堂堂正正地向前走。”</div>
+        </div>
+
+        <div class="action-btns" style="margin-top: 25px;">
+            <button class="action-btn secondary" id="btnBackToResultFromPlan" onclick="backToResult()">上一页</button>
+            <button class="action-btn" id="btnRestart2" onclick="restartTest()">重新测验</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let currentLang = 'zh'; 
+    let currentQuestion = 0;
+    let scores = [0, 0, 0, 0, 0]; 
+    let answered = [false, false, false, false, false]; 
+    const questions = document.querySelectorAll('.question-box');
+    const progressFill = document.getElementById('progressFill');
+
+    const i18n = {
+        zh: {
+            mainTitle: "灵犀鉴 · 🌿妒嫉心理测试与自我警醒方案",
+            mainSubtitle: "穿透迷雾与创伤，看见内在小孩，找回属于自己的光芒",
+            langBtn: "EN / 中文",
+            resHeader: "【 自测分析与疗愈指引 】",
+            btnViewPlan: "查看 7 天温柔修复计划",
+            btnRestart1: "重新测验",
+            btnRestart2: "重新测验",
+            btnBackToQuiz: "上一页",
+            btnBackToResultFromPlan: "上一页",
+            planTitleText: "🌱 找回自我的 7 天温柔行动计划",
+            prevText: "上一页",
+            nextText: "下一页",
+            resultText: "查看结果",
+            unselectedNotice: "（请先选择答案）",
+            questions: [
+                {
+                    title: "1. 当你在暗中掌握了某个优秀、有才华或与你无关的人的隐私、秘密时，内心的第一冲动是什么？",
+                    options: [
+                        "A. 觉得对方也不过如此，产生一种短暂的虚幻安全感。",
+                        "B. 想要把这些信息作为暗号或筹码，暗示对方“我什么都知道”。",
+                        "C. 觉得索然无味，别人的隐私与我无关，立刻抛之脑后。"
+                    ]
+                },
+                {
+                    title: "2. 当你发现周围有人在精神世界、创作或生活质感上远超于你，且你无法企及时，你的潜意识反应是？",
+                    options: [
+                        "A. 感到深深的刺痛与失落，试图通过模仿或贬低对方来掩饰自卑。",
+                        "B. 产生强烈的不平衡感，想要通过指桑骂槐、恶意围猎，试图拉近差距。",
+                        "C. 欣赏并认可对方的优秀，激发自己去提升，或者坦然接受差距。"
+                    ]
+                },
+                {
+                    title: "3. 当别人指出你的行为越界或缺乏边界时，你的第一防御机制是什么？",
+                    options: [
+                        "A. 产生强烈的抗拒或无赖化防卫，觉得“大家都这样”，以此保护自己。",
+                        "B. 感到恼羞成怒，甚至想要寻找对方的软肋进行争辩或回击。",
+                        "C. 感到羞愧，反思自己的行为是否伤害了他人，并及时收手。"
+                    ]
+                },
+                {
+                    title: "4. 这种盯着别人、关注别人动态的行为，对你而言是否变成了一种难以克制的习惯？",
+                    options: [
+                        "A. 常常身不由己，明知折磨自己但只要不关注就感到焦虑不安。",
+                        "B. 偶尔会陷入其中，需要花费较多精力去克制。",
+                        "C. 从不关注，精力完全放在自己的生活和真实创作上。"
+                    ]
+                },
+                {
+                    title: "5. 回顾你的童年或成长经历，你是否常常感到孤独、缺乏陪伴、或在情感上长期被忽视？",
+                    options: [
+                        "A. 是的，我的童年有很多缺憾，长期缺乏真正的爱、安全感与精神寄托。",
+                        "B. 过往有一些不愉快经历，导致我成年后极度缺乏安全感。",
+                        "C. 没有，我的成长环境相对健康，拥有基本的爱与边界感。"
+                    ]
+                }
+            ],
+            days: [
+                { title: "Day 1：温和隔离 —— 关掉喧嚣的窗", desc: "今天，尝试把视线从别人的生活中收回。不再去搜索、不再去关注。告诉自己：“外面的声音与我无关，今天我想把宁静留给自己。”" },
+                { title: "Day 2：空间整理 —— 拂去内心的尘埃", desc: "把自己的房间或书桌彻底打扫干净，清理掉手机里不必要的截图和负面信息。用整洁的物理环境，轻轻安抚紧绷焦虑的神经。" },
+                { title: "Day 3：看见脆弱 —— 写一封与自己的和解信", desc: "找一张纸，写下内心深处的委屈与疲惫：“我以前总是抓着别人的秘密不放，其实是因为我太害怕被忽视、太缺乏安全感了。”写完后将它撕掉，释放压力。" },
+                { title: "Day 4：温柔拥抱 —— 哀悼那个不被爱的内在小孩", desc: "闭上眼，去回想童年那些孤单、不被理解或缺少陪伴的时刻。对当年的自己说：“在那样的环境下，你辛苦了。但现在的你已经长大了，我会好好爱护你。”" },
+                { title: "Day 5：能量回流 —— 找回身体的真实感", desc: "去进行一次畅快的户外散步、跑步，或者专注于读一本好书。用真实的汗水和专注的劳动，填补精神上的荒芜，找回掌控感。" },
+                { title: "Day 6：重塑尊严 —— 重新找回纯净的边界", desc: "认真梳洗，穿上一身干净得体的衣服。对着镜子对自己说：“我有独立的大脑和属于自己的人生，我不需要靠窥探别人来获得价值。”" },
+                { title: "Day 7：向光而生 —— 开启属于自己的新秩序", desc: "确立全新的生活铁律：“别人的花园有多美、别人的故事有多长，都与我无关。我只专注于自己的土地，干净、清白、堂堂正正地向前走。”" }
+            ],
+            results: [
+                {
+                    range: "low",
+                    title: "【 测评结果：内心清明，边界清晰 (0-3分) 】",
+                    content: "您拥有很好的心理韧性与清晰的边界感。能够从容面对生活中的差距，懂得保护自己的精神领地，也尊重他人。请继续保持这份纯净与从容。"
+                },
+                {
+                    range: "mid",
+                    title: "【 测评结果：中度精神内耗与代偿倾向 (4-8分) 】",
+                    content: "您近期可能承受了一定的现实压力或情感空虚，不知不觉将注意力过分投射到了外部世界与他人身上。这是一次善意的提醒：该收回视线了。您的能量非常宝贵，应该用来浇灌您自己的生活与梦想。"
+                },
+                {
+                    range: "high",
+                    title: "【 测评结果：深层创伤与依恋困境 (9-15分) 】",
+                    content: "您的内心深处，可能背负了太多童年未被满足的爱、长期的情感忽视或缺乏安全感的痛苦。那些紧盯着别人不放、试图掌控或寻找安慰的行为，不过是内心那个受伤的小孩在无声地呼救。请不要再苛责自己，尝试给自己一次温柔的疗愈与修复。"
+                }
+            ]
+        },
+        en: {
+            mainTitle: "Rui Palace · 🌿 Jealousy Psychological Test & Self-Vigilance Program",
+            mainSubtitle: "Pierce through mist and trauma, see your inner child, and reclaim your light.",
+            langBtn: "中文 / EN",
+            resHeader: "[ Assessment & Guidance ]",
+            btnViewPlan: "View 7-Day Gentle Self-Vigilance Program",
+            btnRestart1: "Retake Test",
+            btnRestart2: "Retake Test",
+            btnBackToQuiz: "Previous",
+            btnBackToResultFromPlan: "Previous",
+            planTitleText: "🌱 7-Day Gentle Action Plan to Reclaim Yourself",
+            prevText: "Previous",
+            nextText: "Next",
+            resultText: "View Result",
+            unselectedNotice: " (Please select an option first)",
+            questions: [
+                {
+                    title: "1. When you secretly discover someone's privacy or secrets (someone successful, talented, or unrelated to you), what is your first impulse?",
+                    options: [
+                        "A. Think they are nothing special, experiencing a brief, illusory sense of security.",
+                        "B. Want to use this information as a subtle hint or leverage to let them know 'I know everything'.",
+                        "C. Feel uninterested; other people's privacy has nothing to do with me and I immediately forget it."
+                    ]
+                },
+                {
+                    title: "2. When you notice someone far surpassing you in spiritual depth, creation, or lifestyle, and you cannot reach that level, your subconscious reaction is?",
+                    options: [
+                        "A. Feel deep pain and loss, trying to mask insecurity by mimicking or devaluing them.",
+                        "B. Experience strong imbalance, wanting to mock or maliciously circle them to narrow the gap.",
+                        "C. Appreciate and recognize their excellence, inspiring self-improvement or peacefully accepting the gap."
+                    ]
+                },
+                {
+                    title: "3. When someone points out that your behavior is overstepping boundaries or lacking ethics, what is your primary defense mechanism?",
+                    options: [
+                        "A. Generate strong resistance or rationalize with 'everyone does it' to protect yourself.",
+                        "B. Feel angered and defensive, seeking out their weaknesses to argue or retaliate.",
+                        "C. Feel ashamed, reflect on whether your behavior harmed others, and stop immediately."
+                    ]
+                },
+                {
+                    title: "4. Has this behavior of staring at others or tracking their updates turned into an uncontrollable habit for you?",
+                    options: [
+                        "A. Often feeling compelled; knowing it tortures you, yet feeling anxious if you don't check.",
+                        "B. Occasionally falling into it, requiring significant energy to restrain.",
+                        "C. Never paying attention; keeping energy completely focused on your own life and genuine creation."
+                    ]
+                },
+                {
+                    title: "5. Looking back at your childhood or upbringing, did you often feel lonely, lack companionship, or experience long-term emotional neglect?",
+                    options: [
+                        "A. Yes, my childhood had many flaws, lacking genuine love, security, and spiritual sustenance for a long time.",
+                        "B. There were unpleasant past experiences, making me extremely insecure in adulthood.",
+                        "C. No, my upbringing environment was relatively healthy, equipped with basic love and boundaries."
+                    ]
+                }
+            ],
+            days: [
+                { title: "Day 1: Gentle Isolation — Closing the Noisy Windows", desc: "Today, try withdrawing your gaze from others' lives. Stop searching and following. Tell yourself: 'The outside noise has nothing to do with me; today I keep peace for myself.'" },
+                { title: "Day 2: Space Decluttering — Dusting the Inner World", desc: "Thoroughly clean your room or desk, and clear out unnecessary screenshots or negative info on your phone. Comfort tight, anxious nerves with a clean physical environment." },
+                { title: "Day 3: Seeing Vulnerability — Writing a Reconciliation Letter", desc: "Take a piece of paper and write down inner grievances and exhaustion: 'I used to hold onto others' secrets because I was so afraid of being ignored and lacked security.' Tear it up afterwards to release pressure." },
+                { title: "Day 4: Gentle Embrace — Mourning the Unloved Inner Child", desc: "Close your eyes and recall lonely, misunderstood, or neglected moments in childhood. Tell your past self: 'You worked hard in that environment. But you have grown up now, and I will take good care of you.'" },
+                { title: "Day 5: Energy Flow Back — Reclaiming Bodily Presence", desc: "Take a refreshing outdoor walk or run, or focus on reading a good book. Fill the spiritual barrenness with genuine sweat and focused labor to regain a sense of control." },
+                { title: "Day 6: Reclaiming Dignity — Restoring Pure Boundaries", desc: "Wash up carefully and put on clean, decent clothes. Look in the mirror and tell yourself: 'I have an independent mind and my own life; I don't need to spy on others to find my worth.'" },
+                { title: "Day 7: Born Toward the Light — Opening a New Order", desc: "Establish a new iron rule for life: 'No matter how beautiful others' gardens are or how long their stories are, it has nothing to do with me. I focus only on my own land, walking forward cleanly, purely, and with integrity.'" }
+            ],
+            results: [
+                {
+                    range: "low",
+                    title: "[ Result: Clear Mind & Solid Boundaries (0-3 pts) ]",
+                    content: "You possess great psychological resilience and clear boundaries. You can calmly face life's gaps, knowing how to protect your spiritual territory while respecting others. Please maintain this purity and composure."
+                },
+                {
+                    range: "mid",
+                    title: "[ Result: Moderate Mental Exhaustion & Compensatory Tendencies (4-8 pts) ]",
+                    content: "You may have recently faced realistic stress or emotional emptiness, unintentionally projecting too much attention onto the outside world and others. This is a gentle reminder: it's time to withdraw your gaze. Your energy is precious and should be used to cultivate your own life and dreams."
+                },
+                {
+                    range: "high",
+                    title: "[ Result: Deep Trauma & Attachment Dilemma (9-15 pts) ]",
+                    content: "Deep inside, you may carry too much unmet childhood love, long-term emotional neglect, or the pain of insecurity. Those behaviors of staring at others and trying to control or seek comfort are merely the silent cries of the wounded child inside. Please stop blaming yourself and grant yourself a gentle healing and repair."
+                }
+            ]
+        }
+    };
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        updateUI();
+    }
+
+    function updateUI() {
+        const langData = i18n[currentLang];
+        
+        document.getElementById('langBtn').innerText = langData.langBtn;
+        document.getElementById('mainTitle').innerText = langData.mainTitle;
+        document.getElementById('mainSubtitle').innerText = langData.mainSubtitle;
+        document.getElementById('resHeader').innerText = langData.resHeader;
+        document.getElementById('btnViewPlan').innerText = langData.btnViewPlan;
+        document.getElementById('btnRestart1').innerText = langData.btnRestart1;
+        document.getElementById('btnRestart2').innerText = langData.btnRestart2;
+        document.getElementById('btnBackToQuiz').innerText = langData.btnBackToQuiz;
+        document.getElementById('btnBackToResultFromPlan').innerText = langData.btnBackToResultFromPlan;
+        document.getElementById('planTitleText').innerText = langData.planTitleText;
+
+        document.getElementById('prevBtn1').innerText = langData.prevText;
+        for (let i = 2; i <= 5; i++) {
+            document.getElementById(`prevBtn${i}`).innerText = langData.prevText;
+            const nextBtn = document.getElementById(`nextBtn${i}`);
+            if (nextBtn.hasAttribute('disabled')) {
+                let label = (i === 5) ? langData.resultText : langData.nextText;
+                nextBtn.innerText = label + langData.unselectedNotice;
+            } else {
+                nextBtn.innerText = (i === 5) ? langData.resultText : langData.nextText;
+            }
+        }
+
+        if (currentQuestion < 5) {
+            const qData = langData.questions[currentQuestion];
+            const activeBox = document.querySelector('.question-box.active');
+            if (activeBox) {
+                activeBox.querySelector('.q-title').innerText = qData.title;
+                const btnElems = activeBox.querySelectorAll('.option-btn');
+                btnElems.forEach((btn, idx) => {
+                    btn.innerText = qData.options[idx];
+                });
+            }
+        } else {
+            let totalScore = scores.reduce((a, b) => a + b, 0);
+            let resObj = langData.results[0];
+            if (totalScore > 3 && totalScore <= 8) {
+                resObj = langData.results[1];
+            } else if (totalScore > 8) {
+                resObj = langData.results[2];
+            }
+            let scoreText = currentLang === 'zh' ? `您的综合测验评分：${totalScore} 分` : `Your Comprehensive Score: ${totalScore} pts`;
+            document.getElementById('resultScore').innerText = scoreText;
+            document.getElementById('resultContent').innerText = `${resObj.title}\n\n${resObj.content}`;
+        }
+
+        langData.days.forEach((day, idx) => {
+            const card = document.querySelectorAll('.day-card')[idx];
+            if (card) {
+                card.querySelector('.day-title').innerText = day.title;
+                card.querySelector('.day-desc').innerText = day.desc;
+            }
+        });
+    }
+
+    function selectOption(score, btnElement) {
+        scores[currentQuestion] = score;
+        answered[currentQuestion] = true;
+
+        // 高亮当前选中的选项，移除同级其他选项的高亮
+        const parentOptions = btnElement.parentElement.querySelectorAll('.option-btn');
+        parentOptions.forEach(btn => {
+            btn.style.background = '#ffffff';
+            btn.style.color = 'var(--text-main)';
+            btn.style.borderColor = 'var(--border)';
+        });
+        btnElement.style.background = '#fdfaf7';
+        btnElement.style.color = 'var(--accent)';
+        btnElement.style.borderColor = 'var(--accent)';
+
+        // 激活当前题目的“下一页/查看结果”按钮
+        const btnId = currentQuestion === 4 ? 'nextBtn5' : `nextBtn${currentQuestion + 1}`;
+        const nextBtn = document.getElementById(btnId);
+        nextBtn.removeAttribute('disabled');
+        nextBtn.style.opacity = '1';
+        nextBtn.style.cursor = 'pointer';
+        const langData = i18n[currentLang];
+        nextBtn.innerText = (currentQuestion === 4) ? langData.resultText : langData.nextText;
+    }
+
+    function nextQuestion() {
+        if (!answered[currentQuestion]) return;
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            updateQuestionView();
+        } else {
+            showResult();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            updateQuestionView();
+        }
+    }
+
+    function updateQuestionView() {
+        progressFill.style.width = ((currentQuestion + 1) * 20) + '%';
+        questions.forEach((q, idx) => {
+            q.classList.remove('active');
+            if (idx === currentQuestion) {
+                q.classList.add('active');
+            }
+        });
+
+        const langData = i18n[currentLang];
+        const qData = langData.questions[currentQuestion];
+        const activeBox = document.querySelector('.question-box.active');
+        activeBox.querySelector('.q-title').innerText = qData.title;
+        const btnElems = activeBox.querySelectorAll('.option-btn');
+        btnElems.forEach((btn, idx) => {
+            btn.innerText = qData.options[idx];
+        });
+
+        const btnId = currentQuestion === 4 ? 'nextBtn5' : `nextBtn${currentQuestion + 1}`;
+        const nextBtn = document.getElementById(btnId);
+        if (answered[currentQuestion]) {
+            nextBtn.removeAttribute('disabled');
+            nextBtn.style.opacity = '1';
+            nextBtn.style.cursor = 'pointer';
+            nextBtn.innerText = (currentQuestion === 4) ? langData.resultText : langData.nextText;
+        } else {
+            nextBtn.setAttribute('disabled', 'true');
+            nextBtn.style.opacity = '0.5';
+            nextBtn.style.cursor = 'not-allowed';
+            let label = (currentQuestion === 4) ? langData.resultText : langData.nextText;
+            nextBtn.innerText = label + langData.unselectedNotice;
+        }
+    }
+
+    function showResult() {
+        document.getElementById('quizContainer').style.display = 'none';
+        progressFill.style.width = '100%';
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'block';
+
+        let totalScore = scores.reduce((a, b) => a + b, 0);
+        const langData = i18n[currentLang];
+        let scoreText = currentLang === 'zh' ? `您的综合测验评分：${totalScore} 分` : `Your Comprehensive Score: ${totalScore} pts`;
+        
+        let resObj = langData.results[0];
+        if (totalScore > 3 && totalScore <= 8) {
+            resObj = langData.results[1];
+        } else if (totalScore > 8) {
+            resObj = langData.results[2];
+        }
+
+        document.getElementById('resultScore').innerText = scoreText;
+        document.getElementById('resultContent').innerText = `${resObj.title}\n\n${resObj.content}`;
+    }
+
+    function backToQuizFromResult() {
+        document.getElementById('resultBox').style.display = 'none';
+        document.getElementById('quizContainer').style.display = 'block';
+        currentQuestion = 4; 
+        updateQuestionView();
+    }
+
+    function showHealingPlan() {
+        document.getElementById('resultBox').style.display = 'none';
+        document.getElementById('healingPlanBox').classList.add('active');
+    }
+
+    function backToResult() {
+        document.getElementById('healingPlanBox').classList.remove('active');
+        document.getElementById('resultBox').style.display = 'block';
+    }
+
+    function restartTest() {
+        currentQuestion = 0;
+        scores = [0, 0, 0, 0, 0];
+        answered = [false, false, false, false, false];
+        document.getElementById('resultBox').style.display = 'none';
+        document.getElementById('healingPlanBox').classList.remove('active');
+        document.getElementById('quizContainer').style.display = 'block';
+        progressFill.style.width = '20%';
+        questions.forEach((q, idx) => {
+            q.classList.remove('active');
+            if (idx === 0) {
+                q.classList.add('active');
+            }
+        });
+
+        // 重置所有选项的样式
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.style.background = '#ffffff';
+            btn.style.color = 'var(--text-main)';
+            btn.style.borderColor = 'var(--border)';
+        });
+
+        const langData = i18n[currentLang];
+        const qData = langData.questions[0];
+        const activeBox = document.querySelector('.question-box.active');
+        activeBox.querySelector('.q-title').innerText = qData.title;
+        const btnElems = activeBox.querySelectorAll('.option-btn');
+        btnElems.forEach((btn, idx) => {
+            btn.innerText = qData.options[idx];
+        });
+        const nextBtn1 = document.getElementById('nextBtn1');
+        nextBtn1.setAttribute('disabled', 'true');
+        nextBtn1.style.opacity = '0.5';
+        nextBtn1.style.cursor = 'not-allowed';
+        nextBtn1.innerText = langData.nextText + langData.unselectedNotice;
+    }
+</script>
+
+</body>
+</html>
