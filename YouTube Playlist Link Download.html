@@ -147,7 +147,7 @@
             line-height: 1.4;
         }
 
-        /* 模拟 Tkinter 的进度条 */
+        /* 模拟进度条 */
         .progress-container {
             width: 100%;
             height: 6px;
@@ -210,13 +210,12 @@
 
         <h1 id="title">YouTube Playlist PDF Generator</h1>
         <div class="subtitle" id="subTitle">粘贴播放列表链接，一键生成精美可跳转的 PDF 报告:</div>
-
+        
         <div class="input-group">
             <input type="url" id="playlistUrl" placeholder="https://www.youtube.com/playlist?list=...">
         </div>
-
+        
         <button class="btn-submit" id="submitBtn">提取并生成 PDF 文档</button>
-
         <div class="status-area" id="statusLabel">状态: 待机中，静候指令</div>
         
         <div class="progress-container" id="progressContainer">
@@ -230,7 +229,7 @@
 <footer class="site-footer">
     <div style="margin-bottom: 10px;">
         <a href="impressum.html">法律声明 (Impressum)</a>
-        | 
+        |         
         <a href="Datenschutz.html">隐私政策 (Datenschutz)</a>
     </div>
     <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
@@ -241,7 +240,7 @@
     const langDict = {
         zh: {
             title: "YouTube Playlist PDF Generator",
-            subTitle: "粘贴播放列表链接，一键生成精美可跳转的 PDF 报告:",
+            subTitle: "粘贴播放列表链接，一键生成明文显示链接的 PDF 报告:",
             placeholder: "https://www.youtube.com/playlist?list=...",
             btnNormal: "提取并生成 PDF 文档",
             btnLoading: "正在化雨解析...",
@@ -256,7 +255,7 @@
         },
         en: {
             title: "YouTube Playlist PDF Generator",
-            subTitle: "Paste playlist link to generate interactive PDF report:",
+            subTitle: "Paste playlist link to generate interactive PDF report with clear links:",
             placeholder: "https://www.youtube.com/playlist?list=...",
             btnNormal: "Extract and Generate PDF",
             btnLoading: "Extracting and Parsing...",
@@ -332,29 +331,33 @@
         statusLabel.textContent = texts.statusParsing;
         statusLabel.style.color = "var(--branch-brown)";
         progressContainer.style.display = 'block';
-        
-        // 3. 动态模拟进度条滑行，增强交互实感
+
+        // 3. 动态模拟进度条滑行
         let progress = 5;
         progressBar.style.width = `${progress}%`;
         const progressInterval = setInterval(() => {
             if (progress < 85) {
-                progress += Math.floor(Math.random() * 8) + 2; // 随机前行，模拟真实解析
+                progress += Math.floor(Math.random() * 8) + 2; 
                 if (progress > 85) progress = 85;
                 progressBar.style.width = `${progress}%`;
             }
         }, 800);
 
         try {
-            // 请求后端 API
+            // 请求后端 API，携带 displayLinks: true 确保后端在PDF中显式展开明文链接
             const response = await fetch('https://rui-palace-rui-yt-pdf-api.onrender.com/api/generate-pdf', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: url, lang: currentLang })
+                body: JSON.stringify({ 
+                    url: url, 
+                    lang: currentLang,
+                    displayLinks: true 
+                })
             });
 
             clearInterval(progressInterval);
 
-            // 4. 解析后端具体返回的错误信息
+            // 4. 解析错误信息
             if (!response.ok) {
                 let errorMessage = texts.statusError;
                 try {
@@ -362,9 +365,7 @@
                     if (errData && errData.error) {
                         errorMessage += `: ${errData.error}`;
                     }
-                } catch(_) {
-                    // 如果不是 JSON，直接回退使用标准错误
-                }
+                } catch(_) {}
                 throw new Error(errorMessage);
             }
 
@@ -376,9 +377,7 @@
             const downloadUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = downloadUrl;
-            
-            // 自动命名下载文件
-            a.download = `Youtube_Playlist_Export_${Date.now()}.pdf`;
+            a.download = `Youtube_Playlist_Full_Links_${Date.now()}.pdf`;
             document.body.appendChild(a);
             a.click();
             a.remove();
@@ -398,10 +397,9 @@
             setTimeout(() => {
                 progressContainer.style.display = 'none';
                 progressBar.style.width = '0%';
-            }, 4000); // 留出足够时间让用户看到 100% 的成功反馈
+            }, 4000);
         }
     });
 </script>
-
 </body>
 </html>
