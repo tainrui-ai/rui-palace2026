@@ -1,198 +1,89 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>内在小孩 - 蕊宫 | Rui Palace</title>
-    <!-- 保持与原网页完全一致的外部样式表 -->
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 在保持原有 style.css 字体和色彩基调的同时，进行空灵、清爽的微调 */
-        
-        /* 缩小且富有留白的顶部 */
-        .zen-hero-mini {
-            text-align: center;
-            padding: 40px 20px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .zen-hero-mini h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        .zen-hero-mini p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.85;
-        }
-
-        /* 恢复的三个核心测评模块（沿用你原有的网格和卡片设计规范） */
-        .tests-section {
-            max-width: 900px;
-            margin: 10px auto 30px;
-            padding: 0 20px;
-        }
-        .tests-section h3 {
-            font-size: 1rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            padding-bottom: 8px;
-        }
-        .test-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-        .test-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
+        /* 统一美学设计规范：疏朗分隔线与五瓣梅花 */
+        .plum-divider {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .test-card:hover {
-            border-color: #C5A059;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(197, 160, 89, 0.12);
-        }
-        .test-card h4 {
-            color: #2d3748;
-            margin-bottom: 12px;
-            font-size: 1.15rem;
-        }
-        .test-card p {
-            color: #4a5568;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .test-card a {
-            color: #C5A059;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        /* 30天修行窗户网格布局（清爽空灵的小窗排列） */
-        .sanctuary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 15px;
-            max-width: 900px;
-            margin: 20px auto 60px;
-            padding: 0 20px;
-        }
-        .window-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 15px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-        .window-card:hover {
-            border-color: #C5A059;
-            background: #FDF6F0;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(197, 160, 89, 0.1);
-        }
-        .window-card .day-tag {
-            font-size: 0.75rem;
-            color: #8c8c8c;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-        .window-card .day-title {
-            font-size: 0.88rem;
-            color: #2d3748;
-            font-weight: bold;
-            line-height: 1.4;
-        }
-
-        /* 统一的弹窗确认样式（契合原有设计） */
-        .zen-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            justify-content: center;
             align-items: center;
-            z-index: 1000;
+            justify-content: center;
+            margin: 20px auto 30px auto;
         }
-        .zen-modal-content {
-            background: #ffffff;
-            border: 1px solid #C5A059;
-            padding: 35px;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .plum-divider::before, .plum-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+            max-width: 140px;
         }
-        .zen-modal-content h3 {
-            color: #2d3748;
-            font-size: 1.15rem;
-            margin-bottom: 12px;
-        }
-        .zen-modal-content p {
-            color: #4a5568;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        .btn-enter {
+        .solid-plum {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin: 0 15px;
             display: inline-block;
-            background-color: #F4D1C6;
-            color: #4A3E3D;
-            padding: 10px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: background-color 0.2s;
-            margin-right: 10px;
         }
-        .btn-enter:hover {
-            background-color: #C5A059;
-            color: #FFFFFF;
+        .solid-plum span {
+            position: absolute;
+            width: 6px;
+            height: 9px;
+            background-color: #BA3D3E;
+            border-radius: 50% 50% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: center 12px;
         }
-        .btn-cancel {
-            background: none;
-            border: none;
-            color: #8c8c8c;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 10px;
+        .solid-plum span:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+        .solid-plum span:nth-child(2) { transform: translate(-50%, -100%) rotate(72deg); }
+        .solid-plum span:nth-child(3) { transform: translate(-50%, -100%) rotate(144deg); }
+        .solid-plum span:nth-child(4) { transform: translate(-50%, -100%) rotate(216deg); }
+        .solid-plum span:nth-child(5) { transform: translate(-50%, -100%) rotate(288deg); }
+        .solid-plum::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #f6e58d;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
         }
-        .btn-cancel:hover {
-            color: #2d3748;
-        }
+
+        /* 页面布局微调与排版优化 */
+        .zen-hero-mini { text-align: center; padding: 30px 20px; max-width: 800px; margin: 0 auto; }
+        .zen-hero-mini h2 { font-size: 1.5rem; color: #333; margin-bottom: 10px; letter-spacing: 2px; font-weight: 400; }
+        .zen-hero-mini p { font-size: 0.95rem; color: #666; line-height: 1.8; }
+        
+        .tests-section { max-width: 1000px; margin: 0 auto 40px; padding: 0 20px; }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .test-card { background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .test-card:hover { border-color: #c5a059; transform: translateY(-2px); }
+        .test-card h4 { color: #c5a059; margin-bottom: 10px; font-size: 1.05rem; }
+        .test-card p { color: #666; font-size: 0.88rem; line-height: 1.7; margin-bottom: 15px; }
+        .test-card a { color: #555; text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid #c5a059; }
+
+        .sanctuary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; max-width: 1000px; margin: 20px auto 60px; padding: 0 20px; }
+        .window-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 4px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .window-card:hover { border-color: #c5a059; background: #faf8f5; transform: translateY(-2px); }
+        .day-tag { font-size: 0.75rem; color: #8c8c8c; margin-bottom: 5px; letter-spacing: 1px; }
+        .day-title { font-size: 0.85rem; color: #444; font-weight: bold; line-height: 1.4; }
     </style>
 </head>
 <body>
 
 <!-- 隐私说明弹窗 -->
-<div id="cookie-consent" class="zen-modal" style="display: none;">
-    <div class="zen-modal-content">
+<div id="cookie-consent" class="modal" style="display: none;">
+    <div class="modal-content">
         <h3>蕊宫隐私说明</h3>
         <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
         <div class="button-group">
-            <button id="reject-btn" class="btn-cancel">全部拒绝</button>
-            <button id="accept-btn" class="btn-enter">全部同意</button>
+            <button id="reject-btn" class="btn-outline">全部拒绝</button>
+            <button id="accept-btn" class="btn-solid">全部同意</button>
         </div>
     </div>
 </div>
@@ -200,90 +91,87 @@
 <div class="petals">
     <div class="petal"></div><div class="petal"></div><div class="petal"></div>
     <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-    <div class="petal"></div>
 </div>
 <img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
 
-<header>    
-    <nav>        
-        <div class="logo">蕊宫</div>        
-        <ul>            
-            <li><a href="index.html">首页</a></li>            
-            <li><a href="child.html" class="active">内在小孩</a></li>            
-            <li><a href="aesthetics.html">浪漫色彩美学</a></li>            
-            <li><a href="guqin.html">古琴五音养神</a></li>            
-            <li><a href="wellness.html">道家养生长寿</a></li>            
+<header>
+    <nav>
+        <div class="logo">蕊宫</div>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="child.html" class="active">内在小孩</a></li>
+            <li><a href="aesthetics.html">浪漫色彩美学</a></li>
+            <li><a href="guqin.html">古琴五音养神</a></li>
+            <li><a href="wellness.html">道家养生长寿</a></li>
             <li><a href="notes.html">沉思录</a></li>
             <li><a href="YouTube Playlist Link Download.html">蕊宫开物</a></li>
-        </ul>    
+        </ul>
     </nav>
 </header>
 
-<!-- 精简缩小后的顶部叙事 -->
 <div class="zen-hero-mini">
-    <h2>回归本心，重塑内在根基</h2>
+    <h2>回归本心 · 重塑内在根基</h2>
     <p>每个人心中都住着一个“内在小孩”，那是我们最真实、最纯粹的情感内核。</p>
+    <div class="plum-divider">
+        <div class="solid-plum">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
 </div>
 
-<!-- 完整恢复的三个核心测评模块 -->
 <div class="tests-section">
-    <h3>觉察与测评导航</h3>
     <div class="test-grid">
         <div class="test-card">
             <div>
                 <h4>归位：潜意识压力感知测试</h4>
                 <p>绕过理性防御，直接触达潜意识压力水位。</p>
             </div>
-            <a href="Pressure Test.html">开始测评 →</a>
+            <a href="Pressure Test.html">进入测算 →</a>
         </div>
         <div class="test-card">
             <div>
                 <h4>归位：羞耻感感知测试</h4>
                 <p>羞耻感的困扰，自测压力水位。</p>
             </div>
-            <a href="Shame State Self.html">开始测评 →</a>
+            <a href="Shame State Self.html">进入测算 →</a>
         </div>
         <div class="test-card">
             <div>
                 <h4>妒嫉心理测试与自我警醒方案</h4>
-                <p>穿透迷雾与创伤，看见内在小孩，找回属于自己的光芒。</p>
+                <p>穿透迷雾与创伤，看见内在小孩，找回光芒。</p>
             </div>
-            <a href="Jealousy Test & Help.html">开始测评 →</a>
+            <a href="Jealousy Test & Help.html">进入测算 →</a>
         </div>
     </div>
 </div>
 
-<div class="tests-section" style="margin-top: 40px;">
-    <h3>三十天守护修行目录</h3>
+<div class="tests-section">
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;">三十天守护修行目录</h3>
+    <div class="sanctuary-grid" id="sanctuaryGrid"></div>
 </div>
 
-<!-- 30天修行窗户网格（带 YouTube 播放链接） -->
-<div class="sanctuary-grid" id="sanctuaryGrid"></div>
-
-<!-- 视频跳转确认弹窗 -->
-<div id="videoModal" class="zen-modal">
-    <div class="zen-modal-content">
-        <h3 id="modalTitle">修行提示</h3>
-        <p>你即将离开蕊宫，前往 YouTube 开启今日的觉察之旅。</p>
+<!-- 视频跳转弹窗 -->
+<div id="videoModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index: 1000;">
+    <div class="modal-content" style="background:#fff; padding:30px; border-radius:4px; max-width:400px; text-align:center;">
+        <h3 id="modalTitle" style="margin-bottom:15px; color:#333;">修行提示</h3>
+        <p style="margin-bottom:20px; color:#666; font-size:0.95rem;">你即将离开蕊宫，前往 YouTube 开启今日的觉察之旅。</p>
         <div>
-            <a id="modalConfirmBtn" href="#" target="_blank" class="btn-enter">同意进入 YouTube</a>
-            <button class="btn-cancel" onclick="closeVideoModal()">暂不前往</button>
+            <a id="modalConfirmBtn" href="#" target="_blank" style="padding:10px 20px; background:#c5a059; color:#fff; text-decoration:none; margin-right:10px; border-radius:4px; display:inline-block;">同意前往</a>
+            <button onclick="closeVideoModal()" style="padding:10px 20px; border:1px solid #ccc; background:#fff; border-radius:4px; cursor:pointer;">暂不前往</button>
         </div>
     </div>
 </div>
 
-<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">        
-    <div style="margin-bottom: 10px;">            
-        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>            |             
-        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>        
-    </div>        
-    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>    
-</footer>    
+<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
+    <div style="margin-bottom: 10px;">
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+    </div>
+    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+</footer>
 
 <script src="script.js"></script>
 <script>
-    // 30天修行课程数据及对应的 PDF 链接
     const courseData = [
         { day: "序章", title: "免费课程：30天守护之旅", link: "https://www.youtube.com/watch?v=v5Qg9Lizepg" },
         { day: "基础", title: "应该告诉自己 我可以", link: "https://www.youtube.com/watch?v=oq6TlCChoVw" },
@@ -325,7 +213,6 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalConfirmBtn = document.getElementById('modalConfirmBtn');
 
-    // 动态生成修行小窗
     courseData.forEach((item) => {
         const card = document.createElement('div');
         card.className = 'window-card';
@@ -345,13 +232,11 @@
         videoModal.style.display = 'none';
     }
 
-    // 点击空白处关闭弹窗
     window.onclick = function(event) {
         if (event.target === videoModal) {
             closeVideoModal();
         }
     }
 </script>
-
 </body>
 </html>
