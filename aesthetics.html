@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -5,23 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>浪漫色彩美学 - 蕊宫 | Rui Palace</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 疏朗空灵的五瓣梅花分隔线样式 */
+        .plum-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto 20px auto;
+            text-align: center;
+        }
+        .plum-divider::before, .plum-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+            max-width: 140px;
+        }
+        /* 疏朗独立的五瓣梅花造型 */
+        .solid-plum {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin: 0 15px;
+            display: inline-block;
+        }
+        /* 独立分离的花瓣：离中心有一段距离，形态更加优雅空灵 */
+        .solid-plum span {
+            position: absolute;
+            width: 6px;
+            height: 9px;
+            background-color: #BA3D3E; /* 血红色 */
+            border-radius: 50% 50% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: center 12px; /* 调整旋转基点，使花瓣向外张开、彼此分离 */
+        }
+        .solid-plum span:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+        .solid-plum span:nth-child(2) { transform: translate(-50%, -100%) rotate(72deg); }
+        .solid-plum span:nth-child(3) { transform: translate(-50%, -100%) rotate(144deg); }
+        .solid-plum span:nth-child(4) { transform: translate(-50%, -100%) rotate(216deg); }
+        .solid-plum span:nth-child(5) { transform: translate(-50%, -100%) rotate(288deg); }
+        /* 中心淡金黄色花蕊 */
+        .solid-plum::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #f6e58d;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
     <div id="cookie-consent" class="modal" style="display: none;">
-    <div class="modal-content">
-        <h3>蕊宫隐私说明</h3>
-        <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
-        <div class="button-group">
-            <button id="reject-btn" class="btn-outline">全部拒绝</button>
-            <button id="accept-btn" class="btn-solid">全部同意</button>
+        <div class="modal-content">
+            <h3>蕊宫隐私说明</h3>
+            <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
+            <div class="button-group">
+                <button id="reject-btn" class="btn-outline">全部拒绝</button>
+                <button id="accept-btn" class="btn-solid">全部同意</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="petals">
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-</div>
-<img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
+    <div class="petals">
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    </div>
+    <img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
 
 <header>
     <nav>
@@ -33,120 +87,104 @@
             <li><a href="guqin.html">古琴五音养神</a></li>
             <li><a href="wellness.html">道家养生长寿</a></li>
             <li><a href="notes.html">沉思录</a></li>
+            <li><a href="YouTube Playlist Link Download.html">蕊宫开物</a></li>
         </ul>
     </nav>
 </header>
 
-<section id="hero">
-    <div class="hero-container">
-        
-        <div class="zen-text-container">
-            <div class="vertical-text">
-                <h2 style="font-size: 1.6rem; margin-bottom: 2rem;">一种颜色，一段历史；一句诗词，万种风情。</h2>
-                <p>中国古人将山川日月、草木四时，凝练成惊艳世界的中国浪漫色系。而那些流传千古的古诗词，正是对这些色彩最完美的注解。</p>
-                <p>探索中国传统美学的深厚意蕴。从大漠孤烟的雄浑，到烟雨江南的温婉，通过对传统色彩带您沉浸式领略文人墨客笔下的东方美学浪漫世界。</p>
-                <p>回望五千年。让我们在诗情画意中，重新发现东方。</p>
-            </div>
-        </div>
+<section id="hero" style="padding: 20px 20px 5px 20px; max-width: 1000px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 5px;">
+        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;">一种颜色，一段历史；一句诗词，万种风情。</h2>
+        <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7;">
+            中国古人将山川日月、草木四时，凝练成惊艳世界的中国浪漫色系。流传千古的古诗词，正是对这些色彩最完美的注解。让我们在诗情画意中，回望五千年，重新发现东方美学的深厚意蕴。
+        </p>
+    </div>
+</section>
 
-        <div class="seal-image-container">
-            <img src="images/Rui Palace Letter.jpg" alt="蕊宫金色字" class="seal-golden">
+<section id="courses" style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
+    <!-- 分离、空灵的实心五瓣梅花分隔线 -->
+    <div class="plum-divider">
+        <div class="solid-plum">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+    <h2 style="text-align: center; margin-bottom: 25px; letter-spacing: 0.3em; font-weight: 300; font-size: 1.2rem; color: #555;">色彩美学索引</h2>
+
+    <div class="course-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">                 
+        <!-- 朱砂凝脂 -->        
+        <a href="Color Zhu Sha Red.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #BA3D3E; font-size: 1.05rem; margin-bottom: 8px;">朱砂落 · 凝脂白</h3>
+            <p style="font-size: 0.88rem; color: #666;">“如意朱红映雪白，守真克己静墨生。”</p>
+        </a>        
+        <!-- 薛涛红笺 -->        
+        <a href="Color  Xue Tao Red.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #E05263; font-size: 1.05rem; margin-bottom: 8px;">薛涛红笺 · 桃花绯红</h3>
+            <p style="font-size: 0.88rem; color: #666;">“浣花笺纸桃花色，好好题诗咏玉钩。”</p>
+        </a>
+        <!-- 暮山紫落 -->        
+        <a href="Color Mu Shan Lila.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #8670A0; font-size: 1.05rem; margin-bottom: 8px;">暮山紫落 · 月白无尽夏</h3>
+            <p style="font-size: 0.88rem; color: #666;">“烟光凝而暮山紫，潦水尽而寒潭清。”</p>
+        </a>
+        <!-- 天青等雨 -->        
+        <a href="Color Tian Qing.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #5c7c8a; font-size: 1.05rem; margin-bottom: 8px;">雨过天晴 · 云破天青</h3>
+            <p style="font-size: 0.88rem; color: #666;">“雨过天青云破处，这般颜色做将来。”</p>
+        </a>                 
+        <!-- 仙草艾绿 -->        
+        <a href="Color Ai Qing.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #4A6741; font-size: 1.05rem; margin-bottom: 8px;">正气化青 · 温婉入药</h3>
+            <p style="font-size: 0.88rem; color: #666;">“晨露凝青如玉润，静守本真待岁长。”</p>
+        </a>
+        <!-- 云破奇峰 · 涌帝青 -->        
+        <a href="Color Sky Blue.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #1E3A8A; font-size: 1.05rem; margin-bottom: 8px;">云破奇峰 · 涌帝青</h3>
+            <p style="font-size: 0.88rem; color: #666;">“三重飞檐接紫气，琉璃映月洗尘心。”</p>
+        </a>
+        <!-- 紫菀 · 幽香蕴真 -->        
+        <a href="Color Purple.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #A68BBD; font-size: 1.05rem; margin-bottom: 8px;">紫菀 · 幽香蕴真</h3>
+            <p style="font-size: 0.88rem; color: #666;">“紫菀含情露未晞，半生烟火半生诗。”</p>
+        </a>
+        <!-- 芭蕉橙 · 暖阳入心 -->        
+        <a href="Color Orange.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #D97706; font-size: 1.05rem; margin-bottom: 8px;">芭蕉橙 · 暖阳入心</h3>
+            <p style="font-size: 0.88rem; color: #666;">“雨打芭蕉声渐歇，余晖如橙映心扉。”</p>
+        </a>
+        <!-- 杏花天 · 春色入梦 -->        
+        <a href="Color Apricot Blossom.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #c47657; font-size: 1.05rem; margin-bottom: 8px;">杏花天 · 医道亦道</h3>
+            <p style="font-size: 0.88rem; color: #666;">“杏花天影霓裳舞，曾忆琴瑟五十弦。”</p>
+        </a>
+        <!-- 琥珀金 · 金泽流光 -->        
+        <a href="Color Amber Gold.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #b8860b; font-size: 1.05rem; margin-bottom: 8px;">琥珀金 · 金泽流光</h3>
+            <p style="font-size: 0.88rem; color: #666;">“流光不掩本真，岁月沉淀清气。”</p>
+        </a>
+        <!-- 远山黛 · 烟岚入画 -->        
+        <a href="Color Distant Mountain.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 25px; border: 1px solid #e0e0e0; background: #faf8f5; border-radius: 4px; transition: 0.3s;">
+            <h3 style="color: #4A5D6B; font-size: 1.05rem; margin-bottom: 8px;">远山黛 · 烟岚入画</h3>
+            <p style="font-size: 0.88rem; color: #666;">“山色空蒙雨亦奇，黛色千重入望迷。”</p>
+        </a>                
+        <!-- 待定空位 -->        
+        <div class="course-card" style="padding: 25px; border: 1px dashed #e0e0e0; color: #ccc; text-align: center; background: #faf8f5; border-radius: 4px;">
+            <h3 style="font-size: 1.05rem; margin-bottom: 8px; color: #bbb;">待定 · 墨染青花</h3>
+            <p style="font-size: 0.88rem;">灵犀格物中，敬请期待。</p>
+        </div>
+        <div class="course-card" style="padding: 25px; border: 1px dashed #e0e0e0; color: #ccc; text-align: center; background: #faf8f5; border-radius: 4px;">
+            <h3 style="font-size: 1.05rem; margin-bottom: 8px; color: #bbb;">待定 · 霜色琉璃</h3>
+            <p style="font-size: 0.88rem;">灵犀格物中，敬请期待。</p>
         </div>
     </div>
 </section>
 
-
-
-<section id="courses">
-    <h2 style="text-align: center; margin-bottom: 40px; letter-spacing: 0.3em; font-weight: 300;">色彩美学索引</h2>
-    <div class="course-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto;">
-         
-        <!-- 已建立的链接：朱砂凝脂 -->
-        <a href="Color Zhu Sha Red.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #BA3D3E;">朱砂落 · 凝脂白</h3>
-            <p>“如意朱红映雪白，守真克己静墨生。”</p>
-        </a>
-        <!-- 已建立的链接：薛涛红笺 -->
-        <a href="Color  Xue Tao Red.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #E05263;">薛涛红笺 · 桃花绯红</h3>
-            <p>“浣花笺纸桃花色，好好题诗咏玉钩。”</p>
-        </a>
-
-        <!-- 已建立的链接：暮山紫落 -->
-        <a href="Color Mu Shan Lila.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #8670A0;">暮山紫落 · 月白无尽夏</h3>
-            <p>“烟光凝而暮山紫，潦水尽而寒潭清。”</p>
-        </a>
-
-          <!-- 已建立的链接：天青等雨 -->
-        <a href="Color Tian Qing.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #E1ECEE;">雨过天晴 · 云破天青</h3>
-            <p>“雨过天青云破处，这般颜色做将来。”</p>
-        </a>
-        
-         <!-- 已建立的链接：仙草艾绿 -->
-        <a href="Color Ai Qing.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #4A6741;"> 正气化青· 温婉入药</h3>
-            <p>“晨露凝青如玉润，静守本真待岁长。”</p>
-        </a>
-
-          <!-- 已建立的链接：云破奇峰 · 涌帝青 -->
-        <a href="Color Sky Blue.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #1E3A8A;"> 云破奇峰 · 涌帝青</h3>
-            <p>“三重飞檐接紫气，琉璃映月洗尘心。”</p>
-        </a>
-
-        <!-- 已建立的链接：紫菀 · 幽香蕴真 -->
-        <a href="Color Purple.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #A68BBD;">紫菀 · 幽香蕴真</h3>
-            <p>“紫菀含情露未晞，半生烟火半生诗。”</p>
-        </a>
-
-        <!-- 已建立的链接：芭蕉橙 · 暖阳入心 -->
-        <a href="Color Orange.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #D97706;">芭蕉橙 · 暖阳入心</h3>
-            <p>“雨打芭蕉声渐歇，余晖如橙映心扉。”</p>
-        </a>
-
-        <!-- 已建立的链接：杏花天 · 春色入梦 -->
-        <a href="Color Apricot Blossom.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #E9A68D;">杏花天 · 医道亦道</h3>
-            <p>“杏花天影霓裳舞，曾忆琴瑟五十弦。”</p>
-        </a>
-
-        <!-- 已建立的链接：琥珀金 · 金泽流光 -->
-        <a href="Color Amber Gold.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #D4A017;">琥珀金 · 金泽流光</h3>
-            <p>“流光不掩本真，岁月沉淀清气。”</p>
-        </a>
-
-        <!-- 已建立的链接：远山黛 · 烟岚入画 -->
-        <a href="Color Distant Mountain.html" class="course-card" style="text-decoration: none; color: inherit; display: block; padding: 30px; border: 1px solid #e0e0e0; transition: 0.3s;">
-            <h3 style="color: #4A5D6B;">远山黛 · 烟岚入画</h3>
-            <p>“山色空蒙雨亦奇，黛色千重入望迷。”</p>
-        </a>
-        
-        <!-- 预留的空位（未来颜色） -->
-        <div class="course-card" style="padding: 30px; border: 1px dashed #e0e0e0; color: #ccc; text-align: center;">
-            <h3>待定 · 墨染青花</h3>
-            <p>灵犀格物中，敬请期待。</p>
-        </div>
-
-        <div class="course-card" style="padding: 30px; border: 1px dashed #e0e0e0; color: #ccc; text-align: center;">
-            <h3>待定 · 霜色琉璃</h3>
-            <p>灵犀格物中，敬请期待。</p>
-        </div>
-
-    </div>
-
-    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
-        <div style="margin-bottom: 10px;">
-            <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
-            | 
-            <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
-        </div>
-        <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
-    </footer>
+<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">        
+    <div style="margin-bottom: 10px;">            
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>            |             
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>        
+    </div>        
+    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>    
+</footer>
 
 <script src="script.js"></script>
 </body>
