@@ -5,23 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>古琴五音养神 - 蕊宫 | Rui Palace</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 统一设计规范：疏朗分隔线 */
+        .plum-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto 20px auto;
+        }
+        .plum-divider::before, .plum-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+            max-width: 140px;
+        }
+        .solid-plum {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin: 0 15px;
+            display: inline-block;
+        }
+        .solid-plum span {
+            position: absolute;
+            width: 6px;
+            height: 9px;
+            background-color: #BA3D3E;
+            border-radius: 50% 50% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: center 12px;
+        }
+        .solid-plum span:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+        .solid-plum span:nth-child(2) { transform: translate(-50%, -100%) rotate(72deg); }
+        .solid-plum span:nth-child(3) { transform: translate(-50%, -100%) rotate(144deg); }
+        .solid-plum span:nth-child(4) { transform: translate(-50%, -100%) rotate(216deg); }
+        .solid-plum span:nth-child(5) { transform: translate(-50%, -100%) rotate(288deg); }
+        .solid-plum::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #f6e58d;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
-<div id="cookie-consent" class="modal" style="display: none;">
-    <div class="modal-content">
-        <h3>蕊宫隐私说明</h3>
-        <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
-        <div class="button-group">
-            <button id="reject-btn" class="btn-outline">全部拒绝</button>
-            <button id="accept-btn" class="btn-solid">全部同意</button>
+    <div id="cookie-consent" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>蕊宫隐私说明</h3>
+            <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
+            <div class="button-group">
+                <button id="reject-btn" class="btn-outline">全部拒绝</button>
+                <button id="accept-btn" class="btn-solid">全部同意</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="petals">
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-</div>
-<img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
+    <div class="petals">
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    </div>
+    <img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
+
 <header>
     <nav>
         <div class="logo">蕊宫</div>
@@ -36,86 +86,95 @@
         </ul>
     </nav>
 </header>
-<section id="hero" style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
-    <div style="text-align: center; margin-bottom: 30px;">
-        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 15px; letter-spacing: 2px;">古琴：连接天地的生命法器</h2>
-        <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+
+<section id="hero" style="padding: 20px 20px 5px 20px; max-width: 1000px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 5px;">
+        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;">古琴：连接天地的生命法器</h2>
+        <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7;">
             古琴不仅是一门乐器，更是老祖宗留给我们的通天之法器。它通过纯粹的物理谐振与独特的律动，与人体的五脏六腑及脑波产生深层共鸣，从而实现身心内外的安顿与校准。
         </p>
     </div>
-    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 260px; background: #faf8f5; padding: 20px; border: 1px solid #eee; border-radius: 6px;">
-            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 10px;">降频调和</h3>
-            <p style="font-size: 0.88rem; color: #555; line-height: 1.6;">现代人的大脑长期处于焦虑的β波状态。古琴深沉的低频，能够强行引导脑波从急躁的β波平缓降至深度修复的α波或θ波。</p>
+</section>
+
+<section id="features" style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
+    <div class="plum-divider">
+        <div class="solid-plum">
+            <span></span><span></span><span></span><span></span><span></span>
         </div>
-        <div style="flex: 1; min-width: 260px; background: #faf8f5; padding: 20px; border: 1px solid #eee; border-radius: 6px;">
-            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 10px;">五音疗脏</h3>
-            <p style="font-size: 0.88rem; color: #555; line-height: 1.6;">人的五脏六腑各有其固有频率。古琴的“宫、商、角、徵、羽”五音如同精准的生物钥匙，通过纯粹谐振拨正错乱的气机。</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;">降频调和</h3>
+            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;">现代人的大脑长期处于焦虑的β波状态。古琴深沉的低频，能够强行引导脑波从急躁的β波平缓降至深度修复的α波或θ波。</p>
         </div>
-        <div style="flex: 1; min-width: 260px; background: #faf8f5; padding: 20px; border: 1px solid #eee; border-radius: 6px;">
-            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 10px;">生命呼吸</h3>
-            <p style="font-size: 0.88rem; color: #555; line-height: 1.6;">古琴的走音技法（吟、猱、绰、注）呈现出连续波动的曲线，完美模拟了人体呼吸与心跳的节奏，唤醒身体深层的化学反应。</p>
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;">五音疗脏</h3>
+            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;">人的五脏六腑各有其固有频率。古琴的“宫、商、角、徵、羽”五音如同精准的生物钥匙，通过纯粹谐振拨正错乱的气机。</p>
+        </div>
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;">生命呼吸</h3>
+            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;">古琴的走音技法（吟、猱、绰、注）呈现出连续波动的曲线，完美模拟了人体呼吸与心跳的节奏，唤醒身体深层的化学反应。</p>
         </div>
     </div>
 </section>
-<section id="video-resources" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
-    <div style="margin-bottom: 35px;">
-        <h3 style="font-size: 1.05rem; color: #555; border-left: 4px solid #c5a059; padding-left: 10px; margin-bottom: 15px;">一、 天人合一 · 法器导论</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">《天人合一的生命校准：以内经为鉴，听五音归位》</span>
-                <a href="https://www.youtube.com/watch?v=7r0H8VB1lrQ" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">古琴，非乐器，乃通天之法器！老祖宗开的药方</span>
-                <a href="https://www.youtube.com/watch?v=lZUhy8SF9Uw" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
+
+<section id="video-resources" style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;">一、 天人合一 · 法器导论</h3>
+    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">《天人合一的生命校准：以内经为鉴，听五音归位》</span>
+            <a href="https://www.youtube.com/watch?v=7r0H8VB1lrQ" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">古琴，非乐器，乃通天之法器！老祖宗开的药方</span>
+            <a href="https://www.youtube.com/watch?v=lZUhy8SF9Uw" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
         </div>
     </div>
-    <div>
-        <h3 style="font-size: 1.05rem; color: #555; border-left: 4px solid #c5a059; padding-left: 10px; margin-bottom: 15px;">二、 五音疗脏 · 经典实修</h3>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【徵调】—— 养心安神、通达血脉 古琴大师管平湖先生《乌夜啼》</span>
-                <a href="https://www.youtube.com/watch?v=VM-lyFUxVq4" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【徵调】—— 养心安神、通达血脉 古琴曲《山居吟》</span>
-                <a href="https://www.youtube.com/watch?v=4nEQtjUNulA" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【徵调】—— 养心安神、通达血脉 古琴曲《酒狂》</span>
-                <a href="https://www.youtube.com/watch?v=jQVOGXrbY0E" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【商调】—— 宣肺润燥、超脱格局 古琴大师管平湖先生《白雪》</span>
-                <a href="https://www.youtube.com/watch?v=-r-NhW__eVY" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【宫调】—— 健脾运化、安稳心神 古琴大师管平湖先生《碣石调 幽兰》</span>
-                <a href="https://www.youtube.com/watch?v=EdsbhIH5JMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【宫调】—— 健脾运化、安稳心神 古琴大师管平湖先生《梅花三弄》</span>
-                <a href="https://www.youtube.com/watch?v=GagZRuM_x1k" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【角调】—— 疏肝理气、解郁养颜 古琴大师管平湖先生《春晓吟》</span>
-                <a href="https://www.youtube.com/watch?v=I2NKsK3WkMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: #faf8f5; border: 1px solid #eee; border-radius: 4px;">
-                <span style="font-size: 0.85rem; color: #444;">【角调】—— 疏肝理气、解郁养颜 古琴大师管平湖先生《风雷引》</span>
-                <a href="https://www.youtube.com/watch?v=nyD1WEX2f68" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
-            </div>
+
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;">二、 五音疗脏 · 经典实修</h3>
+    <div style="display: flex; flex-direction: column; gap: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【徵调】养心安神：管平湖《乌夜啼》</span>
+            <a href="https://www.youtube.com/watch?v=VM-lyFUxVq4" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【徵调】养心安神：古琴曲《山居吟》</span>
+            <a href="https://www.youtube.com/watch?v=4nEQtjUNulA" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【徵调】养心安神：古琴曲《酒狂》</span>
+            <a href="https://www.youtube.com/watch?v=jQVOGXrbY0E" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【商调】宣肺润燥：管平湖《白雪》</span>
+            <a href="https://www.youtube.com/watch?v=-r-NhW__eVY" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【宫调】健脾运化：管平湖《碣石调 幽兰》</span>
+            <a href="https://www.youtube.com/watch?v=EdsbhIH5JMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【宫调】健脾运化：管平湖《梅花三弄》</span>
+            <a href="https://www.youtube.com/watch?v=GagZRuM_x1k" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【角调】疏肝理气：管平湖《春晓吟》</span>
+            <a href="https://www.youtube.com/watch?v=I2NKsK3WkMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
+            <span style="font-size: 0.88rem; color: #444;">【角调】疏肝理气：管平湖《风雷引》</span>
+            <a href="https://www.youtube.com/watch?v=nyD1WEX2f68" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
         </div>
     </div>
 </section>
-<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 30px; border-top: 1px solid #e0e0e0;">
+
+<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">
     <div style="margin-bottom: 10px;">
-        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
-        |                     
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a> | 
         <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
     </div>
     <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
 </footer>
-<script src="script.js"></script></body></html>
+<script src="script.js"></script>
+</body>
+</html>
