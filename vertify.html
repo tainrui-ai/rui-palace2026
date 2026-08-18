@@ -5,87 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>邮箱验证 - 蕊宫 (Rui Palace)</title>
     <style>
-        /* 🛡️ 终极护盾：在这一页强制隐藏任何全局注入的 Cookie 弹窗或遮罩层 */
-        div[class*="cookie"], div[id*="cookie"], 
-        div[class*="consent"], div[id*="consent"],
-        .cookie-banner, #cookie-banner, .cookie-popup {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
+        /* 彻底重置样式，完全匹配蕊宫的温润暖色美学，杜绝任何外部样式污染 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #222;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #f4efe6; /* 契合主站的宣纸暖色背景，告别突兀的纯白或冷灰色 */
+            color: #2c2a29;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
         .container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background: #ffffff;
+            padding: 48px 40px;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(44, 42, 41, 0.06);
             text-align: center;
             max-width: 440px;
-            width: 100%;
-            box-sizing: border-box;
+            width: 90%;
+            border: 1px solid #e6dec5;
         }
         h2 {
             margin-bottom: 16px;
-            font-weight: 600;
-            color: #111;
-            line-height: 1.4;
+            font-weight: 500;
+            color: #1a1817;
+            font-size: 22px;
+            letter-spacing: 1px;
+            line-height: 1.5;
         }
         p {
-            color: #555;
+            color: #615b56;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.8;
             margin: 16px 0;
         }
         .sub-text {
             font-size: 12px;
-            color: #888;
-            margin-top: -8px;
+            color: #9e9589;
+            margin-top: -6px;
             display: block;
         }
         .btn {
             display: inline-block;
-            margin-top: 24px;
-            background-color: #222;
-            color: #fff;
-            padding: 10px 24px;
+            margin-top: 28px;
+            background-color: #2c2a29;
+            color: #f4efe6;
+            padding: 12px 28px;
             text-decoration: none;
             border-radius: 4px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
         }
         .btn:hover {
-            background-color: #444;
+            background-color: #4a4643;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 id="title">正在验证...<br><span style="font-size: 14px; font-weight: normal; color: #666;">Verifying...</span></h2>
+        <h2 id="title">正在验证...<br><span style="font-size: 13px; font-weight: normal; color: #9e9589; letter-spacing: 0;">Verifying...</span></h2>
         <p id="message">请稍候，我们正在为您确认邮箱信息。<br><span class="sub-text">Please wait while we verify your email.</span></p>
         <a href="/" class="btn" id="homeBtn" style="display: none;">欢迎回到蕊宫 / Welcome back to Rui Palace</a>
     </div>
 
     <script>
-        // 自动写入本地存储，告诉浏览器已经同意过 Cookie
-        try {
-            localStorage.setItem('cookie_consent', 'true');
-            localStorage.setItem('cookie-consent', 'true');
-        } catch (e) {}
-
-        // 使用 try-catch 保护，防止任何意外的脚本崩溃导致页面空白
-        try {
-            window.addEventListener('DOMContentLoaded', () => {
+        // 绝对独立的参数解析与状态控制，不依赖任何主站全局脚本
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
                 const params = new URLSearchParams(window.location.search);
                 const email = params.get('email');
                 const token = params.get('token');
@@ -94,27 +87,27 @@
                 const messageEl = document.getElementById('message');
                 const homeBtn = document.getElementById('homeBtn');
 
-                // 检查参数是否存在
                 if (!email || !token) {
-                    titleEl.innerHTML = '验证链接无效<br><span style="font-size: 14px; font-weight: normal; color: #666;">Invalid Verification Link</span>';
+                    titleEl.innerHTML = '验证链接无效<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Invalid Verification Link</span>';
                     messageEl.innerHTML = '缺少必要的验证参数，请重新申请验证邮件。<br><span class="sub-text">Missing necessary parameters. Please request a new verification email.</span>';
                     homeBtn.style.display = 'inline-block';
                     return;
                 }
 
-                // 正常展示成功状态
+                // 模拟平稳的验证延时，随后展示成功态
                 setTimeout(() => {
-                    titleEl.innerHTML = '验证成功<br><span style="font-size: 14px; font-weight: normal; color: #666;">Verification Successful</span>';
-                    messageEl.innerHTML = `邮箱 <strong>${email}</strong> 已成功通过验证。<br>我们随后会向您的邮箱发送离线电子日记本的访问链接，请注意查收。<br><br><span class="sub-text">Your email has been successfully verified. We will send the access link to your journal shortly.</span>`;
+                    titleEl.innerHTML = '验证成功<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Verification Successful</span>';
+                    messageEl.innerHTML = `邮箱 <strong>${email}</strong> 已成功通过验证。<br>我们随后会向您的邮箱发送离线电子日记本的访问链接，请注意查收。<br><br><span class="sub-text">Your email has been successfully verified. We will send the access link shortly.</span>`;
                     homeBtn.style.display = 'inline-block';
                 }, 800);
-            });
-        } catch (err) {
-            console.error("页面加载异常: ", err);
-            document.getElementById('title').innerHTML = '加载出错<br><span style="font-size: 14px; font-weight: normal; color: #666;">Loading Error</span>';
-            document.getElementById('message').innerHTML = '页面运行出现了一点小意外。<br><span class="sub-text">An unexpected error occurred.</span>';
-            document.getElementById('homeBtn').style.display = 'inline-block';
-        }
+
+            } catch (err) {
+                console.error("解析异常: ", err);
+                document.getElementById('title').innerHTML = '加载出错<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Loading Error</span>';
+                document.getElementById('message').innerHTML = '页面运行出现了一点小意外。<br><span class="sub-text">An unexpected error occurred.</span>';
+                document.getElementById('homeBtn').style.display = 'inline-block';
+            }
+        });
     </script>
 </body>
 </html>
