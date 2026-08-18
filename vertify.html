@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮箱验证 - 蕊宫 (Rui Palace)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #222;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="title">正在验证...</h2>
+        <p id="message">请稍候，我们正在为您确认邮箱信息。</p>
+        <a href="/" class="btn" id="homeBtn" style="display: none;">返回首页</a>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const email = params.get('email');
+            const token = params.get('token');
+
+            const titleEl = document.getElementById('title');
+            const messageEl = document.getElementById('message');
+            const homeBtn = document.getElementById('homeBtn');
+
+            if (!email || !token) {
+                titleEl.textContent = '验证链接无效';
+                messageEl.textContent = '缺少必要的验证参数，请重新申请验证邮件。';
+                homeBtn.style.display = 'inline-block';
+                return;
+            }
+
+            // 此处可编写向后端或数据库确认激活状态的逻辑
+            // 验证通过后更新提示文案
+            setTimeout(() => {
+                titleEl.textContent = '验证成功';
+                messageEl.textContent = `邮箱 ${email} 已成功激活，您的离线日记本已准备就绪。`;
+                homeBtn.style.display = 'inline-block';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
