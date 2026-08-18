@@ -381,14 +381,13 @@
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'apikey': 'sb_publishable_Crkv-Nq1CoMT2HMs_KqDOA_DrS7jpvh',
-                    'Authorization': 'sb_publishable_Crkv-Nq1CoMT2HMs_KqDOA_DrS7jpvh'
                 },
                 body: JSON.stringify({ email: email })
             });
 
-            
+
             const result = await response.json();
+
             
             if (response.ok) {
                 msgDiv.style.color = "#2e7d32";
