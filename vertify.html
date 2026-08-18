@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>邮箱验证 - 蕊宫 (Rui Palace)</title>
     <style>
+        /* 🛡️ 终极护盾：在这一页强制隐藏任何全局注入的 Cookie 弹窗或遮罩层 */
+        div[class*="cookie"], div[id*="cookie"], 
+        div[class*="consent"], div[id*="consent"],
+        .cookie-banner, #cookie-banner, .cookie-popup {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f9f9f9;
@@ -67,10 +77,12 @@
     </div>
 
     <script>
-        // 自动帮用户同意 Cookie 弹窗，防止它遮挡验证页面
-localStorage.setItem('cookie_consent', 'true'); // 根据您前端实际的存储键名调整
-const banner = document.querySelector('.cookie-banner-class'); // 根据您弹窗的实际选择器调整
-if (banner) banner.style.display = 'none';
+        // 自动写入本地存储，告诉浏览器已经同意过 Cookie
+        try {
+            localStorage.setItem('cookie_consent', 'true');
+            localStorage.setItem('cookie-consent', 'true');
+        } catch (e) {}
+
         // 使用 try-catch 保护，防止任何意外的脚本崩溃导致页面空白
         try {
             window.addEventListener('DOMContentLoaded', () => {
