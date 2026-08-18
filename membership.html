@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">加入蕊宫会员 - 离线电子日记本</title>
+    <style>
+        :root {
+            --etsy-orange: #F1641E;
+            --bg-color: #FBFBFA;
+            --card-bg: #FFFFFF;
+            --text-main: #222222;
+            --text-secondary: #595959;
+            --border-color: #E1E1E1;
+            --focus-color: rgba(34, 34, 34, 0.1);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 48px 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 480px;
+            box-sizing: border-box;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+        }
+        .lang-switch {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .lang-switch:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .brand-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: left;
+        }
+        
+        /* 专业的下拉折叠菜单样式 (Accordion) */
+        .accordion-header {
+            background-color: #F7F7F6;
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            user-select: none;
+        }
+        .accordion-header:hover {
+            background-color: #EFEFEF;
+        }
+        .accordion-content {
+            display: none;
+            background-color: #FAF9F6;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            padding: 16px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            text-align: left;
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-top: -16px;
+            margin-bottom: 20px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        .accordion-content.show {
+            display: block;
+        }
+        .accordion-content h4 {
+            font-size: 12px;
+            color: var(--text-main);
+            margin: 10px 0 4px 0;
+        }
+        .accordion-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        label.input-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        input[type="email"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="email"]:focus {
+            border-color: var(--text-main);
+            box-shadow: 0 0 0 2px var(--focus-color);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 4px;
+            margin-right: 12px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: var(--text-main);
+        }
+        .checkbox-text {
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        /* 确认按钮：默认禁用 */
+        button[type="submit"] {
+            background-color: var(--text-main);
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color 0.2s, opacity 0.2s;
+            margin-top: 8px;
+        }
+        button[type="submit"]:hover:not(:disabled) {
+            background-color: #000000;
+        }
+        button[type="submit"]:disabled {
+            background-color: #E1E1E1;
+            color: #999999;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .message {
+            font-size: 13px;
+            margin-top: 20px;
+            line-height: 1.5;
+            min-height: 20px;
+        }
+        .footer-note {
+            font-size: 12px;
+            color: #888888;
+            margin-top: 24px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <button class="lang-switch" id="langBtn" onclick="toggleLanguage()">EN</button>
+
+    <h1 data-i18n="title">蕊宫</h1>
+    <div class="brand-subtitle">Rui Palace</div>
+    
+    <p class="subtitle" data-i18n="subtitle">登记您的会员邮箱，完成双重验证后，即可获取并激活您的离线电子日记本。</p>
+    
+    <!-- 专业级折叠免责与隐私说明 -->
+    <div class="accordion-header" onclick="toggleAccordion()">
+        <span data-i18n="accordionTitle">⚖️ 隐私、数据安全与法律免责声明 ▼</span>
+    </div>
+    <div class="accordion-content" id="accordionContent">
+        <div data-i18n="legalText">
+            <h4>1. 数据主权与本地架构 (Data Sovereignty)</h4>
+            <p>本平台采用“纯本地优先”（Local-First）架构设计。云端服务器不收集、不传输、不留存任何用户的个人日记内容或隐私条目。所有业务数据均实时写入并保留于您当前使用的设备本地存储介质（如 Browser LocalStorage / IndexedDB）中。</p>
+            
+            <h4>2. 用户数据责任与安全义务 (User Data Responsibility)</h4>
+            <p>鉴于数据完全由本地掌控，您对本地数据的完整性、保密性及安全性负有全部责任。平台不具备为您找回、恢复或云端备份丢失数据的技术通道。因设备硬件故障、操作系统崩溃、浏览器缓存/Cookie强力清理、恶意软件攻击或未及时执行“数据导出备份”操作而导致的数据不可逆丢失，平台概不承担任何直接或间接赔偿责任。</p>
+            
+            <h4>3. 免责条款与服务现状 (Disclaimer of Warranties)</h4>
+            <p>本软件及相关服务按“现状”（AS IS）及“可用”（AS AVAILABLE）基础提供，不提供任何明示或暗示的法律担保，包括但不限于适销性、特定用途适用性或不侵权担保。在适用法律允许的最大范围内，平台不对因使用或无法使用本系统而产生的任何直接、间接、附带或惩罚性损失承担责任。</p>
+            
+            <h4>4. 跨设备迁移提示 (Cross-Device Migration)</h4>
+            <p>当您更换终端设备或更换浏览器时，须由您本人手动执行“导出文件”并在新环境中点击“导入”以完成数据迁移。平台不对迁移过程中的格式兼容性受损或人为操作失误导致的断档承担责任。</p>
+        </div>
+    </div>
+
+    <form id="subscribeForm">
+        <div class="input-group">
+            <label for="email" class="input-label" data-i18n="labelEmail">电子邮箱地址</label>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+        </div>
+        
+        <!-- 勾选项 1：营销同意 -->
+        <label class="checkbox-group">
+            <input type="checkbox" id="marketingOptIn" onchange="checkFormValidity()">
+            <span class="checkbox-text" data-i18n="marketingText">我同意成为会员，并愿意每两周收到一次您的资讯邮件。我可以随时取消订阅并退出会员。</span>
+        </label>
+
+        <!-- 勾选项 2：阅读并同意法律免责声明 -->
+        <label class="checkbox-group">
+            <input type="checkbox" id="termsAgreement" onchange="checkFormValidity()">
+            <span class="checkbox-text" data-i18n="termsText">我已仔细阅读并完全理解上述隐私政策、数据安全义务及法律免责声明，并同意承担本地数据管理之全部责任。</span>
+        </label>
+
+        <!-- 确认按钮：默认禁用，双勾选后解锁 -->
+        <button type="submit" id="submitBtn" data-i18n="btnSubmit" disabled>立即登记</button>
+    </form>
+    
+    <div class="message" id="message"></div>
+    
+    <div class="footer-note" data-i18n="footerNote">
+        所有技术环节透明公开，数据完全掌握在您手中。
+    </div>
+</div>
+
+<script>
+    const translations = {
+        zh: {
+            pageTitle: "加入蕊宫会员 - 离线电子日记本",
+            title: "蕊宫",
+            subtitle: "登记您的会员邮箱，完成双重验证后，即可获取并激活您的离线电子日记本。",
+            accordionTitle: "⚖️ 隐私、数据安全与法律免责声明 ▼",
+            legalText: `
+                <h4>1. 数据主权与本地架构 (Data Sovereignty)</h4>
+                <p>本平台采用“纯本地优先”（Local-First）架构设计。云端服务器不收集、不传输、不留存任何用户的个人日记内容或隐私条目。所有业务数据均实时写入并保留于您当前使用的设备本地存储介质（如 Browser LocalStorage / IndexedDB）中。</p>
+                
+                <h4>2. 用户数据责任与安全义务 (User Data Responsibility)</h4>
+                <p>鉴于数据完全由本地掌控，您对本地数据的完整性、保密性及安全性负有全部责任。平台不具备为您找回、恢复或云端备份丢失数据的技术通道。因设备硬件故障、操作系统崩溃、浏览器缓存/Cookie强力清理、恶意软件攻击或未及时执行“数据导出备份”操作而导致的数据不可逆丢失，平台概不承担任何直接或间接赔偿责任。</p>
+                
+                <h4>3. 免责条款与服务现状 (Disclaimer of Warranties)</h4>
+                <p>本软件及相关服务按“现状”（AS IS）及“可用”（AS AVAILABLE）基础提供，不提供任何明示或暗示的法律担保，包括但不限于适销性、特定用途适用性或不侵权担保。在适用法律允许的最大范围内，平台不对因使用或无法使用本系统而产生的任何直接、间接、附带或惩罚性损失承担责任。</p>
+                
+                <h4>4. 跨设备迁移提示 (Cross-Device Migration)</h4>
+                <p>当您更换终端设备或更换浏览器时，须由您本人手动执行“导出文件”并在新环境中点击“导入”以完成数据迁移。平台不对迁移过程中的格式兼容性受损或人为操作失误导致的断档承担责任。</p>
+            `,
+            labelEmail: "电子邮箱地址",
+            marketingText: "我同意成为会员，并愿意每两周收到一次您的资讯邮件。我可以随时取消订阅并退出会员。",
+            termsText: "我已仔细阅读并完全理解上述隐私政策、数据安全义务及法律免责声明，并同意承担本地数据管理之全部责任。",
+            btnSubmit: "立即登记",
+            footerNote: "所有技术环节透明公开，数据完全掌握在您手中。",
+            msgSending: "正在发送验证邮件，请稍候...",
+            msgSuccess: "验证邮件已发送！请前往您的邮箱点击确认链接以激活离线日记本。",
+            msgError: "请求失败，请稍后重试。",
+            msgNetwork: "网络连接异常，请检查网络后重试。"
+        },
+        en: {
+            pageTitle: "Join Rui Palace - Offline Digital Journal",
+            title: "Rui Palace",
+            subtitle: "Register your email and complete double verification to get and activate your offline digital journal.",
+            accordionTitle: "⚖️ Privacy, Data Security & Legal Disclaimer ▼",
+            legalText: `
+                <h4>1. Data Sovereignty & Local Architecture</h4>
+                <p>This platform adopts a "Local-First" architectural design. Our cloud servers do not collect, transmit, or retain any personal journal entries or private content. All operational data is written and stored exclusively on your local device storage medium (e.g., Browser LocalStorage / IndexedDB).</p>
+                
+                <h4>2. User Data Responsibility & Security Obligations</h4>
+                <p>Given that data is entirely self-managed locally, you bear sole responsibility for the integrity, confidentiality, and security of your local data. The platform lacks any technical mechanism or channel to retrieve, recover, or back up lost data on the cloud. The platform disclaims all liability for any irreversible data loss resulting from device hardware failure, OS crashes, aggressive browser cache/Cookie clearing, malware attacks, or failure to perform timely "Data Export" backups.</p>
+                
+                <h4>3. Disclaimer of Warranties & Limitation of Liability</h4>
+                <p>This software and related services are provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied, including but not limited to merchantability, fitness for a particular purpose, or non-infringement. To the maximum extent permitted by applicable law, the platform shall not be liable for any direct, indirect, incidental, or punitive damages arising from the use or inability to use this system.</p>
+                
+                <h4>4. Cross-Device Migration Notice</h4>
+                <p>When switching terminal devices or browsers, you must manually perform a "Data Export" and click "Import" in the new environment to complete migration. The platform is not responsible for data gaps caused by format compatibility loss or user operational errors.</p>
+            `,
+            labelEmail: "Email Address",
+            marketingText: "I agree to become a member and receive your marketing emails bi-weekly. I can unsubscribe and cancel my membership at any time.",
+            termsText: "I have carefully read and fully understand the above privacy policy, data security obligations, and legal disclaimer, and agree to assume full responsibility for local data management.",
+            btnSubmit: "Register Now",
+            footerNote: "All technical processes are fully transparent. Your data stays in your hands.",
+            msgSending: "Sending verification email, please wait...",
+            msgSuccess: "Verification email sent! Please check your inbox and click the link to activate your offline journal.",
+            msgError: "Request failed, please try again later.",
+            msgNetwork: "Network error, please check your connection."
+        }
+    };
+
+    let currentLang = 'zh';
+
+    // 折叠菜单开关控制
+    function toggleAccordion() {
+        const content = document.getElementById('accordionContent');
+        content.classList.toggle('show');
+    }
+
+    // 双重勾选联动控制按钮状态
+    function checkFormValidity() {
+        const marketingChecked = document.getElementById('marketingOptIn').checked;
+        const termsChecked = document.getElementById('termsAgreement').checked;
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // 只有两项都勾选时，按钮才可用
+        submitBtn.disabled = !(marketingChecked && termsChecked);
+    }
+
+    function toggleLanguage() {
+        currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        document.getElementById('langBtn').textContent = currentLang === 'zh' ? 'EN' : '中文';
+        document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+        
+        // 动态切换静态文本与多段落法律条款
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+    }
+
+    document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const marketingOptIn = document.getElementById('marketingOptIn').checked;
+        const termsAgreed = document.getElementById('termsAgreement').checked;
+        const btn = document.getElementById('submitBtn');
+        const msgDiv = document.getElementById('message');
+        
+        if (!marketingOptIn || !termsAgreed) return;
+        
+        btn.disabled = true;
+        btn.textContent = currentLang === 'zh' ? "正在处理..." : "Processing...";
+        msgDiv.style.color = "var(--text-secondary)";
+        msgDiv.textContent = translations[currentLang].msgSending;
+
+        try {
+            const response = await fetch('https://tbridsdkmqcbhnqodwzt.supabase.co/functions/v1/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                msgDiv.style.color = "#2e7d32";
+                msgDiv.textContent = translations[currentLang].msgSuccess;
+                document.getElementById('subscribeForm').style.display = 'none';
+            } else {
+                msgDiv.style.color = "#c62828";
+                msgDiv.textContent = result.message || translations[currentLang].msgError;
+                btn.disabled = false;
+                btn.textContent = translations[currentLang].btnSubmit;
+            }
+        } catch (err) {
+            msgDiv.style.color = "#c62828";
+            msgDiv.textContent = translations[currentLang].msgNetwork;
+            btn.disabled = false;
+            btn.textContent = translations[currentLang].btnSubmit;
+        }
+    });
+</script>
+
+</body>
+</html>
