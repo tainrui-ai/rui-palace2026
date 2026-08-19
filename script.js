@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // 延时 1 秒直接发送测试数据，方便我们在控制台看结果
     setTimeout(() => {
         try {
-            fetch(`${SUPABASE_URL}/rest/v1/page_stats`, {
+            fetch(`${SUPABASE_URL}/rest/v1/https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-welcome-email`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
