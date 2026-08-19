@@ -270,33 +270,40 @@
 
 <script>
 
-// 页面加载时自动捕获网址里的 token 并完成激活验证
-(function handleEmailVerification() {
+
+// 页面加载时自动检测网址中是否有 token，如果有则触发验证
+window.addEventListener('DOMContentLoaded', async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-
+    
     if (token) {
-        console.log("检测到验证 Token，正在提交后端激活...");
-        
-        // 以标准 POST 请求发送给后端，完美避开网关的 GET 路径拦截
-        fetch('https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ verify_token: token }) // 传给后端专门处理验证的分支
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                alert("账户验证成功！已为您自动激活。");
-                window.location.replace('index.html'); // 验证成功后跳回主页
-            } else {
-                alert("验证失败: " + (data.message || "未知错误"));
-            }
-        })
-        .catch(err => console.error("验证请求出错:", err));
-    }
-})();
+        const msgDiv = document.getElementById('message');
+        if(msgDiv) {
+            msgDiv.style.color = "var(--text-secondary)";
+            msgDiv.textContent = currentLang === 'zh' ? "正在验证您的账户，请稍候..." : "Verifying your account, please wait...";
+        }
 
+        try {
+            const response = await fetch('https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: token })
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                alert(currentLang === 'zh' ? "验证成功！欢迎回来。" : "Verification successful! Welcome back.");
+                // 验证成功后，跳转回主页
+                window.location.href = 'index.html'; 
+            } else {
+                alert((currentLang === 'zh' ? "验证失败: " : "Verification failed: ") + (result.message || "未知错误"));
+            }
+        } catch (err) {
+            alert(currentLang === 'zh' ? "网络异常，验证请求发送失败。" : "Network error, verification failed.");
+        }
+    }
+});
 
 
 
