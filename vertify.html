@@ -94,12 +94,26 @@
                     return;
                 }
 
-                // 模拟平稳的验证延时，随后展示成功态
-                setTimeout(() => {
+                // 真实调用 Supabase 边缘函数：完成账号激活并异步派发日记本专属链接邮件
+                fetch("https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-welcome-email", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ token: token })
+                })
+                .then(response => response.json())
+                .then(data => {
                     titleEl.innerHTML = '验证成功<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Verification Successful</span>';
-                    messageEl.innerHTML = `邮箱 <strong>${email}</strong> 已成功通过验证。<br>我们随后会向您的邮箱发送离线电子日记本的访问链接，请注意查收。<br><br><span class="sub-text">Your email has been successfully verified. We will send the access link shortly.</span>`;
+                    messageEl.innerHTML = `邮箱 <strong>${email}</strong> 已成功激活。<br>电子日记本的访问链接已发送至您的邮箱，请注意查收。<br><br><span class="sub-text">Account activated. Access link has been sent to your inbox.</span>`;
                     homeBtn.style.display = 'inline-block';
-                }, 800);
+                })
+                .catch(err => {
+                    console.error("激活失败: ", err);
+                    titleEl.innerHTML = '激活失败<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Activation Failed</span>';
+                    messageEl.innerHTML = '服务器连接异常，请稍后再试。<br><span class="sub-text">Connection error, please try again later.</span>';
+                    homeBtn.style.display = 'inline-block';
+                });
 
             } catch (err) {
                 console.error("解析异常: ", err);
