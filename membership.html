@@ -269,6 +269,39 @@
 </div>
 
 <script>
+
+// === [在此处插入验证拦截脚本] ===
+    (function handleEmailVerification() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+            console.log("检测到验证 Token，正在提交后端激活...");
+            // 将下方 URL 替换为您真实的后端验证函数地址
+            fetch('https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/verify-user', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: token })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert("账户验证成功！");
+                    window.location.replace('index.html');
+                } else {
+                    alert("验证失败: " + data.message);
+                }
+            })
+            .catch(err => console.error("验证请求出错:", err));
+        }
+    })();
+
+
+
+
+
+
+    
     const translations = {
         zh: {
             pageTitle: "加入蕊宫会员 - 离线电子日记本",
