@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const rejectBtn = document.getElementById("reject-btn");
 
     // 1. 统一检查逻辑：同时检查 Cookie 和 LocalStorage
-    // 注意：我们将标识符统一为 'cookie_consent' 以保持逻辑一致
     const hasConsent = document.cookie.split('; ').find(row => row.startsWith('cookie_consent=true')) || 
                        localStorage.getItem('cookie_consent') === 'true';
 
@@ -47,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // ==========================================
-// 蕊宫 - 访问统计调试版
+// 蕊宫 - 访问统计专用脚本（正确版）
 // ==========================================
 const SUPABASE_URL = 'https://tbridsdkmqcbhnqodwzt.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_FmUorhl55A1wfmL3K4nB5w_t3NwSa9S';
@@ -63,10 +62,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const fileName = window.location.pathname.split("/").pop() || "index.html";
     const clickDate = new Date().toISOString().split('T')[0];
 
-    // 延时 1 秒直接发送测试数据，方便我们在控制台看结果
+    // 延时 1 秒发送页面访问统计数据到 page_stats 表
     setTimeout(() => {
         try {
-            fetch(`${SUPABASE_URL}/rest/v1/https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-welcome-email`, {
+            fetch(`${SUPABASE_URL}/rest/v1/page_stats`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,14 +80,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 })
             })
             .then(response => {
-                console.log("Supabase 响应状态码:", response.status);
-                return response.text();
-            })
-            .then(text => {
-                console.log("Supabase 返回内容:", text);
+                console.log("访问统计上报状态码:", response.status);
             })
             .catch(err => {
-                console.error("网络请求报错:", err);
+                console.error("访问统计报错:", err);
             });
         } catch (e) {
             console.error("捕获到异常:", e);
