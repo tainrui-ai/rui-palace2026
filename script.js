@@ -65,6 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // 延时 1 秒发送页面访问统计数据到 page_stats 表
     setTimeout(() => {
         try {
+            // 注意：这里请求的是数据库的 page_stats 表，绝不是云函数！
             fetch(`${SUPABASE_URL}/rest/v1/page_stats`, {
                 method: 'POST',
                 headers: {
