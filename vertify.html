@@ -87,12 +87,12 @@
                 const messageEl = document.getElementById('message');
                 const homeBtn = document.getElementById('homeBtn');
 
-                if (!email || !token) {
-                    titleEl.innerHTML = '验证链接无效<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Invalid Verification Link</span>';
-                    messageEl.innerHTML = '缺少必要的验证参数，请重新申请验证邮件。<br><span class="sub-text">Missing necessary parameters. Please request a new verification email.</span>';
-                    homeBtn.style.display = 'inline-block';
-                    return;
-                }
+              if (!email || !token) {
+    titleEl.innerHTML = '验证链接无效<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Invalid Verification Link</span>';
+    messageEl.innerHTML = '缺少必要的验证参数，请重新申请验证邮件。<br><span class="sub-text">Missing necessary parameters. Please request a new verification email.</span>';
+    homeBtn.style.display = 'inline-block';
+    return;
+}
 
                 // 真实调用 Supabase 边缘函数：完成账号激活并异步派发日记本专属链接邮件
                 fetch("https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-welcome-email", {
