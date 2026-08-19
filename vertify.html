@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -7,6 +8,7 @@
     <style>
         /* 彻底重置样式，契合蕊宫温润暖色宣纸美学 */
         * {
+
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -76,40 +78,47 @@
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', async () => {
+        
+window.addEventListener('DOMContentLoaded', async () => {
             const titleEl = document.getElementById('title');
             const messageEl = document.getElementById('message');
             const homeBtn = document.getElementById('homeBtn');
 
             try {
+                // 1. 从 URL 参数中安全获取 token 和 email
                 const params = new URLSearchParams(window.location.search);
-                const email = params.get('email') || '您的邮箱';
                 const token = params.get('token');
+                const email = params.get('email'); 
 
-                // 1. 校验本地 URL 是否携带 token
+                // 🛡️ 增加前端防线：如果没有 token，直接拦截提示
                 if (!token) {
                     titleEl.innerHTML = '验证链接无效<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Invalid Verification Link</span>';
-                    messageEl.innerHTML = '缺少必要的验证参数，请重新申请验证邮件。<br><span class="sub-text">Missing necessary parameters. Please request a new verification email.</span>';
+                    messageEl.innerHTML = '缺少必要的验证参数，请检查链接是否完整。<br><span class="sub-text">Missing necessary parameters.</span>';
                     homeBtn.style.display = 'inline-block';
                     return;
                 }
 
-                // 2. 向 Supabase 边缘函数发送验证请求
+                // 2. 向 Supabase 的 send-welcome-email 发送验证请求
                 const response = await fetch("https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-welcome-email", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ token: token })
+                    body: JSON.stringify({ 
+                        token: token, 
+                        email: email 
+                    })
                 });
 
+                // 💡 关键补丁：必须在此处解析 JSON 响应体，防止报错崩坏
                 const data = await response.json();
 
                 // 3. 根据响应状态更新界面
                 if (response.ok) {
                     titleEl.innerHTML = '验证成功<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Verification Successful</span>';
-                    messageEl.innerHTML = `邮箱 <strong>${email}</strong> 已成功激活。<br>包含电子日记本访问链接的邮件已发送至您的收件箱，请注意查收。<br><br><span class="sub-text">Account activated. Access link has been sent to your inbox.</span>`;
+                    messageEl.innerHTML = `邮箱 <strong>${email || '您的邮箱'}</strong> 已成功激活。<br>包含电子日记本访问链接的邮件已发送至您的收件箱，请注意查收。<br><br><span class="sub-text">Account activated. Access link has been sent to your inbox.</span>`;
                 } else {
+                    // 此时 data 变量已安全存在，可以正常读取后端返回的 error
                     titleEl.innerHTML = '验证失败或链接已失效<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Verification Failed or Expired</span>';
                     messageEl.innerHTML = `${data.error || '该验证链接已被使用或已过期，请重新申请。'}<br><br><span class="sub-text">This link may have already been used or expired.</span>`;
                 }
