@@ -269,46 +269,8 @@
 </div>
 
 <script>
+    let currentLang = 'zh';
 
-
-// 页面加载时自动检测网址中是否有 token，如果有则触发验证
-window.addEventListener('DOMContentLoaded', async function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-    
-    if (token) {
-        const msgDiv = document.getElementById('message');
-        if(msgDiv) {
-            msgDiv.style.color = "var(--text-secondary)";
-            msgDiv.textContent = currentLang === 'zh' ? "正在验证您的账户，请稍候..." : "Verifying your account, please wait...";
-        }
-
-        try {
-            const response = await fetch('https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: token })
-            });
-
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                alert(currentLang === 'zh' ? "验证成功！欢迎回来。" : "Verification successful! Welcome back.");
-                // 验证成功后，跳转回主页
-                window.location.href = 'index.html'; 
-            } else {
-                alert((currentLang === 'zh' ? "验证失败: " : "Verification failed: ") + (result.message || "未知错误"));
-            }
-        } catch (err) {
-            alert(currentLang === 'zh' ? "网络异常，验证请求发送失败。" : "Network error, verification failed.");
-        }
-    }
-});
-
-
-
-
-    
     const translations = {
         zh: {
             pageTitle: "加入蕊宫会员 - 离线电子日记本",
@@ -368,8 +330,6 @@ window.addEventListener('DOMContentLoaded', async function() {
         }
     };
 
-    let currentLang = 'zh';
-
     // 折叠菜单开关控制
     function toggleAccordion() {
         const content = document.getElementById('accordionContent');
@@ -381,17 +341,15 @@ window.addEventListener('DOMContentLoaded', async function() {
         const marketingChecked = document.getElementById('marketingOptIn').checked;
         const termsChecked = document.getElementById('termsAgreement').checked;
         const submitBtn = document.getElementById('submitBtn');
-        
-        // 只有两项都勾选时，按钮才可用
         submitBtn.disabled = !(marketingChecked && termsChecked);
     }
 
+    // 语言切换
     function toggleLanguage() {
         currentLang = currentLang === 'zh' ? 'en' : 'zh';
         document.getElementById('langBtn').textContent = currentLang === 'zh' ? 'EN' : '中文';
         document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
         
-        // 动态切换静态文本与多段落法律条款
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[currentLang][key]) {
@@ -400,6 +358,55 @@ window.addEventListener('DOMContentLoaded', async function() {
         });
     }
 
+    // 1. 页面加载时检测 URL 中的 token，执行账户验证（无弹窗、平滑提示并跳转）
+    window.addEventListener('DOMContentLoaded', async function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        
+        if (token) {
+            const msgDiv = document.getElementById('message');
+            const form = document.getElementById('subscribeForm');
+            if (form) form.style.display = 'none'; // 隐藏注册表单
+            
+            if (msgDiv) {
+                msgDiv.style.color = "var(--text-secondary)";
+                msgDiv.textContent = currentLang === 'zh' ? "正在验证您的账户，请稍候..." : "Verifying your account, please wait...";
+            }
+
+            try {
+                const response = await fetch('https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    msgDiv.style.color = "#2e7d32";
+                    msgDiv.innerHTML = `
+                        <h3 style="margin-bottom: 10px; font-size: 18px;">✨ 验证成功</h3>
+                        <p>${currentLang === 'zh' ? "欢迎回来，正在带您进入主页..." : "Welcome back, taking you to the homepage..."}</p>
+                    `;
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    msgDiv.style.color = "#c62828";
+                    msgDiv.innerHTML = `
+                        <h3 style="margin-bottom: 10px; font-size: 18px;">⚠️ 验证未通过</h3>
+                        <p>${result.message || (currentLang === 'zh' ? "链接已失效或已被使用。" : "Link expired or already used.")}</p>
+                        <a href="membership.html" style="display: inline-block; margin-top: 15px; color: var(--text-main); text-decoration: underline;">返回重新登记</a>
+                    `;
+                }
+            } catch (err) {
+                msgDiv.style.color = "#c62828";
+                msgDiv.textContent = currentLang === 'zh' ? "网络异常，验证请求发送失败。" : "Network error, verification failed.";
+            }
+        }
+    });
+
+    // 2. 提交表单发送邮件
     document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -416,46 +423,31 @@ window.addEventListener('DOMContentLoaded', async function() {
         msgDiv.style.color = "var(--text-secondary)";
         msgDiv.textContent = translations[currentLang].msgSending;
 
-
-try {
+        try {
             const response = await fetch('https://olkyevxkiwkmrhpnqbnq.supabase.co/functions/v1/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: token })
+                body: JSON.stringify({ email: email, lang: currentLang })
             });
 
             const result = await response.json();
 
-            const form = document.getElementById('subscribeForm');
-            if (form) form.style.display = 'none'; // 隐藏注册表单
-
-            if (response.ok && result.success) {
-                // 成功：不弹窗，直接在页面中央优雅提示，停留 2 秒再跳转
+            if (response.ok) {
                 msgDiv.style.color = "#2e7d32";
-                msgDiv.innerHTML = `
-                    <h3 style="margin-bottom: 10px; font-size: 18px;">✨ 验证成功</h3>
-                    <p>${currentLang === 'zh' ? "欢迎回来，正在带您进入主页..." : "Welcome back, taking you to the homepage..."}</p>
-                `;
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-
+                msgDiv.textContent = translations[currentLang].msgSuccess;
+                document.getElementById('subscribeForm').style.display = 'none';
             } else {
-                // 失败：在页面上友好提示
                 msgDiv.style.color = "#c62828";
-                msgDiv.innerHTML = `
-                    <h3 style="margin-bottom: 10px; font-size: 18px;">⚠️ 验证未通过</h3>
-                    <p>${result.message || (currentLang === 'zh' ? "链接已失效或已被使用。" : "Link expired or already used.")}</p>
-                    <a href="membership.html" style="display: inline-block; margin-top: 15px; color: var(--text-main); text-decoration: underline;">返回重新登记</a>
-                `;
+                msgDiv.textContent = result.message || translations[currentLang].msgError;
+                btn.disabled = false;
+                btn.textContent = translations[currentLang].btnSubmit;
             }
         } catch (err) {
             msgDiv.style.color = "#c62828";
-            msgDiv.textContent = currentLang === 'zh' ? "网络异常，验证请求发送失败。" : "Network error, verification failed.";
+            msgDiv.textContent = translations[currentLang].msgNetwork;
+            btn.disabled = false;
+            btn.textContent = translations[currentLang].btnSubmit;
         }
-    
-
     });
 </script>
 
