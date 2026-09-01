@@ -1,24 +1,32 @@
-﻿
-
-/* 1. 全局样式：统一楷体与背景图 */
+/* ==========================================
+   1. 全局样式：工业级抗锯齿 + 现代高清无衬线字体栈
+   ========================================== */
 body { 
-    font-family: "STKaiti", "KaiTi", "BiauKai", serif; 
+    /* 高分屏平滑抗锯齿开关 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    /* 现代工业级字体栈：优先调用 Mac 的苹方和 Win 的微软雅黑，兼顾优雅与极致清晰 */
+    font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
     line-height: 1.8; 
     margin: 0; 
     color: #333; 
-    /* 引入你的背景图 */
+    
+    /* 背景图设置 */
     background-image: url('images/杏花1.jpg'); 
-    background-size: cover;          /* 让背景图自动覆盖整个屏幕 */
-    background-position: center;     /* 居中显示 */
-    background-attachment: fixed;    /* 背景图随滚动固定 */
-    background-repeat: no-repeat;    /* 不重复 */
+    background-size: cover;          
+    background-position: center;     
+    background-attachment: fixed;    
+    background-repeat: no-repeat;    
     letter-spacing: 1px;
 }
 
-/* 2. 标题统一 */
+/* 2. 标题与 Logo：强制 600 字重，骨架挺拔凝练 */
 h1, h2, h3, .logo {
-    font-family: "STKaiti", "KaiTi", "BiauKai", serif;
-    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600; /* 让文字在大屏浅色背景下对比度十足、绝不发飘 */
 }
 
 /* 3. 弹窗样式 */
@@ -34,67 +42,57 @@ h1, h2, h3, .logo {
 .footer-links { margin-top: 15px; font-size: 0.8rem; }
 .footer-links a { margin: 0 10px; color: #666; }
 
-
-
-document.addEventListener('click', function() {
-    var audio = document.getElementById("bg-music");
-    if (audio.paused) {
-        audio.play();
-    }
-}, { once: true }); // {once: true} 确保只会触发一次监听，避免重复触发
-
-body {
-  background-image: url('images/杏花1.png'); /* 替换为您的图片路径 */
-  background-size: cover; /* 自动调整大小以覆盖整个背景 */
-  background-repeat: no-repeat; /* 防止图片重复平铺 */
-  background-position: center; /* 将图片居中 */
-  background-attachment: fixed; /* 使背景固定，不随页面滚动（可选） */
-}
-
-.header-title {
-    font-size: 2.5rem;    /* 将此数值调大，比如 2.5rem, 3rem 或 40px */
-    font-weight: bold;    /* 增加字重，让它更厚重 */
-    letter-spacing: 5px;  /* 增加字间距，更有古韵 */
-    color: #4a4a4a;       /* 确保颜色足够深，视觉上更沉稳 */
-
-/* 4. 头部与导航 - 优化版 */
-
-
-}
+/* 4. 头部与导航 - 完美适配多设备 */
 header { 
+    width: 100%;
     padding: 1.5rem 10%; 
     background: #EADBC8; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header .logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #333;
 }
 
 nav ul { 
     list-style: none; 
     display: flex; 
-    gap: 35px; /* 稍微增加间距，避免文字太挤 */
+    gap: 35px; 
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 nav a { 
     text-decoration: none; 
     color: #333; 
-    font-size: 1.2rem;    /* 将字体调大，原先默认为 1rem 左右 */
-    font-weight: 600;     /* 增加字重，让标题更醒目 */
-    transition: color 0.3s ease; /* 增加一点悬停效果 */
+    font-size: 1.15rem;    
+    font-weight: 600;     /* 黄金字重，清晰利落 */
+    white-space: nowrap;
+    transition: color 0.3s ease; 
 }
 
-/* 可选：鼠标悬停时变色，增加交互质感 */
 nav a:hover {
-    color: #8B4513; /* 沉稳的褐色 */
+    color: #8B4513; 
 }
 
 /* 5. 核心布局 (居中显示) */
 .hero-container {
     display: flex;
     flex-direction: row;
-    justify-content: center; /* 水平居中 */
-    align-items: center;     /* 垂直居中 */
-    gap: 40px;
+    justify-content: center; 
+    align-items: center;     
+    gap: 30px;               
     padding: 50px 5%;
 }
 
@@ -102,6 +100,7 @@ nav a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: 0 0 auto;
 }
 
 /* 6. 图片固定比例 */
@@ -112,31 +111,38 @@ nav a:hover {
 }
 
 /* 7. 竖排文字 */
+.zen-text-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .vertical-text {
-    writing-mode: vertical-rl;
+    writing-mode: vertical-rl; 
     text-orientation: upright;
-    height: 400px;
-    font-size: 1.2rem;
-    letter-spacing: 5px;
+    line-height: 2.2;          
+    letter-spacing: 0.15em;    
+    font-size: 1.15rem;
+    font-weight: 600; /* 竖排文字同样加粗，确保质感 */
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
-/* 8. 杏花位置*/ 
-	.corner-flower {
-    position: fixed;       /* 固定定位，确保滚动页面时它始终在右上角 */
-    top: 0;                /* 距离顶部 0 */
-    right: 0;              /* 距离右侧 0 */
-    width: 400px;          /* 根据需要调整图片大小，例如 300px 或 400px */
-    height: auto;          /* 保持比例 */
-    z-index: 9999;         /* 确保图片浮在网页最上层，不会被文字遮挡 */
-    pointer-events: none;  /* 关键点：防止图片遮挡住右上角的点击操作 */
-    opacity: 0.9;          /* 可选：适当降低透明度，让它与古朴底色融合得更好 */
+/* 8. 杏花角标固定 */
+.corner-flower {
+    position: fixed;         
+    top: 0;                  
+    right: 0;                
+    width: 400px;            
+    height: auto;            
+    z-index: 9999;           
+    pointer-events: none;    
+    opacity: 0.9;            
 }
 
-/* 花瓣动画：增加左右摇摆效果，让飘落更自然 */
+/* 9. 花瓣飘落动画 */
 @keyframes fall {
     0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
     10% { opacity: 1; }
-    50% { transform: translateY(50vh) translateX(50px) rotate(180deg); } /* 增加横向位移 */
+    50% { transform: translateY(50vh) translateX(50px) rotate(180deg); } 
     100% { transform: translateY(100vh) translateX(0px) rotate(360deg); opacity: 0; }
 }
 
@@ -151,7 +157,6 @@ nav a:hover {
     animation: fall linear infinite;
 }
 
-/* 自动化生成位置、时长与延迟 */
 .petal:nth-child(1) { left: 5%; animation-duration: 10s; animation-delay: 0s; }
 .petal:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: 2s; }
 .petal:nth-child(3) { left: 25%; animation-duration: 15s; animation-delay: 4s; }
@@ -163,56 +168,21 @@ nav a:hover {
 .petal:nth-child(9) { left: 50%; animation-duration: 10s; animation-delay: 7s; }
 .petal:nth-child(10) { left: 95%; animation-duration: 12s; animation-delay: 1s; }
 
-
-/* 核心布局：使用 flex 横向排列 */
-.hero-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; /* 确保整体居中 */
-    align-items: center;     /* 垂直居中 */
-    gap: 30px;               /* 将 gap 从 100px 调小到 30px，让它们靠拢 */
-    padding: 50px 5%;
-}
-
-/* 调整金色字的样式 */
 .seal-golden {
-    width: 160px;            /* 稍微缩小一点，使其与 Logo 比例和谐 */
+    width: 160px;            
     height: auto;
     display: block;
 }
 
-/* 确保 Logo 容器不会强制把其他元素挤开 */
-.logo-container {
-    flex: 0 0 auto;         /* 不自动拉伸 */
-}
-
-/* 响应式：屏幕较窄时（如手机），图片移动到顶部或下方 */
-@media (max-width: 768px) {
-    .page-layout {
-        flex-direction: column-reverse; /* 手机端图片转到下方 */
-    }
-}
-
-.zen-text-container {
-    display: flex;
-    justify-content: flex-end;
-}
-.vertical-text {
-    writing-mode: vertical-rl; /* 纵向排列，从右向左 */
-    text-orientation: upright;
-    line-height: 2.2;          /* 增加行距，防止文字拥挤 */
-    letter-spacing: 0.15em;    /* 增加字距 */
-    font-family: "STKaiti", "KaiTi", serif;
-}
-/* 视频容器样式 - 保证 16:9 比例且自适应 */
+/* 11. 视频容器样式 */
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 比例 */
+    padding-bottom: 56.25%; 
     height: 0;
     overflow: hidden;
     max-width: 100%;
-    margin: 40px auto; /* 居中并上下留白 */
-    border-radius: 8px; /* 柔和边角 */
+    margin: 40px auto; 
+    border-radius: 8px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
@@ -224,34 +194,53 @@ nav a:hover {
     height: 100%;
 }
 
-/* 内在小孩T1/T10 */	
-<style>
-    /* 清除可能干扰的全局样式 */
-    .my-list { border-top: 1px solid #eee; padding-top: 20px; }
-    
-    /* 强制指定布局规则 */
-    .my-row { 
-        display: flex !important; 
-        flex-direction: row !important; 
-        justify-content: space-between !important; 
-        margin-bottom: 15px !important; 
-        width: 100% !important;
+/* 12. 课程与卡片网格 */
+.course-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px; 
+    padding: 20px 5%; 
+}
+.course-card { 
+    border: 1px solid #ddd; 
+    padding: 20px; 
+    border-radius: 8px; 
+    background: rgba(255, 255, 255, 0.9); 
+}
+
+footer { 
+    text-align: center; 
+    padding: 20px; 
+    font-size: 0.8rem; 
+    color: #777; 
+}
+
+/* ==========================================
+   13. 多设备响应式完美适配
+   ========================================== */
+@media screen and (max-width: 1024px) {
+    header {
+        padding: 1rem 5%;
     }
-    
-    .my-item { 
-        width: 47% !important; 
-        padding: 10px !important; 
-        background: #fdfbf7 !important; 
-        border: 1px solid #eee !important;
-        border-radius: 8px !important;
-        text-align: center !important;
-        box-sizing: border-box !important;
+    nav ul {
+        gap: 20px; 
     }
-    
-    .my-item a { color: #5d5d5d !important; text-decoration: none !important; display: block !important; }
-</style>
-	
-/* 10. 其他 */
-.course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px 5%; }
-.course-card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
-footer { text-align: center; padding: 20px; font-size: 0.6rem; color: #777; }
+    nav a {
+        font-size: 1.05rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-container {
+        flex-direction: column-reverse; 
+    }
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+    nav ul {
+        justify-content: center;
+        gap: 15px;
+    }
+}
