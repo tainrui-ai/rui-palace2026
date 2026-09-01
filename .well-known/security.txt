@@ -1,0 +1,4 @@
+Contact: mailto:mail@rui-palace.com
+Expires: 2047-12-31T23:59:00.000Z
+Preferred-Languages: zh, en
+Canonical: https://rui-palace.com/.well-known/security.txt
