@@ -11,7 +11,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 15px auto 20px auto;
+            margin: 25px auto 20px auto;
         }
         .plum-divider::before, .plum-divider::after {
             content: "";
@@ -58,7 +58,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             flex-wrap: wrap;
         }
         .filter-btn {
@@ -87,7 +87,7 @@
             border-radius: 3px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-left: 15px;
+            margin-right: 15px;
         }
         .lang-switch-btn:hover {
             background: #c5a059;
@@ -98,14 +98,34 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            width: 100%;
         }
         .nav-right {
             display: flex;
             align-items: center;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .nav-right {
+                width: auto;
+                flex-grow: 1;
+                justify-content: space-between;
+            }
+            nav ul {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                width: 100%;
+                text-align: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- 隐私同意弹窗 -->
     <div id="cookie-consent" class="modal" style="display: none;">
         <div class="modal-content">
             <h3 data-en="Privacy Notice / 蕊宫隐私说明" data-zh="蕊宫隐私说明 / Privacy Notice">Privacy Notice / 蕊宫隐私说明</h3>
@@ -117,255 +137,260 @@
         </div>
     </div>
 
+    <!-- 背景飘落花瓣与右侧装饰角花 -->
     <div class="petals">
         <div class="petal"></div><div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div><div class="petal"></div>
     </div>
     <img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
 
-<header>    
-    <nav>        
-        <div class="logo" data-en="Rui Palace" data-zh="蕊宫">Rui Palace</div>        
-        <div class="nav-right">
-            <ul>            
-                <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>            
-                <li><a href="child.html" data-en="Inner Child" data-zh="内在小孩">Inner Child</a></li>            
-                <li><a href="aesthetics.html" data-en="Aesthetics" data-zh="浪漫色彩美学">Aesthetics</a></li>            
-                <li><a href="guqin.html" data-en="Guqin Healing" data-zh="古琴五音养神">Guqin Healing</a></li>            
-                <li><a href="wellness.html" data-en="Daoist Wellness" data-zh="道家养生长寿">Daoist Wellness</a></li>            
-                <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>            
-                <li><a href="store.html" class="active" data-en="Store" data-zh="蕊宫开物">Store</a></li>        
-            </ul>
-            <!-- 语言切换按钮 -->
-            <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
+    <!-- 💡 全局统一的响应式大容器 -->
+    <div class="responsive-container">
+
+        <!-- 头部导航 -->
+        <header>    
+            <nav>        
+                <!-- 仅保留居左对齐的中英文切换按钮，去掉了多余的“蕊宫”文字 -->
+                <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>        
+                <div class="nav-right">
+                    <ul>            
+                        <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>            
+                        <li><a href="child.html" data-en="Inner Child" data-zh="内在小孩">Inner Child</a></li>            
+                        <li><a href="aesthetics.html" data-en="Aesthetics" data-zh="浪漫色彩美学">Aesthetics</a></li>            
+                        <li><a href="guqin.html" data-en="Guqin Healing" data-zh="古琴五音养神">Guqin Healing</a></li>            
+                        <li><a href="wellness.html" data-en="Daoist Wellness" data-zh="道家养生长寿">Daoist Wellness</a></li>            
+                        <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>            
+                        <li><a href="store.html" class="active" data-en="Store" data-zh="蕊宫藏珍">Store</a></li>        
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero 区域 -->
+        <section id="hero" style="padding: 30px 0 10px 0; text-align: center;">    
+            <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;" data-en="Rui Palace Store · Digital Sanctuary & Craft" data-zh="蕊宫藏珍 · 数字美学与疗愈工坊">Rui Palace Store · Digital Sanctuary & Craft</h2>        
+            <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7;">            
+                <span data-en="Curated digital assets of traditional Eastern aesthetics, offline tools, and wellness guides for your digital and inner sanctuary." data-zh="精选传统东方美学视觉、离线数字文具与身心疗愈内容，为您的数字生活注入一份清净与雅致。">Curated digital assets of traditional Eastern aesthetics, offline tools, and wellness guides for your digital and inner sanctuary.</span>
+            </p>    
+        </section>
+
+        <!-- 分类过滤导航 / Category Filter -->
+        <div class="plum-divider">
+            <div class="solid-plum"><span></span><span></span><span></span><span></span><span></span></div>
         </div>
-    </nav>
-</header>
-
-<section id="hero" style="padding: 20px 20px 5px 20px; max-width: 1000px; margin: 0 auto;">    
-    <div style="text-align: center; margin-bottom: 5px;">        
-        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;" data-en="Rui Palace Store · Digital Sanctuary & Craft" data-zh="蕊宫开物 · 数字美学与疗愈工坊">Rui Palace Store · Digital Sanctuary & Craft</h2>        
-        <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7;">            <span data-en="Curated digital assets of traditional Eastern aesthetics, offline tools, and wellness guides for your digital and inner sanctuary." data-zh="精选传统东方美学视觉、离线数字文具与身心疗愈内容，为您的数字生活注入一份清净与雅致。">Curated digital assets of traditional Eastern aesthetics, offline tools, and wellness guides for your digital and inner sanctuary.</span>
-        </p>    
-    </div>
-</section>
-
-<!-- 分类过滤导航 / Category Filter -->
-<div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
-    <div class="plum-divider">
-        <div class="solid-plum">
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
-    </div>
-    <div class="store-filter">
-        <a href="#visual" class="filter-btn" data-en="Visual Aesthetics" data-zh="东方美学视觉">Visual Aesthetics</a>
-        <a href="#tools" class="filter-btn" data-en="Digital Tools" data-zh="数字工具与手帐">Digital Tools</a>
-        <a href="#healing" class="filter-btn" data-en="Mind, Body & Sound" data-zh="身心与声音疗愈">Mind, Body & Sound</a>
-    </div>
-</div>
-
-<!-- 板块一：东方美学视觉 -->
-<section id="visual" style="max-width: 1000px; margin: 0 auto; padding: 10px 20px 30px 20px;">
-    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="I. Visual Aesthetics · Wallpapers & Backdrops" data-zh="一、 东方美学视觉 · 高清桌面与手机屏保">I. Visual Aesthetics · Wallpapers & Backdrops</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        
-        <!-- 藻井系列 1.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Caisson Motif 4K Desktop Wallpaper" data-zh="藻井纹样系列：4K 桌面静态壁纸">Caisson Motif 4K Desktop Wallpaper</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Inspired by ancient Chinese architectural geometry and classical color palettes. Elevate your display with serene Eastern rhythm." data-zh="汲取中国古代建筑藻井几何与色彩精髓，适配各类主流显示器，赋予屏幕深邃庄重的东方韵律。">Inspired by ancient Chinese architectural geometry and classical color palettes. Elevate your display with serene Eastern rhythm.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 9.90</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
+        <div class="store-filter">
+            <a href="#visual" class="filter-btn" data-en="Visual Aesthetics" data-zh="东方美学视觉">Visual Aesthetics</a>
+            <a href="#tools" class="filter-btn" data-en="Digital Tools" data-zh="数字工具与手帐">Digital Tools</a>
+            <a href="#healing" class="filter-btn" data-en="Mind, Body & Sound" data-zh="身心与声音疗愈">Mind, Body & Sound</a>
         </div>
 
-        <!-- 藻井系列 1.2 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Caisson Motif Tablet & Mobile Backdrops" data-zh="藻井纹样系列：平板与手机锁屏屏保">Caisson Motif Tablet & Mobile Backdrops</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Portable architectural aesthetics tailored for mobile devices and tablets, keeping your digital touchpoints grounded and elegant." data-zh="专为移动端及平板设备量身定制的藻井美学屏保，让每一次开启屏幕都充满古雅意趣。">Portable architectural aesthetics tailored for mobile devices and tablets, keeping your digital touchpoints grounded and elegant.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 5.90</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+        <!-- 板块一：东方美学视觉 -->
+        <section id="visual" style="padding: 10px 0 30px 0;">
+            <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="I. Visual Aesthetics · Wallpapers & Backdrops" data-zh="一、 东方美学视觉 · 高清桌面与手机屏保">I. Visual Aesthetics · Wallpapers & Backdrops</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                
+                <!-- 藻井系列 1.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Caisson Motif 4K Desktop Wallpaper" data-zh="藻井纹样系列：4K 桌面静态壁纸">Caisson Motif 4K Desktop Wallpaper</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Inspired by ancient Chinese architectural geometry and classical color palettes. Elevate your display with serene Eastern rhythm." data-zh="汲取中国古代建筑藻井几何与色彩精髓，适配各类主流显示器，赋予屏幕深邃庄重的东方韵律。">Inspired by ancient Chinese architectural geometry and classical color palettes. Elevate your display with serene Eastern rhythm.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 9.90</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
 
-        <!-- 宝相花系列 2.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Baoxiang Flower Mobile Wallpaper Collection" data-zh="宝相花系列：手机精选壁纸合集">Baoxiang Flower Mobile Wallpaper Collection</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Traditional auspicious floral motifs in low-saturation classical tones. A gentle touch of heritage every time you wake your screen." data-zh="传统吉祥纹样宝相花设计，低饱和度古典配色。每次点亮屏幕，皆是一次与传统美学的温润照面。">Traditional auspicious floral motifs in low-saturation classical tones. A gentle touch of heritage every time you wake your screen.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 5.90</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+                <!-- 藻井系列 1.2 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Caisson Motif Tablet & Mobile Backdrops" data-zh="藻井纹样系列：平板与手机锁屏屏保">Caisson Motif Tablet & Mobile Backdrops</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Portable architectural aesthetics tailored for mobile devices and tablets, keeping your digital touchpoints grounded and elegant." data-zh="专为移动端及平板设备量身定制的藻井美学屏保，让每一次开启屏幕都充满古雅意趣。">Portable architectural aesthetics tailored for mobile devices and tablets, keeping your digital touchpoints grounded and elegant.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 5.90</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
 
-        <!-- 节气系列 3.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Solar Terms Limited Desktop Series" data-zh="二十四节气系列：当季限定桌面壁纸">Solar Terms Limited Desktop Series</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Seasonal limited desktop wallpapers inspired by nature observations and the changing solar terms, bringing natural poetry to your workspace." data-zh="感悟自然四时流转，将当季节气意趣融入桌面设计，为日常工作空间注入一抹自然诗意。">Seasonal limited desktop wallpapers inspired by nature observations and the changing solar terms, bringing natural poetry to your workspace.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 7.90</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+                <!-- 宝相花系列 2.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Baoxiang Flower Mobile Wallpaper Collection" data-zh="宝相花系列：手机精选壁纸合集">Baoxiang Flower Mobile Wallpaper Collection</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Traditional auspicious floral motifs in low-saturation classical tones. A gentle touch of heritage every time you wake your screen." data-zh="传统吉祥纹样宝相花设计，低饱和度古典配色。每次点亮屏幕，皆是一次与传统美学的温润照面。">Traditional auspicious floral motifs in low-saturation classical tones. A gentle touch of heritage every time you wake your screen.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 5.90</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
 
-    </div>
-</section>
+                <!-- 节气系列 3.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Solar Terms Limited Desktop Series" data-zh="二十四节气系列：当季限定桌面壁纸">Solar Terms Limited Desktop Series</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Seasonal limited desktop wallpapers inspired by nature observations and the changing solar terms, bringing natural poetry to your workspace." data-zh="感悟自然四时流转，将当季节气意趣融入桌面设计，为日常工作空间注入一抹自然诗意。">Seasonal limited desktop wallpapers inspired by nature observations and the changing solar terms, bringing natural poetry to your workspace.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 7.90</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
 
-<!-- 板块二：数字工具与手帐 -->
-<section id="tools" style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
-    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="II. Digital Tools · Offline Journals & Web Utilities" data-zh="二、 数字工具与手帐 · 离线手帐与网络小工具">II. Digital Tools · Offline Journals & Web Utilities</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        
-        <!-- 蕊宫开物 - YouTube PDF 播放列表小工具 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Rui Kaiwu: YouTube PDF Playlist Web Utility" data-zh="蕊宫开物：YouTube PDF 播放列表交互小工具">Rui Kaiwu: YouTube PDF Playlist Web Utility</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="An interactive web utility designed to seamlessly link YouTube video playlists with corresponding PDF references and documents for immersive learning." data-zh="“蕊宫开物”系列网络小工具：无缝关联 YouTube 视频播放列表与对应 PDF 文档，打造沉浸式视听与文献查阅体验。">An interactive web utility designed to seamlessly link YouTube video playlists with corresponding PDF references and documents for immersive learning.</p>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">Free / 免费开源</span>
-                <a href="https://www.rui-palace.com/YouTube%20Playlist%20Link%20Download" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Access Tool" data-zh="体验工具">Access Tool</a>
-            </div>
-        </div>
+        </section>
 
-        <!-- 离线手帐 1.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Rui Palace Offline Digital Journal V1.0" data-zh="离线手帐系列：蕊宫离线电子日记本 V1.0">Rui Palace Offline Digital Journal V1.0</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="A privacy-first, local-offline contemplation journal template. Crafted with rice-paper texture styling, compatible with major PDF annotation apps (GoodNotes, etc.)." data-zh="完全注重隐私与本地离线的沉思手帐模板。仿宣纸质感内页，支持各类主流PDF标注软件（GoodNotes等），记录内心的诗意与觉察。">A privacy-first, local-offline contemplation journal template. Crafted with rice-paper texture styling, compatible with major PDF annotation apps (GoodNotes, etc.).</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 15.00</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+        <!-- 板块二：数字工具与手帐 -->
+        <section id="tools" style="padding: 10px 0 30px 0;">
+            <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="II. Digital Tools · Offline Journals & Web Utilities" data-zh="二、 数字工具与手帐 · 离线手帐与网络小工具">II. Digital Tools · Offline Journals & Web Utilities</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                
+                <!-- 蕊宫开物 - YouTube PDF 播放列表小工具 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Rui Kaiwu: YouTube PDF Playlist Web Utility" data-zh="蕊宫开物：YouTube PDF 播放列表交互小工具">Rui Kaiwu: YouTube PDF Playlist Web Utility</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="An interactive web utility designed to seamlessly link YouTube video playlists with corresponding PDF references and documents for immersive learning." data-zh="“蕊宫开物”系列网络小工具：无缝关联 YouTube 视频播放列表与对应 PDF 文档，打造沉浸式视听与文献查阅体验。">An interactive web utility designed to seamlessly link YouTube video playlists with corresponding PDF references and documents for immersive learning.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">Free / 免费开源</span>
+                        <a href="https://www.rui-palace.com/YouTube%20Playlist%20Link%20Download" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Access Tool" data-zh="体验工具">Access Tool</a>
+                    </div>
+                </div>
 
-        <!-- 节气日程模板 1.2 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Solar Terms Weekly & Monthly Planner" data-zh="离线手帐系列：传统节气日程规划模板">Solar Terms Weekly & Monthly Planner</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Harmonize your schedule with traditional solar terms. A peaceful weekly and monthly layout designed for mindful planning." data-zh="将传统节气智慧融入日常日程管理，为您提供兼具典雅意趣与高效规划的周月计划模板。">Harmonize your schedule with traditional solar terms. A peaceful weekly and monthly layout designed for mindful planning.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 12.00</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+                <!-- 离线手帐 1.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Rui Palace Offline Digital Journal V1.0" data-zh="离线手帐系列：蕊宫离线电子日记本 V1.0">Rui Palace Offline Digital Journal V1.0</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="A privacy-first, local-offline contemplation journal template. Crafted with rice-paper texture styling, compatible with major PDF annotation apps (GoodNotes, etc.)." data-zh="完全注重隐私与本地离线的沉思手帐模板。仿宣纸质感内页，支持各类主流PDF标注软件（GoodNotes等），记录内心的诗意与觉察。">A privacy-first, local-offline contemplation journal template. Crafted with rice-paper texture styling, compatible with major PDF annotation apps (GoodNotes, etc.).</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 15.00</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
 
-        <!-- 数字文具 2.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Digital Stationery & Letter Papers Suite" data-zh="数字文具套装：古典纹样数字便签与信笺">Digital Stationery & Letter Papers Suite</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Exquisite digital sticky notes and letter paper templates featuring classical motifs, perfect for personal letters and notes." data-zh="精选古典纹样设计的数字便签纸与信笺模板，为您的电子书写增添一份传统文人的雅致。">Exquisite digital sticky notes and letter paper templates featuring classical motifs, perfect for personal letters and notes.</p>
+                <!-- 节气日程模板 1.2 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Solar Terms Weekly & Monthly Planner" data-zh="离线手帐系列：传统节气日程规划模板">Solar Terms Weekly & Monthly Planner</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Harmonize your schedule with traditional solar terms. A peaceful weekly and monthly layout designed for mindful planning." data-zh="将传统节气智慧融入日常日程管理，为您提供兼具典雅意趣与高效规划的周月计划模板。">Harmonize your schedule with traditional solar terms. A peaceful weekly and monthly layout designed for mindful planning.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 12.00</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
+
+                <!-- 数字文具 2.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Digital Stationery & Letter Papers Suite" data-zh="数字文具套装：古典纹样数字便签与信笺">Digital Stationery & Letter Papers Suite</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Exquisite digital sticky notes and letter paper templates featuring classical motifs, perfect for personal letters and notes." data-zh="精选古典纹样设计的数字便签纸与信笺模板，为您的电子书写增添一份传统文人的雅致。">Exquisite digital sticky notes and letter paper templates featuring classical motifs, perfect for personal letters and notes.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 8.90</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
+
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 8.90</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+        </section>
+
+        <!-- 板块三：身心与声音疗愈 -->
+        <section id="healing" style="padding: 10px 0 40px 0;">
+            <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="III. Mind, Body & Sound · Wellness Guides & Videos" data-zh="三、 身心与声音疗愈 · 视频及数字典籍">III. Mind, Body & Sound · Wellness Guides & Videos</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                
+                <!-- 功法视频 1.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Jin Gang Gong & Chang Shou Gong Video Masterclass" data-zh="传统功法系列：金刚功与长寿功居家实修高清视频套系">Jin Gang Gong & Chang Shou Gong Video Masterclass</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Systematic high-definition video masterclass covering Jin Gang Gong and Chang Shou Gong regimens for home physical cultivation." data-zh="系统梳理金刚功与长寿功核心要领的高清影像实修资源，附带全套动作解析，随时随地开启居家调养。">Systematic high-definition video masterclass covering Jin Gang Gong and Chang Shou Gong regimens for home physical cultivation.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 29.00</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
+
+                <!-- 古琴音频 2.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Five-Tone Resonance & Guqin Healing Audio Suite" data-zh="古琴五音系列：五音降频调和与经典曲目音频合集">Five-Tone Resonance & Guqin Healing Audio Suite</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Pure physical resonance audio suites categorized by Gong, Shang, Jiao, Zhi, and Yu to harmonize your internal organs and calm the mind." data-zh="精选宫商角徵羽五音对应五脏共鸣的古琴经典曲目与疗愈音频合集，通过纯粹物理谐振安顿身心。">Pure physical resonance audio suites categorized by Gong, Shang, Jiao, Zhi, and Yu to harmonize your internal organs and calm the mind.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 19.00</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
+
+                <!-- 电子书 3.1 -->
+                <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Five-Tone Healing & Classical Acoustics eBook" data-zh="文库系列：五音疗愈与传统音律典籍导读（电子书）">Five-Tone Healing & Classical Acoustics eBook</h4>
+                        <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="An in-depth digital publication rooted in the Yellow Emperor's Inner Canon, exploring sound resonance, Guqin tablature, and emotional harmony." data-zh="以《黄帝内经》五音对应五脏为根基，深度解析古琴减字谱、音频谐振与情绪疏导原理的精编电子读物。">An in-depth digital publication rooted in the Yellow Emperor's Inner Canon, exploring sound resonance, Guqin tablature, and emotional harmony.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                        <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 12.00</span>
+                        <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
 
-    </div>
-</section>
+    </div><!-- /.responsive-container 结束 -->
 
-<!-- 板块三：身心与声音疗愈 -->
-<section id="healing" style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
-    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="III. Mind, Body & Sound · Wellness Guides & Videos" data-zh="三、 身心与声音疗愈 · 视频及数字典籍">III. Mind, Body & Sound · Wellness Guides & Videos</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        
-        <!-- 功法视频 1.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Jin Gang Gong & Chang Shou Gong Video Masterclass" data-zh="传统功法系列：金刚功与长寿功居家实修高清视频套系">Jin Gang Gong & Chang Shou Gong Video Masterclass</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Systematic high-definition video masterclass covering Jin Gang Gong and Chang Shou Gong regimens for home physical cultivation." data-zh="系统梳理金刚功与长寿功核心要领的高清影像实修资源，附带全套动作解析，随时随地开启居家调养。">Systematic high-definition video masterclass covering Jin Gang Gong and Chang Shou Gong regimens for home physical cultivation.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 29.00</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+    <!-- 页脚 -->
+    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">    
+        <div style="margin-bottom: 10px;">        
+            <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明">Impressum</a> |         
+            <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策">Datenschutz</a>    
+        </div>    
+        <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity.</p>
+    </footer>
 
-        <!-- 古琴音频 2.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Five-Tone Resonance & Guqin Healing Audio Suite" data-zh="古琴五音系列：五音降频调和与经典曲目音频合集">Five-Tone Resonance & Guqin Healing Audio Suite</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Pure physical resonance audio suites categorized by Gong, Shang, Jiao, Zhi, and Yu to harmonize your internal organs and calm the mind." data-zh="精选宫商角徵羽五音对应五脏共鸣的古琴经典曲目与疗愈音频合集，通过纯粹物理谐振安顿身心。">Pure physical resonance audio suites categorized by Gong, Shang, Jiao, Zhi, and Yu to harmonize your internal organs and calm the mind.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 19.00</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+    <!-- 脚本文件 -->
+    <script src="script.js"></script>
+    <script>
+        // 语言切换逻辑：默认英文 (en)
+        let currentLang = localStorage.getItem('rui_palace_lang') || 'en';
 
-        <!-- 电子书 3.1 -->
-        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Five-Tone Healing & Classical Acoustics eBook" data-zh="文库系列：五音疗愈与传统音律典籍导读（电子书）">Five-Tone Healing & Classical Acoustics eBook</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="An in-depth digital publication rooted in the Yellow Emperor's Inner Canon, exploring sound resonance, Guqin tablature, and emotional harmony." data-zh="以《黄帝内经》五音对应五脏为根基，深度解析古琴减字谱、音频谐振与情绪疏导原理的精编电子读物。">An in-depth digital publication rooted in the Yellow Emperor's Inner Canon, exploring sound resonance, Guqin tablature, and emotional harmony.</p>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
-                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;">€ 12.00</span>
-                <a href="您的Gumroad购买链接" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Get Now" data-zh="立即获取">Get Now</a>
-            </div>
-        </div>
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('rui_palace_lang', lang);
+            document.documentElement.setAttribute('lang', lang);
 
-    </div>
-</section>
+            // 切换所有带有 data-en 和 data-zh 属性的文本
+            const elements = document.querySelectorAll('[data-en][data-zh]');
+            elements.forEach(el => {
+                if (lang === 'zh') {
+                    el.textContent = el.getAttribute('data-zh');
+                } else {
+                    el.textContent = el.getAttribute('data-en');
+                }
+            });
 
-<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">    
-    <div style="margin-bottom: 10px;">        
-        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明">Impressum</a> |         
-        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策">Datenschutz</a>    </div>    
-    <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity.</p>
-</footer>
-
-<script src="script.js"></script>
-<script>
-    // 语言切换逻辑：默认英文 (en)
-    let currentLang = localStorage.getItem('rui_palace_lang') || 'en';
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        localStorage.setItem('rui_palace_lang', lang);
-        document.documentElement.setAttribute('lang', lang);
-
-        // 切换所有带有 data-en 和 data-zh 属性的文本
-        const elements = document.querySelectorAll('[data-en][data-zh]');
-        elements.forEach(el => {
-            if (lang === 'zh') {
-                el.textContent = el.getAttribute('data-zh');
-            } else {
-                el.textContent = el.getAttribute('data-en');
+            // 切换按钮文字指示
+            const btn = document.getElementById('langToggle');
+            if (btn) {
+                btn.textContent = (lang === 'zh') ? 'EN / 中' : '中文 / EN';
             }
+        }
+
+        function toggleLanguage() {
+            if (currentLang === 'en') {
+                setLanguage('zh');
+            } else {
+                setLanguage('en');
+            }
+        }
+
+        // 页面加载时初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
         });
-
-        // 切换按钮文字指示
-        const btn = document.getElementById('langToggle');
-        if (btn) {
-            btn.textContent = (lang === 'zh') ? 'EN / 中' : '中文 / EN';
-        }
-    }
-
-    function toggleLanguage() {
-        if (currentLang === 'en') {
-            setLanguage('zh');
-        } else {
-            setLanguage('en');
-        }
-    }
-
-    // 页面加载时初始化
-    window.addEventListener('DOMContentLoaded', () => {
-        setLanguage(currentLang);
-    });
-</script>
+    </script>
 </body>
 </html>
