@@ -1,58 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蕊宫 - Rui Palace | 文化平台</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 语言切换按钮样式 */
+        .lang-switch-btn {
+            background: transparent;
+            border: 1px solid #c5a059;
+            color: #c5a059;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+        .lang-switch-btn:hover {
+            background: #c5a059;
+            color: #fff;
+        }
 
-<div id="cookie-consent" class="modal">
+        /* 加入会员按钮：宽屏展开靠右对齐，常规和手机端自动回收，带边距避开杏花 */
+        .membership-btn {
+            display: none; 
+            background-color: #d97757; 
+            color: #ffffff; 
+            padding: 5px 14px; 
+            border-radius: 4px; 
+            text-decoration: none; 
+            font-size: 0.8rem; 
+            font-weight: 500; 
+            letter-spacing: 1px; 
+            box-shadow: 0 2px 8px rgba(217, 119, 87, 0.25); 
+            transition: background-color 0.3s;
+            margin-right: 70px; 
+            white-space: nowrap;
+        }
+        .membership-btn:hover {
+            background-color: #c26546;
+        }
+        @media (min-width: 1200px) {
+            .membership-btn {
+                display: inline-block;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px 30px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .nav-right {
+                width: auto;
+                flex-grow: 1;
+                justify-content: space-between;
+            }
+            nav ul {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                width: 100%;
+                text-align: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        /* 首页核心区：中文纵向从右向左；英文自动转为横向并精收间距 */
+        .hero-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            -webkit-writing-mode: vertical-rl;
+            text-orientation: upright;
+            max-height: 420px;
+            line-height: 2.2;
+            font-size: 1.05rem;
+            color: #4a4541;
+            letter-spacing: 3px;
+        }
+
+        html[lang="en"] .vertical-text {
+            writing-mode: horizontal-tb;
+            -webkit-writing-mode: horizontal-tb;
+            text-orientation: mixed;
+            max-width: 480px;
+            max-height: none;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-align: left;
+        }
+
+        .seal-image-container img, .logo-container img {
+            max-height: 380px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .hero-container { flex-direction: column; text-align: center; gap: 20px; }
+            .vertical-text {
+                writing-mode: horizontal-tb !important;
+                -webkit-writing-mode: horizontal-tb !important;
+                max-width: 90%;
+                margin: 0 auto;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const email = params.get('email');
+            const token = params.get('token');
+
+            if (email && token) {
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.body.innerHTML = `
+                        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif; background-color: #f4efe6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: #2c2a29;">
+                            <div style="background: #ffffff; padding: 48px 40px; border-radius: 6px; box-shadow: 0 10px 30px rgba(44, 42, 41, 0.06); text-align: center; max-width: 440px; width: 90%; border: 1px solid #e6dec5;">
+                                <h2 style="margin-bottom: 16px; font-weight: 500; color: #1a1817; font-size: 22px; letter-spacing: 1px;">验证成功<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Verification Successful</span></h2>
+                                <p style="color: #615b56; font-size: 14px; line-height: 1.8; margin: 16px 0;">
+                                    邮箱 <strong>${email}</strong> 已成功通过验证。<br>我们随后会向您的邮箱发送离线电子日记本的访问链接，请注意查收。<br><br>
+                                    <span style="font-size: 12px; color: #9e9589;">Your email has been successfully verified.</span>
+                                </p>
+                                <a href="/" style="display: inline-block; margin-top: 28px; background-color: #2c2a29; color: #f4efe6; padding: 12px 28px; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 400; letter-spacing: 1px;" data-en="Welcome back to Rui Palace" data-zh="欢迎回到蕊宫">欢迎回到蕊宫 / Welcome back to Rui Palace</a>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        })();
+    </script>
+</head>
+<body>
+
+<!-- 隐私说明弹窗 -->
+<div id="cookie-consent" class="modal" style="display: none;">
     <div class="modal-content">
-        <h3>蕊宫隐私说明</h3>
-        <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。您可随时在“隐私政策”中调整设置。</p>
+        <h3 data-en="Privacy Notice / 蕊宫隐私说明" data-zh="蕊宫隐私说明 / Privacy Notice">Privacy Notice / 蕊宫隐私说明</h3>
+        <p data-en="Rui Palace values your privacy. By clicking 'Accept All', you consent to our use of cookies." data-zh="蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。">Rui Palace values your privacy. By clicking 'Accept All', you consent to our use of cookies.</p>
         <div class="button-group">
-            <button id="reject-btn" class="btn-outline">全部拒绝</button>
-            <button id="accept-btn" class="btn-solid">全部同意</button>
+            <button id="reject-btn" class="btn-outline" data-en="Reject All" data-zh="全部拒绝">Reject All</button>
+            <button id="accept-btn" class="btn-solid" data-en="Accept All" data-zh="全部同意">Accept All</button>
         </div>
         <div class="footer-links">
-            <a href="impressum.html">法律声明 (Impressum)</a>
-            <a href="Datenschutz.html">隐私政策 (Datenschutz)</a>
+            <a href="impressum.html" data-en="Impressum" data-zh="法律声明 (Impressum)">Impressum</a>
+            <a href="Datenschutz.html" data-en="Datenschutz" data-zh="隐私政策 (Datenschutz)">Datenschutz</a>
         </div>
     </div>
 </div>
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-	<script>
-    // 页面加载瞬间检查网址里有没有带验证参数
-    (function() {
-        const params = new URLSearchParams(window.location.search);
-        const email = params.get('email');
-        const token = params.get('token');
-
-        // 如果带了这两个参数，说明用户是从验证邮件点进来的
-        if (email && token) {
-            // 立即拦截默认的主页渲染，直接展示蕊宫专属的验证成功美学卡片
-            document.addEventListener('DOMContentLoaded', () => {
-                document.body.innerHTML = `
-                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif; background-color: #f4efe6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: #2c2a29;">
-                        <div style="background: #ffffff; padding: 48px 40px; border-radius: 6px; box-shadow: 0 10px 30px rgba(44, 42, 41, 0.06); text-align: center; max-width: 440px; width: 90%; border: 1px solid #e6dec5;">
-                            <h2 style="margin-bottom: 16px; font-weight: 500; color: #1a1817; font-size: 22px; letter-spacing: 1px;">验证成功<br><span style="font-size: 13px; font-weight: normal; color: #9e9589;">Verification Successful</span></h2>
-                            <p style="color: #615b56; font-size: 14px; line-height: 1.8; margin: 16px 0;">
-                                邮箱 <strong>${email}</strong> 已成功通过验证。<br>我们随后会向您的邮箱发送离线电子日记本的访问链接，请注意查收。<br><br>
-                                <span style="font-size: 12px; color: #9e9589;">Your email has been successfully verified.</span>
-                            </p>
-                            <a href="/" style="display: inline-block; margin-top: 28px; background-color: #2c2a29; color: #f4efe6; padding: 12px 28px; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 400; letter-spacing: 1px;">欢迎回到蕊宫 / Welcome back to Rui Palace</a>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-    })();
-</script>
-<head>
-    <main>
-    </main>
-</body>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 蕊宫 - Rui Palace | 文化平台</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 <div class="petals">
     <div class="petal"></div><div class="petal"></div><div class="petal"></div>
     <div class="petal"></div><div class="petal"></div><div class="petal"></div>
@@ -62,51 +182,86 @@
 <img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
     
 <header>
-        <nav style="display: flex; justify-content: flex-start; align-items: center; padding: 20px 40px; white-space: nowrap;">
-            
-            <!-- 左侧：加入会员按钮（通过 margin-right 向右推开适当距离） -->
-            <div style="margin-right: 50px;">
-                <a href="membership.html" style="background-color: #d97757; color: #ffffff; padding: 8px 18px; border-radius: 4px; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(217, 119, 87, 0.25); transition: background-color 0.3s;">加入会员</a>
-            </div>
-
-            <!-- 右侧导航菜单 -->
-            <ul style="display: flex; list-style: none; margin: 0; padding: 0; align-items: center; gap: 28px;">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="child.html">内在小孩</a></li>
-                <li><a href="aesthetics.html">浪漫色彩美学</a></li>
-                <li><a href="guqin.html">古琴五音养神</a></li>
-                <li><a href="wellness.html">道家养生长寿</a></li>
-                <li><a href="notes.html">沉思录</a></li>
-                <li><a href="store.html">蕊宫开物</a></li>
+    <nav>
+        <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
+        <div class="nav-right">
+            <ul>
+                <li><a href="index.html" class="active" data-en="Home" data-zh="首页">Home</a></li>
+                <li><a href="child.html" data-en="Inner Child" data-zh="内在小孩">Inner Child</a></li>
+                <li><a href="aesthetics.html" data-en="Aesthetics" data-zh="浪漫色彩美学">Aesthetics</a></li>
+                <li><a href="guqin.html" data-en="Guqin Healing" data-zh="古琴五音养神">Guqin Healing</a></li>
+                <li><a href="wellness.html" data-en="Daoist Wellness" data-zh="道家养生长寿">Daoist Wellness</a></li>
+                <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>
+                <li><a href="store.html" data-en="Store" data-zh="蕊宫开物">Store</a></li>
             </ul>
-        </nav>
-    </header>
-
-<section id="hero">
-<div class="hero-container">
-    <div class="vertical-text">
-        <p>东西方哲思的静谧共鸣，蕊宫是一处大隐于市的禅意之所。</p>
-            <p>哲思之合：    我们将东方的“空林禅味”与西方的“本真存在”相融合。</p>
-            <p>本真追求：    这是一个拒绝喧嚣、返璞归真的小天地。</p>
-            <p>美学空间：    我们相信美是通往真理的捷径。</p>
         </div>
-    <div class="seal-image-container">
-        <img src="images/Rui Palace Letter.jpg" alt="蕊宫" class="seal-golden">
-    </div>
+        <!-- 右侧：加入会员按钮（靠右对齐、避开杏花） -->
+        <a href="membership.html" class="membership-btn" data-en="Join Member" data-zh="加入会员">加入会员</a>
+    </nav>
+</header>
 
-    <div class="logo-container">
-        <img src="images/rui.jpg" alt="Logo" class="logo-hero">
-    </div>
-</div>
-
-	<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
-        <div style="margin-bottom: 10px;">
-            <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
-            | 
-            <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+<main>
+    <section id="hero">
+        <div class="hero-container">
+            <div class="vertical-text">
+                <p data-en="A silent resonance of Eastern and Western philosophies; Rui Palace is a tranquil sanctuary hidden from the bustling world." data-zh="东西方哲思的静谧共鸣，蕊宫是一处大隐于市的禅意之所。">东西方哲思的静谧共鸣，蕊宫是一处大隐于市的禅意之所。</p>
+                <p data-en="Philosophical Synthesis: We blend Eastern 'empty forest Zen' with Western 'authentic existence'." data-zh="哲思之合：我们将东方的“空林禅味”与西方的“本真存在”相融合。">哲思之合：我们将东方的“空林禅味”与西方的“本真存在”相融合。</p>
+                <p data-en="Authentic Pursuit: A quiet sanctuary rejecting noise to return to simplicity and truth." data-zh="本真追求：这是一个拒绝喧嚣、返璞归真的小天地。">本真追求：这是一个拒绝喧嚣、返璞归真的小天地。</p>
+                <p data-en="Aesthetic Space: We believe beauty is the shortcut to truth." data-zh="美学空间：我们相信美是通往真理的捷径。">美学空间：我们相信美是通往真理的捷径。</p>
+            </div>
+            <div class="seal-image-container">
+                <img src="images/Rui Palace Letter.jpg" alt="蕊宫" class="seal-golden">
+            </div>
+            <div class="logo-container">
+                <img src="images/rui.jpg" alt="Logo" class="logo-hero">
+            </div>
         </div>
-        <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
-    </footer>
+    </section>
+</main>
+
+<footer style="text-align: center; padding: 30px 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px;">
+    <div style="margin-bottom: 10px;">
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明 (Impressum)">Impressum</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策 (Datenschutz)">Datenschutz</a>
+    </div>
+    <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+</footer>
+
 <script src="script.js"></script>
+<script>
+    let currentLang = localStorage.getItem('rui_palace_lang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('rui_palace_lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+
+        const elements = document.querySelectorAll('[data-en][data-zh]');
+        elements.forEach(el => {
+            if (lang === 'zh') {
+                el.textContent = el.getAttribute('data-zh');
+            } else {
+                el.textContent = el.getAttribute('data-en');
+            }
+        });
+
+        const btn = document.getElementById('langToggle');
+        if (btn) {
+            btn.textContent = (lang === 'zh') ? 'EN / 中' : '中文 / EN';
+        }
+    }
+
+    function toggleLanguage() {
+        if (currentLang === 'en') {
+            setLanguage('zh');
+        } else {
+            setLanguage('en');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+    });
+</script>
 </body>
 </html>
