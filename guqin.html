@@ -63,7 +63,7 @@
             border-radius: 3px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-left: 15px;
+            margin-right: 15px;
         }
         .lang-switch-btn:hover {
             background: #c5a059;
@@ -78,6 +78,23 @@
         .nav-right {
             display: flex;
             align-items: center;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .nav-right {
+                width: auto;
+                flex-grow: 1;
+                justify-content: space-between;
+            }
+            nav ul {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                width: 100%;
+                text-align: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
         }
     </style>
 </head>
@@ -101,7 +118,8 @@
 
 <header>
     <nav>
-        <div class="logo" data-en="Rui Palace" data-zh="蕊宫">Rui Palace</div>
+        <!-- 仅保留居左对齐的中英文切换按钮，去掉了多余的“蕊宫”文字 -->
+        <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
         <div class="nav-right">
             <ul>
                 <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>
@@ -112,8 +130,6 @@
                 <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>
                 <li><a href="store.html" data-en="Store" data-zh="蕊宫开物">Store</a></li>
             </ul>
-            <!-- 语言切换按钮 -->
-            <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
         </div>
     </nav>
 </header>
