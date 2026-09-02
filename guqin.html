@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>古琴五音养神 - 蕊宫 | Rui Palace</title>
+    <title>Guqin Healing - 蕊宫 | Rui Palace</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* 统一设计规范：疏朗分隔线 */
@@ -53,19 +53,46 @@
             transform: translate(-50%, -50%);
             z-index: 2;
         }
+        /* 语言切换按钮样式 */
+        .lang-switch-btn {
+            background: transparent;
+            border: 1px solid #c5a059;
+            color: #c5a059;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+        .lang-switch-btn:hover {
+            background: #c5a059;
+            color: #fff;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
     <div id="cookie-consent" class="modal" style="display: none;">
         <div class="modal-content">
-            <h3>蕊宫隐私说明</h3>
-            <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
+            <h3 data-en="Privacy Notice / 蕊宫隐私说明" data-zh="蕊宫隐私说明 / Privacy Notice">Privacy Notice / 蕊宫隐私说明</h3>
+            <p data-en="Rui Palace values your privacy. We use essential cookies and third-party technologies to ensure the best experience. By clicking 'Accept All', you consent to our use of cookies." data-zh="蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。">Rui Palace values your privacy. We use essential cookies and third-party technologies to ensure the best experience. By clicking "Accept All", you consent to our use of cookies.</p>
             <div class="button-group">
-                <button id="reject-btn" class="btn-outline">全部拒绝</button>
-                <button id="accept-btn" class="btn-solid">全部同意</button>
+                <button id="reject-btn" class="btn-outline" data-en="Reject All" data-zh="全部拒绝">Reject All</button>
+                <button id="accept-btn" class="btn-solid" data-en="Accept All" data-zh="全部同意">Accept All</button>
             </div>
         </div>
     </div>
+
     <div class="petals">
         <div class="petal"></div><div class="petal"></div><div class="petal"></div>
         <div class="petal"></div><div class="petal"></div><div class="petal"></div>
@@ -74,24 +101,28 @@
 
 <header>
     <nav>
-        <div class="logo">蕊宫</div>
-        <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="child.html">内在小孩</a></li>
-            <li><a href="aesthetics.html">浪漫色彩美学</a></li>
-            <li><a href="guqin.html" class="active">古琴五音养神</a></li>
-            <li><a href="wellness.html">道家养生长寿</a></li>
-            <li><a href="notes.html">沉思录</a></li>
-            <li><a href="store.html">蕊宫开物</a></li>
-        </ul>
+        <div class="logo" data-en="Rui Palace" data-zh="蕊宫">Rui Palace</div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>
+                <li><a href="child.html" data-en="Inner Child" data-zh="内在小孩">Inner Child</a></li>
+                <li><a href="aesthetics.html" data-en="Aesthetics" data-zh="浪漫色彩美学">Aesthetics</a></li>
+                <li><a href="guqin.html" class="active" data-en="Guqin Healing" data-zh="古琴五音养神">Guqin Healing</a></li>
+                <li><a href="wellness.html" data-en="Daoist Wellness" data-zh="道家养生长寿">Daoist Wellness</a></li>
+                <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>
+                <li><a href="store.html" data-en="Store" data-zh="蕊宫开物">Store</a></li>
+            </ul>
+            <!-- 语言切换按钮 -->
+            <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
+        </div>
     </nav>
 </header>
 
 <section id="hero" style="padding: 20px 20px 5px 20px; max-width: 1000px; margin: 0 auto;">
     <div style="text-align: center; margin-bottom: 5px;">
-        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;">古琴：连接天地的生命法器</h2>
+        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;" data-en="Guqin: The Ritual Instrument Connecting Heaven and Earth" data-zh="古琴：连接天地的生命法器">Guqin: The Ritual Instrument Connecting Heaven and Earth</h2>
         <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7;">
-            古琴不仅是一门乐器，更是老祖宗留给我们的通天之法器。它通过纯粹的物理谐振与独特的律动，与人体的五脏六腑及脑波产生深层共鸣，从而实现身心内外的安顿与校准。
+            <span data-en="The Guqin is not merely a musical instrument, but a sacred legacy from our ancestors connecting us to the cosmos. Through pure physical resonance and unique rhythms, it harmonizes with the human viscera and brainwaves, achieving inner and outer calibration." data-zh="古琴不仅是一门乐器，更是老祖宗留给我们的通天之法器。它通过纯粹的物理谐振与独特的律动，与人体的五脏六腑及脑波产生深层共鸣，从而实现身心内外的安顿与校准。">The Guqin is not merely a musical instrument, but a sacred legacy from our ancestors connecting us to the cosmos. Through pure physical resonance and unique rhythms, it harmonizes with the human viscera and brainwaves, achieving inner and outer calibration.</span>
         </p>
     </div>
 </section>
@@ -104,77 +135,114 @@
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
         <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;">降频调和</h3>
-            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;">现代人的大脑长期处于焦虑的β波状态。古琴深沉的低频，能够强行引导脑波从急躁的β波平缓降至深度修复的α波或θ波。</p>
+            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Frequency Down-Regulation" data-zh="降频调和">Frequency Down-Regulation</h3>
+            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;" data-en="Modern minds often linger in anxious beta waves. The deep frequencies of the Guqin forcefully guide brainwaves from agitated states down to deep-healing alpha or theta waves." data-zh="现代人的大脑长期处于焦虑的β波状态。古琴深沉的低频，能够强行引导脑波从急躁的β波平缓降至深度修复的α波或θ波。">Modern minds often linger in anxious beta waves. The deep frequencies of the Guqin forcefully guide brainwaves from agitated states down to deep-healing alpha or theta waves.</p>
         </div>
         <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;">五音疗脏</h3>
-            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;">人的五脏六腑各有其固有频率。古琴的“宫、商、角、徵、羽”五音如同精准的生物钥匙，通过纯粹谐振拨正错乱的气机。</p>
+            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Five Tones Healing Organs" data-zh="五音疗脏">Five Tones Healing Organs</h3>
+            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;" data-en="Each of the five viscera possesses its intrinsic frequency. The 'Gong, Shang, Jiao, Zhi, Yu' tones act as precise biological keys, aligning disordered qi through pure resonance." data-zh="人的五脏六腑各有其固有频率。古琴的“宫、商、角、徵、羽”五音如同精准的生物钥匙，通过纯粹谐振拨正错乱的气机。">Each of the five viscera possesses its intrinsic frequency. The 'Gong, Shang, Jiao, Zhi, Yu' tones act as precise biological keys, aligning disordered qi through pure resonance.</p>
         </div>
         <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;">生命呼吸</h3>
-            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;">古琴的走音技法（吟、猱、绰、注）呈现出连续波动的曲线，完美模拟了人体呼吸与心跳的节奏，唤醒身体深层的化学反应。</p>
+            <h3 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Biological Respiration" data-zh="生命呼吸">Biological Respiration</h3>
+            <p style="font-size: 0.88rem; color: #666; line-height: 1.7;" data-en="Techniques like Yin, Rou, Chuo, and Zhu create continuous fluctuating curves, perfectly mirroring human respiration and heartbeat rhythms to awaken deep cellular responses." data-zh="古琴的走音技法（吟、猱、绰、注）呈现出连续波动的曲线，完美模拟了人体呼吸与心跳的节奏，唤醒身体深层的化学反应。">Techniques like Yin, Rou, Chuo, and Zhu create continuous fluctuating curves, perfectly mirroring human respiration and heartbeat rhythms to awaken deep cellular responses.</p>
         </div>
     </div>
 </section>
 
 <section id="video-resources" style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
-    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;">一、 天人合一 · 法器导论</h3>
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="I. Heaven & Earth Unity · Instrument Introduction" data-zh="一、 天人合一 · 法器导论">I. Heaven & Earth Unity · Instrument Introduction</h3>
     <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">《天人合一的生命校准：以内经为鉴，听五音归位》</span>
-            <a href="https://www.youtube.com/watch?v=7r0H8VB1lrQ" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="Cosmic Calibration: Listening to the Five Tones via Huangdi Neijing" data-zh="《天人合一的生命校准：以内经为鉴，听五音归位》">Cosmic Calibration: Listening to the Five Tones via Huangdi Neijing</span>
+            <a href="https://www.youtube.com/watch?v=7r0H8VB1lrQ" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">古琴，非乐器，乃通天之法器！老祖宗开的药方</span>
-            <a href="https://www.youtube.com/watch?v=lZUhy8SF9Uw" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="Guqin: Not a mere instrument, but a cosmic vessel! Ancient wisdom prescription" data-zh="古琴，非乐器，乃通天之法器！老祖宗开的药方">Guqin: Not a mere instrument, but a cosmic vessel! Ancient wisdom prescription</span>
+            <a href="https://www.youtube.com/watch?v=lZUhy8SF9Uw" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
     </div>
 
-    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;">二、 五音疗脏 · 经典实修</h3>
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="II. Healing via Five Tones · Classical Practice" data-zh="二、 五音疗脏 · 经典实修">II. Healing via Five Tones · Classical Practice</h3>
     <div style="display: flex; flex-direction: column; gap: 15px;">
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【徵调】养心安神：管平湖《乌夜啼》</span>
-            <a href="https://www.youtube.com/watch?v=VM-lyFUxVq4" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Zhi Tone] Calming the Mind: Guan Pinghu 'Crows at Night'" data-zh="【徵调】养心安神：管平湖《乌夜啼》">[Zhi Tone] Calming the Mind: Guan Pinghu 'Crows at Night'</span>
+            <a href="https://www.youtube.com/watch?v=VM-lyFUxVq4" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【徵调】养心安神：古琴曲《山居吟》</span>
-            <a href="https://www.youtube.com/watch?v=4nEQtjUNulA" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Zhi Tone] Calming the Mind: 'Chant of Mountain Dwelling'" data-zh="【徵调】养心安神：古琴曲《山居吟》">[Zhi Tone] Calming the Mind: 'Chant of Mountain Dwelling'</span>
+            <a href="https://www.youtube.com/watch?v=4nEQtjUNulA" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【徵调】养心安神：古琴曲《酒狂》</span>
-            <a href="https://www.youtube.com/watch?v=jQVOGXrbY0E" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Zhi Tone] Calming the Mind: 'Madness of the Wine Drinker'" data-zh="【徵调】养心安神：古琴曲《酒狂》">[Zhi Tone] Calming the Mind: 'Madness of the Wine Drinker'</span>
+            <a href="https://www.youtube.com/watch?v=jQVOGXrbY0E" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【商调】宣肺润燥：管平湖《白雪》</span>
-            <a href="https://www.youtube.com/watch?v=-r-NhW__eVY" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Shang Tone] Moistening Lungs: Guan Pinghu 'White Snow'" data-zh="【商调】宣肺润燥：管平湖《白雪》">[Shang Tone] Moistening Lungs: Guan Pinghu 'White Snow'</span>
+            <a href="https://www.youtube.com/watch?v=-r-NhW__eVY" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【宫调】健脾运化：管平湖《碣石调 幽兰》</span>
-            <a href="https://www.youtube.com/watch?v=EdsbhIH5JMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Gong Tone] Harmonizing Spleen: Guan Pinghu 'Jieshidiao Youlan'" data-zh="【宫调】健脾运化：管平湖《碣石调 幽兰》">[Gong Tone] Harmonizing Spleen: Guan Pinghu 'Jieshidiao Youlan'</span>
+            <a href="https://www.youtube.com/watch?v=EdsbhIH5JMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【宫调】健脾运化：管平湖《梅花三弄》</span>
-            <a href="https://www.youtube.com/watch?v=GagZRuM_x1k" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Gong Tone] Harmonizing Spleen: Guan Pinghu 'Three Stanzas of Plum Blossoms'" data-zh="【宫调】健脾运化：管平湖《梅花三弄》">[Gong Tone] Harmonizing Spleen: Guan Pinghu 'Three Stanzas of Plum Blossoms'</span>
+            <a href="https://www.youtube.com/watch?v=GagZRuM_x1k" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【角调】疏肝理气：管平湖《春晓吟》</span>
-            <a href="https://www.youtube.com/watch?v=I2NKsK3WkMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Jiao Tone] Soothing Liver: Guan Pinghu 'Spring Dawn Chant'" data-zh="【角调】疏肝理气：管平湖《春晓吟》">[Jiao Tone] Soothing Liver: Guan Pinghu 'Spring Dawn Chant'</span>
+            <a href="https://www.youtube.com/watch?v=I2NKsK3WkMI" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px;">
-            <span style="font-size: 0.88rem; color: #444;">【角调】疏肝理气：管平湖《风雷引》</span>
-            <a href="https://www.youtube.com/watch?v=nyD1WEX2f68" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;">Click to Play / 点击播放</a>
+            <span style="font-size: 0.88rem; color: #444;" data-en="[Jiao Tone] Soothing Liver: Guan Pinghu 'Thunder Chant'" data-zh="【角调】疏肝理气：管平湖《风雷引》">[Jiao Tone] Soothing Liver: Guan Pinghu 'Thunder Chant'</span>
+            <a href="https://www.youtube.com/watch?v=nyD1WEX2f68" target="_blank" onclick="return confirm('您即将离开蕊宫，前往 YouTube 欣赏疗愈曲目，是否继续？');" style="color: #c5a059; text-decoration: none; font-size: 0.8rem; white-space: nowrap;" data-en="Click to Play / 点击播放" data-zh="Click to Play / 点击播放">Click to Play / 点击播放</a>
         </div>
     </div>
 </section>
 
 <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">
     <div style="margin-bottom: 10px;">
-        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a> | 
-        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明">Impressum</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策">Datenschutz</a>
     </div>
-    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+    <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity.</p>
 </footer>
+
 <script src="script.js"></script>
+<script>
+    // 语言切换逻辑：默认英文 (en)
+    let currentLang = localStorage.getItem('rui_palace_lang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('rui_palace_lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+
+        const elements = document.querySelectorAll('[data-en][data-zh]');
+        elements.forEach(el => {
+            if (lang === 'zh') {
+                el.textContent = el.getAttribute('data-zh');
+            } else {
+                el.textContent = el.getAttribute('data-en');
+            }
+        });
+
+        const btn = document.getElementById('langToggle');
+        if (btn) {
+            btn.textContent = (lang === 'zh') ? 'EN / 中' : '中文 / EN';
+        }
+    }
+
+    function toggleLanguage() {
+        if (currentLang === 'en') {
+            setLanguage('zh');
+        } else {
+            setLanguage('en');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+    });
+</script>
 </body>
 </html>
