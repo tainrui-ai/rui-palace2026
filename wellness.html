@@ -63,7 +63,7 @@
             border-radius: 3px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-left: 15px;
+            margin-right: 15px;
         }
         .lang-switch-btn:hover {
             background: #c5a059;
@@ -78,6 +78,23 @@
         .nav-right {
             display: flex;
             align-items: center;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .nav-right {
+                width: auto;
+                flex-grow: 1;
+                justify-content: space-between;
+            }
+            nav ul {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                width: 100%;
+                text-align: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
         }
     </style>
 </head>
@@ -102,7 +119,8 @@
 
 <header>
     <nav>
-        <div class="logo" data-en="Rui Palace" data-zh="蕊宫">Rui Palace</div>
+        <!-- 仅保留居左对齐的中英文切换按钮，去掉了多余的文字 -->
+        <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
         <div class="nav-right">
             <ul>
                 <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>
@@ -113,8 +131,6 @@
                 <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>
                 <li><a href="store.html" data-en="Store" data-zh="蕊宫开物">Store</a></li>
             </ul>
-            <!-- 语言切换按钮 -->
-            <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
         </div>
     </nav>
 </header>
@@ -147,7 +163,7 @@
         <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
                 <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Form and Spirit: Stillness Over Motion" data-zh="形神俱全：以静制动与虚其心">Form and Spirit: Stillness Over Motion</h4>
-                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Traditional wellness emphasizes nurturing the spirit. By emptying the mind and quieting the heart, the internal organs heal in serene harmony." data-zh="中医治未病，道家重养神。倡导“虚其心，实其腹”，通过调息入静，让五脏在静谧中自我修复。">Traditional wellness emphasizes nurturing the spirit. By emptying the mind and quieting the heart, the internal organs heal in serene harmony.</p>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Traditional wellness emphasizes nurturing the spirit. By emptying the mind and quieting the heart, the internal organs heal in serene harmony." data-zh="中医治未病，道家重养神。倡导“虚其心，实其腹”,通过调息入静，让五脏在静谧中自我修复。">Traditional wellness emphasizes nurturing the spirit. By emptying the mind and quieting the heart, the internal organs heal in serene harmony.</p>
             </div>
             <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
                 <span data-en="· Inner Tranquility" data-zh="· 内守幽静">· Inner Tranquility</span>
@@ -218,7 +234,7 @@
     </div>
 </section>
 
-<!-- 新增板块三：功法视频与经典导引播放 -->
+<!-- 功法视频与经典导引播放 -->
 <section style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
     <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="III. Video Masterclass · Classic Daoist Practices" data-zh="三、 功法视频与播放导引 · 传统道家经典实修">III. Video Masterclass · Classic Daoist Practices</h3>
     
@@ -253,8 +269,8 @@
 
 <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">
     <div style="margin-bottom: 10px;">
-        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明">Impressum</a> | 
-        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策">Datenschutz</a>
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明 (Impressum)">Impressum</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策 (Datenschutz)">Datenschutz</a>
     </div>
     <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity.</p>
 </footer>
