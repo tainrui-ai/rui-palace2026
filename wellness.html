@@ -1,87 +1,303 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>道家养生长寿 - 蕊宫 | Rui Palace</title>
+    <title>Daoist Wellness - 蕊宫 | Rui Palace</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 统一设计规范：疏朗分隔线 */
+        .plum-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto 20px auto;
+        }
+        .plum-divider::before, .plum-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e0e0e0;
+            max-width: 140px;
+        }
+        .solid-plum {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin: 0 15px;
+            display: inline-block;
+        }
+        .solid-plum span {
+            position: absolute;
+            width: 6px;
+            height: 9px;
+            background-color: #BA3D3E;
+            border-radius: 50% 50% 40% 40%;
+            top: 50%;
+            left: 50%;
+            transform-origin: center 12px;
+        }
+        .solid-plum span:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+        .solid-plum span:nth-child(2) { transform: translate(-50%, -100%) rotate(72deg); }
+        .solid-plum span:nth-child(3) { transform: translate(-50%, -100%) rotate(144deg); }
+        .solid-plum span:nth-child(4) { transform: translate(-50%, -100%) rotate(216deg); }
+        .solid-plum span:nth-child(5) { transform: translate(-50%, -100%) rotate(288deg); }
+        .solid-plum::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #f6e58d;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        /* 语言切换按钮样式 */
+        .lang-switch-btn {
+            background: transparent;
+            border: 1px solid #c5a059;
+            color: #c5a059;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+        .lang-switch-btn:hover {
+            background: #c5a059;
+            color: #fff;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-<div id="cookie-consent" class="modal" style="display: none;">
-    <div class="modal-content">
-        <h3>蕊宫隐私说明</h3>
-        <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
-        <div class="button-group">
-            <button id="reject-btn" class="btn-outline">全部拒绝</button>
-            <button id="accept-btn" class="btn-solid">全部同意</button>
+
+    <div id="cookie-consent" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 data-en="Privacy Notice / 蕊宫隐私说明" data-zh="蕊宫隐私说明 / Privacy Notice">Privacy Notice / 蕊宫隐私说明</h3>
+            <p data-en="Rui Palace values your privacy. We use essential cookies and third-party technologies to ensure the best experience. By clicking 'Accept All', you consent to our use of cookies." data-zh="蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。">Rui Palace values your privacy. We use essential cookies and third-party technologies to ensure the best experience. By clicking "Accept All", you consent to our use of cookies.</p>
+            <div class="button-group">
+                <button id="reject-btn" class="btn-outline" data-en="Reject All" data-zh="全部拒绝">Reject All</button>
+                <button id="accept-btn" class="btn-solid" data-en="Accept All" data-zh="全部同意">Accept All</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="petals">
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
-</div>
-<img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
+
+    <div class="petals">
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    </div>
+    <img src="images/杏花.jpg" alt="杏花装饰" class="corner-flower">
 
 <header>
     <nav>
-        <div class="logo">蕊宫</div>
-        <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="child.html">内在小孩</a></li>
-            <li><a href="aesthetics.html">浪漫色彩美学</a></li>
-            <li><a href="guqin.html">古琴五音养神</a></li>
-            <li><a href="wellness.html" class="active">道家养生长寿</a></li>
-            <li><a href="notes.html">沉思录</a></li>
-            <li><a href="store.html">蕊宫开物</a></li>
-        </ul>
+        <div class="logo" data-en="Rui Palace" data-zh="蕊宫">Rui Palace</div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>
+                <li><a href="child.html" data-en="Inner Child" data-zh="内在小孩">Inner Child</a></li>
+                <li><a href="aesthetics.html" data-en="Aesthetics" data-zh="浪漫色彩美学">Aesthetics</a></li>
+                <li><a href="guqin.html" data-en="Guqin Healing" data-zh="古琴五音养神">Guqin Healing</a></li>
+                <li><a href="wellness.html" class="active" data-en="Daoist Wellness" data-zh="道家养生长寿">Daoist Wellness</a></li>
+                <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>
+                <li><a href="store.html" data-en="Store" data-zh="蕊宫开物">Store</a></li>
+            </ul>
+            <!-- 语言切换按钮 -->
+            <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
+        </div>
     </nav>
 </header>
 
-<section id="hero">
-    <div class="hero-container">
-        
-        <div class="zen-text-container">
-            <div class="vertical-text">
-                <h2 style="font-size: 1.6rem; margin-bottom: 2rem;">道家养生：</h2>
-                 <h3>顺天应人，炼气化神</h3>
-                <p>道家养生之根基深谙“天人合一”之理。所谓“长生”，即是让生命回归自然，以有涯之生，养无涯之气。</p>
-                <p><strong>形神俱全，以静制动：</strong>中医治未病，道家重养神。道家养生倡导“虚其心，实其腹”，通过调息入静，让五脏在静谧中自我修复。</p>
-                <p><strong>吐纳导引，通达经络：</strong>气为血之帅。长生之道，在于让先天之气充盈后天之躯。通过深长的呼吸，将天地清气导入丹田，以气推动血液循环，疏通督任二脉。</p>
-                <p><strong>饮食有节，效法自然：</strong>中医养生摒弃厚味膏粱，追求清淡以养脾胃。脾胃为后天之本，脾胃安，则气血源源不断；五脏皆润，则容颜不枯，老而弥坚。</p>
-                <p><strong>不争不夺，守一含真：</strong>所有的焦虑与嫉妒，皆是生命能量的漏斗。守住内心的“一”，守住生命的元炁。内心保持“不与万物争”的宁静。</p>
-            </div>
-        </div>
-</section>
-
-<section id="courses">
-    <h2 style="text-align: center; margin-bottom: 40px;">修行实践导引</h2>
-    <div class="course-grid">
-        <div class="course-card">
-            <h3>调息入静</h3>
-            <p>通过“虚其心，实其腹”的呼吸训练，关闭外界感官耗损。</p>
-        </div>
-        <div class="course-card">
-            <h3>导引术</h3>
-            <p>效法自然，让气血在经络中顺畅运行。</p>
-        </div>
-        <div class="course-card">
-            <h3>守一含真</h3>
-            <p>在生活中修行，不争不夺，守住生命的元炁。</p>
-        </div>
+<section id="hero" style="padding: 20px 20px 5px 20px; max-width: 1000px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 5px;">
+        <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400;" data-en="Daoist Wellness · Harmony with Nature & Mind" data-zh="道家养生 · 顺天应人，炼气化神">Daoist Wellness · Harmony with Nature & Mind</h2>
+        <p style="font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7;">
+            <span data-en="Rooted in the philosophy of unity between heaven and humanity. Nourish the finite life with boundless breath and return to tranquility." data-zh="道家养生之根基深谙“天人合一”之理。所谓长生，即是让生命回归自然，以有涯之生，养无涯之气。">Rooted in the philosophy of unity between heaven and humanity. Nourish the finite life with boundless breath and return to tranquility.</span>
+        </p>
     </div>
 </section>
 
-<footer>
-    <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
-        <div style="margin-bottom: 10px;">
-            <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a>
-            | 
-            <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+<!-- 统一设计规范：梅花分隔线 -->
+<div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+    <div class="plum-divider">
+        <div class="solid-plum">
+            <span></span><span></span><span></span><span></span><span></span>
         </div>
-        <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
-    </footer>
+    </div>
+</div>
+
+<!-- 核心养生哲学板块 -->
+<section style="max-width: 1000px; margin: 0 auto; padding: 10px 20px 30px 20px;">
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="I. Core Philosophy · Essence and Spirit" data-zh="一、 养生核心 · 形神共养与守一含真">I. Core Philosophy · Essence and Spirit</h3>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <!-- 卡片 1 -->
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Form and Spirit: Stillness Over Motion" data-zh="形神俱全：以静制动与虚其心">Form and Spirit: Stillness Over Motion</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Traditional wellness emphasizes nurturing the spirit. By emptying the mind and quieting the heart, the internal organs heal in serene harmony." data-zh="中医治未病，道家重养神。倡导“虚其心，实其腹”，通过调息入静，让五脏在静谧中自我修复。">Traditional wellness emphasizes nurturing the spirit. By emptying the mind and quieting the heart, the internal organs heal in serene harmony.</p>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
+                <span data-en="· Inner Tranquility" data-zh="· 内守幽静">· Inner Tranquility</span>
+            </div>
+        </div>
+
+        <!-- 卡片 2 -->
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Breath Guidance & Meridian Flow" data-zh="吐纳导引：通达经络与充盈元气">Breath Guidance & Meridian Flow</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Breath is the commander of blood. Guide the clear qi from nature into the Dantian to circulate energy and unblock the meridians." data-zh="气为血之帅。长生之道，在于让先天之气充盈后天之躯，通过深长呼吸将天地清气导入丹田，疏通经络。">Breath is the commander of blood. Guide the clear qi from nature into the Dantian to circulate energy and unblock the meridians.</p>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
+                <span data-en="· Vital Energy" data-zh="· 气血和畅">· Vital Energy</span>
+            </div>
+        </div>
+
+        <!-- 卡片 3 -->
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Dietary Moderation & Simplicity" data-zh="饮食有节：效法自然与调护脾胃">Dietary Moderation & Simplicity</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Avoid rich and heavy foods; pursue light nourishment to protect the spleen and stomach, ensuring steady vitality and lasting vigor." data-zh="摒弃厚味膏粱，追求清淡以养脾胃。脾胃为后天之本，脾胃安则气血源源不断，容颜不枯，老而弥坚。">Avoid rich and heavy foods; pursue light nourishment to protect the spleen and stomach, ensuring steady vitality and lasting vigor.</p>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
+                <span data-en="· Postnatal Foundation" data-zh="· 后天之本">· Postnatal Foundation</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 修行实践导引板块 -->
+<section style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="II. Practical Guidance · Daily Cultivation" data-zh="二、 修行实践导引 · 日常静修与守真">II. Practical Guidance · Daily Cultivation</h3>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Regulating Breath & Stillness" data-zh="调息入静">Regulating Breath & Stillness</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Through breathing training of 'emptying the mind and filling the abdomen', minimize sensory exhaustion from the outside world." data-zh="通过“虚其心，实其腹”的呼吸训练，关闭外界感官耗损，让心神归于平静。">Through breathing training of 'emptying the mind and filling the abdomen', minimize sensory exhaustion from the outside world.</p>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
+                <span data-en="· Cultivate Calm" data-zh="· 归根复命">· Cultivate Calm</span>
+            </div>
+        </div>
+
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Daoist Daoyin Exercises" data-zh="导引术修习">Daoist Daoyin Exercises</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Imitate the rhythms of nature to allow vital qi and blood to flow smoothly and unobstructed throughout the meridians." data-zh="效法自然律动，让气血在经络中顺畅运行，舒展筋骨，通利关节。">Imitate the rhythms of nature to allow vital qi and blood to flow smoothly and unobstructed throughout the meridians.</p>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
+                <span data-en="· Natural Flow" data-zh="· 顺应自然">· Natural Flow</span>
+            </div>
+        </div>
+
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Guarding the One & Non-Contention" data-zh="守一含真">Guarding the One & Non-Contention</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="Practice in daily life: free yourself from jealousy and anxiety, guard your primal vitality, and maintain inner peace by contending with nothing." data-zh="在生活中修行，不争不夺，斩断嫉妒与焦虑的生命能量漏斗，守住生命的元炁与清净。">Practice in daily life: free yourself from jealousy and anxiety, guard your primal vitality, and maintain inner peace by contending with nothing.</p>
+            </div>
+            <div style="border-top: 1px solid #eee; padding-top: 12px; font-size: 0.8rem; color: #BA3D3E;">
+                <span data-en="· Pure Essence" data-zh="· 守中致和">· Pure Essence</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 新增板块三：功法视频与经典导引播放 -->
+<section style="max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px;">
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="III. Video Masterclass · Classic Daoist Practices" data-zh="三、 功法视频与播放导引 · 传统道家经典实修">III. Video Masterclass · Classic Daoist Practices</h3>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <!-- 张志顺道长长寿功（8节） -->
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Master Zhang Zhishun's Chang Shou Gong (8 Sections)" data-zh="张志顺道长：八部金刚长寿功（全8节视频播放）">Master Zhang Zhishun's Chang Shou Gong (8 Sections)</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="The complete 8-section longevity and health-preservation masterclass passed down by Master Zhang Zhishun. Cultivate internal energy and strengthen the physique." data-zh="完整收录道家先贤张志顺道长亲传的八部金刚长寿功（共8节），调理五脏六腑，通利关节，培元固本。">The complete 8-section longevity and health-preservation masterclass passed down by Master Zhang Zhishun. Cultivate internal energy and strengthen the physique.</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;" data-en="8 Sections / 8节全" data-zh="8节全套">8 Sections / 8节全</span>
+                <a href="https://www.youtube.com/your-playlist-link-changshougong" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Play Video" data-zh="开始播放">Play Video</a>
+            </div>
+        </div>
+
+        <!-- 道家养颜术（10节） -->
+        <div style="background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="font-size: 1.05rem; color: #c5a059; margin-bottom: 8px;" data-en="Daoist Facial & Youth Preservation (10 Sections)" data-zh="道家传统养颜术（全10节视频播放）">Daoist Facial & Youth Preservation (10 Sections)</h4>
+                <p style="font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 15px;" data-en="A 10-section exquisite guide focusing on internal qi circulation and physical massage to maintain natural radiance and vibrant skin texture." data-zh="精编道家内炼容颜与经络按摩法（共10节），以内养外，调和气血，使面若桃花、神采内敛。">A 10-section exquisite guide focusing on internal qi circulation and physical massage to maintain natural radiance and vibrant skin texture.</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px;">
+                <span style="font-size: 0.9rem; color: #BA3D3E; font-weight: 500;" data-en="10 Sections / 10节全" data-zh="10节全套">10 Sections / 10节全</span>
+                <a href="https://www.youtube.com/your-playlist-link-yangyanshu" target="_blank" style="background: #c5a059; color: #fff; padding: 6px 14px; text-decoration: none; font-size: 0.8rem; border-radius: 3px;" data-en="Play Video" data-zh="开始播放">Play Video</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 10px; border-top: 1px solid #e0e0e0;">
+    <div style="margin-bottom: 10px;">
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明">Impressum</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策">Datenschutz</a>
+    </div>
+    <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity.</p>
+</footer>
 
 <script src="script.js"></script>
+<script>
+    // 语言切换逻辑：默认英文 (en)
+    let currentLang = localStorage.getItem('rui_palace_lang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('rui_palace_lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+
+        // 切换所有带有 data-en 和 data-zh 属性的文本
+        const elements = document.querySelectorAll('[data-en][data-zh]');
+        elements.forEach(el => {
+            if (lang === 'zh') {
+                el.textContent = el.getAttribute('data-zh');
+            } else {
+                el.textContent = el.getAttribute('data-en');
+            }
+        });
+
+        // 切换按钮文字指示
+        const btn = document.getElementById('langToggle');
+        if (btn) {
+            btn.textContent = (lang === 'zh') ? 'EN / 中' : '中文 / EN';
+        }
+    }
+
+    function toggleLanguage() {
+        if (currentLang === 'en') {
+            setLanguage('zh');
+        } else {
+            setLanguage('en');
+        }
+    }
+
+    // 页面加载时初始化
+    window.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+    });
+</script>
 </body>
 </html>
