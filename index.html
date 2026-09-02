@@ -6,6 +6,23 @@
     <title>蕊宫 - Rui Palace | 文化平台</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* 核心改进：让整个页面支持 Flex 黏性底栏，实现不同设备下 Footer 高度自适应沉底 */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #fcfbfa; /* 保持整体温暖宣纸色调底色（可根据 style.css 调整） */
+        }
+        main {
+            flex: 1; /* 自动撑满剩余空间，确保大屏下 footer 自动下沉 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* 语言切换按钮样式 */
         .lang-switch-btn {
             background: transparent;
@@ -54,6 +71,8 @@
             align-items: center;
             flex-wrap: wrap;
             padding: 20px 30px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .nav-right {
             display: flex;
@@ -85,8 +104,8 @@
             flex-wrap: wrap;
             gap: 40px;
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .vertical-text {
@@ -219,7 +238,7 @@
     </section>
 </main>
 
-<footer style="text-align: center; padding: 30px 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px;">
+<footer style="text-align: center; padding: 30px 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: auto;">
     <div style="margin-bottom: 10px;">
         <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明 (Impressum)">Impressum</a> | 
         <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策 (Datenschutz)">Datenschutz</a>
