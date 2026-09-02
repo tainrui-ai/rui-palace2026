@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>内在小孩 - 蕊宫 | Rui Palace</title>
+    <title>Inner Child - 蕊宫 | Rui Palace</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 统一美学设计规范：疏朗分隔线与五瓣梅花 */
+        /* 统一设计规范：疏朗分隔线与五瓣梅花 */
         .plum-divider {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto 30px auto;
+            margin: 15px auto 20px auto;
         }
         .plum-divider::before, .plum-divider::after {
             content: "";
@@ -54,23 +54,69 @@
             z-index: 2;
         }
 
-        /* 页面布局微调与排版优化 */
-        .zen-hero-mini { text-align: center; padding: 30px 20px; max-width: 800px; margin: 0 auto; }
-        .zen-hero-mini h2 { font-size: 1.5rem; color: #333; margin-bottom: 10px; letter-spacing: 2px; font-weight: 400; }
-        .zen-hero-mini p { font-size: 0.95rem; color: #666; line-height: 1.8; }
+        /* 语言切换按钮样式 */
+        .lang-switch-btn {
+            background: transparent;
+            border: 1px solid #c5a059;
+            color: #c5a059;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+        .lang-switch-btn:hover {
+            background: #c5a059;
+            color: #fff;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .nav-right {
+                width: auto;
+                flex-grow: 1;
+                justify-content: space-between;
+            }
+            nav ul {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                width: 100%;
+                text-align: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        /* 页面主体卡片与网格排版规范（对齐 aesthetics.html） */
+        .zen-hero-mini { text-align: center; padding: 20px 20px 5px 20px; max-width: 1000px; margin: 0 auto; }
+        .zen-hero-mini h2 { font-size: 1.5rem; color: #333; margin-bottom: 8px; letter-spacing: 2px; font-weight: 400; }
+        .zen-hero-mini p { font-size: 0.95rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.7; }
         
-        .tests-section { max-width: 1000px; margin: 0 auto 40px; padding: 0 20px; }
+        .tests-section { max-width: 1000px; margin: 0 auto; padding: 0 20px 30px 20px; }
         .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .test-card { background: #faf8f5; padding: 25px; border: 1px solid #e0e0e0; border-radius: 4px; transition: all 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .test-card:hover { border-color: #c5a059; transform: translateY(-2px); }
-        .test-card h4 { color: #c5a059; margin-bottom: 10px; font-size: 1.05rem; }
+        .test-card h4 { color: #c5a059; margin-bottom: 8px; font-size: 1.05rem; }
         .test-card p { color: #666; font-size: 0.88rem; line-height: 1.7; margin-bottom: 15px; }
         .test-card a { color: #555; text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid #c5a059; }
 
-        .sanctuary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; max-width: 1000px; margin: 20px auto 60px; padding: 0 20px; }
-        .window-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 4px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .window-card:hover { border-color: #c5a059; background: #faf8f5; transform: translateY(-2px); }
-        .day-tag { font-size: 0.75rem; color: #8c8c8c; margin-bottom: 5px; letter-spacing: 1px; }
+        /* 周次与网格样式 */
+        .week-title { font-size: 1rem; color: #c5a059; margin: 25px 0 12px 0; font-weight: 500; letter-spacing: 1px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 6px; }
+        .sanctuary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .window-card { background: #faf8f5; border: 1px solid #e0e0e0; border-radius: 4px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: center; }
+        .window-card:hover { border-color: #c5a059; background: #fff; transform: translateY(-2px); }
+        .day-tag { font-size: 0.75rem; color: #c5a059; margin-bottom: 5px; letter-spacing: 1px; font-weight: 500; }
         .day-title { font-size: 0.85rem; color: #444; font-weight: bold; line-height: 1.4; }
     </style>
 </head>
@@ -79,11 +125,11 @@
 <!-- 隐私说明弹窗 -->
 <div id="cookie-consent" class="modal" style="display: none;">
     <div class="modal-content">
-        <h3>蕊宫隐私说明</h3>
-        <p>蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。</p>
+        <h3 data-en="Privacy Notice / 蕊宫隐私说明" data-zh="蕊宫隐私说明 / Privacy Notice">Privacy Notice / 蕊宫隐私说明</h3>
+        <p data-en="Rui Palace values your privacy. We use essential cookies and third-party technologies to ensure the best experience. By clicking 'Accept All', you consent to our use of cookies." data-zh="蕊宫尊重并珍视您的隐私。为了提供更好的服务，本站使用必要的 Cookie 与第三方技术。点击“全部同意”即代表您许可我们为您提供更顺畅的体验。">Rui Palace values your privacy. We use essential cookies and third-party technologies to ensure the best experience. By clicking "Accept All", you consent to our use of cookies.</p>
         <div class="button-group">
-            <button id="reject-btn" class="btn-outline">全部拒绝</button>
-            <button id="accept-btn" class="btn-solid">全部同意</button>
+            <button id="reject-btn" class="btn-outline" data-en="Reject All" data-zh="全部拒绝">Reject All</button>
+            <button id="accept-btn" class="btn-solid" data-en="Accept All" data-zh="全部同意">Accept All</button>
         </div>
     </div>
 </div>
@@ -96,22 +142,24 @@
 
 <header>
     <nav>
-        <div class="logo">蕊宫</div>
-        <ul>
-            <li><a href="index.html">首页</a></li>
-            <li><a href="child.html" class="active">内在小孩</a></li>
-            <li><a href="aesthetics.html">浪漫色彩美学</a></li>
-            <li><a href="guqin.html">古琴五音养神</a></li>
-            <li><a href="wellness.html">道家养生长寿</a></li>
-            <li><a href="notes.html">沉思录</a></li>
-            <li><a href="store.html">蕊宫开物</a></li>
-        </ul>
+        <button id="langToggle" class="lang-switch-btn" onclick="toggleLanguage()">中文 / EN</button>
+        <div class="nav-right">
+            <ul>
+                <li><a href="index.html" data-en="Home" data-zh="首页">Home</a></li>
+                <li><a href="child.html" class="active" data-en="Inner Child" data-zh="内在小孩">Inner Child</a></li>
+                <li><a href="aesthetics.html" data-en="Aesthetics" data-zh="浪漫色彩美学">Aesthetics</a></li>
+                <li><a href="guqin.html" data-en="Guqin Healing" data-zh="古琴五音养神">Guqin Healing</a></li>
+                <li><a href="wellness.html" data-en="Daoist Wellness" data-zh="道家养生长寿">Daoist Wellness</a></li>
+                <li><a href="notes.html" data-en="Notes" data-zh="沉思录">Notes</a></li>
+                <li><a href="store.html" data-en="Store" data-zh="蕊宫开物">Store</a></li>
+            </ul>
+        </div>
     </nav>
 </header>
 
 <div class="zen-hero-mini">
-    <h2>回归本心 · 重塑内在根基</h2>
-    <p>每个人心中都住着一个“内在小孩”，那是我们最真实、最纯粹的情感内核。</p>
+    <h2 data-en="Return to the True Self · Reshaping Inner Foundations" data-zh="回归本心 · 重塑内在根基">Return to the True Self · Reshaping Inner Foundations</h2>
+    <p data-en="Everyone harbors an 'inner child' within—the truest and purest core of our emotions, waiting to be gently embraced and understood." data-zh="每个人心中都住着一个“内在小孩”，那是我们最真实、最纯粹的情感内核，等待着被温柔拥抱与理解。">Everyone harbors an 'inner child' within—the truest and purest core of our emotions, waiting to be gently embraced and understood.</p>
     <div class="plum-divider">
         <div class="solid-plum">
             <span></span><span></span><span></span><span></span><span></span>
@@ -120,68 +168,84 @@
 </div>
 
 <div class="tests-section">
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="I. Subconscious Awareness & Self-Exploration" data-zh="一、 潜意识觉察与深度自测">I. Subconscious Awareness & Self-Exploration</h3>
     <div class="test-grid">
         <div class="test-card">
             <div>
-                <h4>归位：潜意识压力感知测试</h4>
-                <p>绕过理性防御，直接触达潜意识压力水位。</p>
+                <h4 data-en="Subconscious Pressure Perception Test" data-zh="归位：潜意识压力感知测试">Subconscious Pressure Perception Test</h4>
+                <p data-en="Bypass rational defense and directly reach the subconscious pressure level." data-zh="绕过理性防御，直接触达潜意识压力水位。">Bypass rational defense and directly reach the subconscious pressure level.</p>
             </div>
-            <a href="Pressure Test.html">进入测算 →</a>
+            <a href="Pressure Test.html" data-en="Enter Test →" data-zh="进入测算 →">Enter Test →</a>
         </div>
         <div class="test-card">
             <div>
-                <h4>归位：羞耻感感知测试</h4>
-                <p>羞耻感的困扰，自测压力水位。</p>
+                <h4 data-en="Shame State Self-Assessment" data-zh="归位：羞耻感感知测试">Shame State Self-Assessment</h4>
+                <p data-en="Troubled by feelings of shame, self-assess your pressure levels." data-zh="羞耻感的困扰，自测压力水位。">Troubled by feelings of shame, self-assess your pressure levels.</p>
             </div>
-            <a href="Shame State Self.html">进入测算 →</a>
+            <a href="Shame State Self.html" data-en="Enter Test →" data-zh="进入测算 →">Enter Test →</a>
         </div>
         <div class="test-card">
             <div>
-                <h4>妒嫉心理测试与自我警醒方案</h4>
-                <p>穿透迷雾与创伤，看见内在小孩，找回光芒。</p>
+                <h4 data-en="Jealousy Psychology Test & Self-Alert" data-zh="妒嫉心理测试与自我警醒方案">Jealousy Psychology Test & Self-Alert</h4>
+                <p data-en="Pierce through the fog and trauma, see your inner child, and reclaim your radiance." data-zh="穿透迷雾与创伤，看见内在小孩，找回光芒。">Pierce through the fog and trauma, see your inner child, and reclaim your radiance.</p>
             </div>
-            <a href="Jealousy Test & Help.html">进入测算 →</a>
+            <a href="Jealousy Test & Help.html" data-en="Enter Test →" data-zh="进入测算 →">Enter Test →</a>
         </div>
     </div>
 </div>
 
 <div class="tests-section">
-    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;">三十天守护修行目录</h3>
+    <h3 style="font-size: 1.1rem; color: #555; border-left: 4px solid #c5a059; padding-left: 12px; margin-bottom: 20px;" data-en="II. 4-Week Guardian Cultivation Directory" data-zh="二、 四周守护修行目录">II. 4-Week Guardian Cultivation Directory</h3>
     
-    <!-- 新增 PDF 下载链接 -->
-    <div style="margin-bottom: 25px; padding-left: 12px;">
+    <!-- PDF 下载链接 -->
+    <div style="margin-bottom: 25px;">
         <a href="Youtube_Playlist_Full_Links_内在小孩 回家系列.pdf" download 
            style="font-size: 0.9rem; color: #c5a059; text-decoration: none; border-bottom: 1px solid #c5a059; display: inline-flex; align-items: center;">
-           <span style="margin-right: 8px;">📄</span> 下载《内在小孩回家系列》播放列表文档 (PDF)
+           <span style="margin-right: 8px;">📄</span> <span data-en="Download 'Inner Child Homecoming Series' Playlist Document (PDF)" data-zh="下载《内在小孩回家系列》播放列表文档 (PDF)">Download 'Inner Child Homecoming Series' Playlist Document (PDF)</span>
         </a>
     </div>
 
-    <div class="sanctuary-grid" id="sanctuaryGrid"></div>
+    <!-- 第一周：包含序章、2节基础课与 D1 到 D7 -->
+    <div class="week-title" data-en="Week 1: Opening, Foundations & D1 to D7" data-zh="第一周：开篇、基础与 D1 至 D7">Week 1: Opening, Foundations & D1 to D7</div>
+    <div class="sanctuary-grid" id="week1Grid"></div>
+
+    <!-- 第二周：D8 至 D14 -->
+    <div class="week-title" data-en="Week 2: Senses, Emotion & D8 to D14" data-zh="第二周：感官情绪与 D8 至 D14">Week 2: Senses, Emotion & D8 to D14</div>
+    <div class="sanctuary-grid" id="week2Grid"></div>
+
+    <!-- 第三周：D15 至 D21 -->
+    <div class="week-title" data-en="Week 3: Clearing, Boundaries & D15 to D21" data-zh="第三周：清空边界与 D15 至 D21">Week 3: Clearing, Boundaries & D15 to D21</div>
+    <div class="sanctuary-grid" id="week3Grid"></div>
+
+    <!-- 第四周：D22 至 D30（含最后多出的 D29 与 D30，共 9 课时） -->
+    <div class="week-title" data-en="Week 4: Integration & D22 to D30 (Including D29 & D30)" data-zh="第四周：整合圆满与 D22 至 D30（含 D29 与 D30）">Week 4: Integration & D22 to D30 (Including D29 & D30)</div>
+    <div class="sanctuary-grid" id="week4Grid"></div>
 </div>
 
 <!-- 视频跳转弹窗 -->
 <div id="videoModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index: 1000;">
     <div class="modal-content" style="background:#fff; padding:30px; border-radius:4px; max-width:400px; text-align:center;">
-        <h3 id="modalTitle" style="margin-bottom:15px; color:#333;">修行提示</h3>
-        <p style="margin-bottom:20px; color:#666; font-size:0.95rem;">你即将离开蕊宫，前往 YouTube 开启今日的觉察之旅。</p>
+        <h3 id="modalTitle" style="margin-bottom:15px; color:#333;" data-en="Cultivation Notice" data-zh="修行提示">Cultivation Notice</h3>
+        <p style="margin-bottom:20px; color:#666; font-size:0.95rem;" data-en="You are about to leave Rui Palace and head to YouTube to begin today's awareness journey." data-zh="你即将离开蕊宫，前往 YouTube 开启今日的觉察之旅。">You are about to leave Rui Palace and head to YouTube to begin today's awareness journey.</p>
         <div>
-            <a id="modalConfirmBtn" href="#" target="_blank" style="padding:10px 20px; background:#c5a059; color:#fff; text-decoration:none; margin-right:10px; border-radius:4px; display:inline-block;">同意前往</a>
-            <button onclick="closeVideoModal()" style="padding:10px 20px; border:1px solid #ccc; background:#fff; border-radius:4px; cursor:pointer;">暂不前往</button>
+            <a id="modalConfirmBtn" href="#" target="_blank" style="padding:10px 20px; background:#c5a059; color:#fff; text-decoration:none; margin-right:10px; border-radius:4px; display:inline-block;" data-en="Proceed" data-zh="同意前往">Proceed</a>
+            <button onclick="closeVideoModal()" style="padding:10px 20px; border:1px solid #ccc; background:#fff; border-radius:4px; cursor:pointer;" data-en="Cancel" data-zh="暂不前往">Cancel</button>
         </div>
     </div>
 </div>
 
 <footer style="text-align: center; padding: 20px; font-size: 0.8rem; color: #8c8c8c; margin-top: 40px; border-top: 1px solid #e0e0e0;">
     <div style="margin-bottom: 10px;">
-        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">法律声明 (Impressum)</a> | 
-        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;">隐私政策 (Datenschutz)</a>
+        <a href="impressum.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Impressum" data-zh="法律声明 (Impressum)">Impressum</a> | 
+        <a href="Datenschutz.html" style="text-decoration: none; color: #8c8c8c; margin: 0 10px;" data-en="Datenschutz" data-zh="隐私政策 (Datenschutz)">Datenschutz</a>
     </div>
-    <p>© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。</p>
+    <p data-en="© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity." data-zh="© 2026 蕊宫 - Rui Palace. All rights reserved. 保持纯粹，珍藏人性。">© 2026 Rui Palace. All rights reserved. Keep it pure, preserve the essence of humanity.</p>
 </footer>
 
 <script src="script.js"></script>
 <script>
-    const courseData = [
+    // 第一周：序章、2节基础、D1至D7（共10项）
+    const week1Data = [
         { day: "序章", title: "免费课程：30天守护之旅", link: "https://www.youtube.com/watch?v=v5Qg9Lizepg" },
         { day: "基础", title: "应该告诉自己 我可以", link: "https://www.youtube.com/watch?v=oq6TlCChoVw" },
         { day: "基础", title: "天赋觉醒在缺点里", link: "https://www.youtube.com/watch?v=Yp06lFmGCpg" },
@@ -191,21 +255,33 @@
         { day: "Day 4", title: "允许不被爱的时刻", link: "https://www.youtube.com/watch?v=SB3sEU78L_A" },
         { day: "Day 5", title: "唤醒感官记忆", link: "https://www.youtube.com/watch?v=3FRswWLbCxU" },
         { day: "Day 6", title: "绘制内在形象", link: "https://www.youtube.com/watch?v=YDwliHXq0CI" },
-        { day: "Day 7", title: "信任契约", link: "https://www.youtube.com/watch?v=hb1ewOQNi6c" },
+        { day: "Day 7", title: "信任契约", link: "https://www.youtube.com/watch?v=hb1ewOQNi6c" }
+    ];
+
+    // 第二周：D8至D14（共7项）
+    const week2Data = [
         { day: "Day 8", title: "被压抑的愤怒", link: "https://www.youtube.com/watch?v=wumjOlf4U9A" },
         { day: "Day 9", title: "委屈的泪水", link: "https://www.youtube.com/watch?v=snikBrEiPPM" },
         { day: "Day 10", title: "羞耻感的洗涤", link: "https://www.youtube.com/watch?v=rFRZe4N5p-g" },
         { day: "Day 11", title: "未被满足的愿望", link: "https://www.youtube.com/watch?v=71rtCG0nfRU" },
         { day: "Day 12", title: "分离焦虑", link: "https://www.youtube.com/watch?v=YZOxPFr8f00" },
         { day: "Day 13", title: "身体的记忆", link: "https://www.youtube.com/watch?v=mE18pZ-3qT4" },
-        { day: "Day 14", title: "写给大人们的信", link: "https://www.youtube.com/watch?v=aOXRT0AUPJY" },
+        { day: "Day 14", title: "写给大人们的信", link: "https://www.youtube.com/watch?v=aOXRT0AUPJY" }
+    ];
+
+    // 第三周：D15至D21（共7项）
+    const week3Data = [
         { day: "Day 15", title: "阶段性清空", link: "https://www.youtube.com/watch?v=bNpXF5JZrVg" },
         { day: "Day 16", title: "理想的父母", link: "https://www.youtube.com/watch?v=kCPDlweJx_w" },
         { day: "Day 17", title: "价值发现", link: "https://www.youtube.com/watch?v=oAtJ3pWMAlg" },
         { day: "Day 18", title: "设定边界", link: "https://www.youtube.com/watch?v=Bg1bR0g9-zw" },
         { day: "Day 19", title: "玩耍的权利", link: "https://www.youtube.com/watch?v=Gzm5LDHe0n8" },
         { day: "Day 20", title: "天赋觉醒", link: "https://www.youtube.com/watch?v=f6RHTvE-OA8" },
-        { day: "Day 21", title: "语言的力量", link: "https://www.youtube.com/watch?v=k2Er2kTZREQ" },
+        { day: "Day 21", title: "语言的力量", link: "https://www.youtube.com/watch?v=k2Er2kTZREQ" }
+    ];
+
+    // 第四周：D22至D30（含D29与D30，共9项）
+    const week4Data = [
         { day: "Day 22", title: "内在的安全堡垒", link: "https://www.youtube.com/watch?v=brS_x15JVuY" },
         { day: "Day 23", title: "温柔的宽恕", link: "https://www.youtube.com/watch?v=rrokijxLZgk" },
         { day: "Day 24", title: "成人与孩子的对话", link: "https://www.youtube.com/watch?v=Mdk9JwWsD3g" },
@@ -217,25 +293,33 @@
         { day: "Day 30", title: "圆满", link: "https://www.youtube.com/watch?v=HJnX_vcoHCQ" }
     ];
 
-    const gridContainer = document.getElementById('sanctuaryGrid');
     const videoModal = document.getElementById('videoModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalConfirmBtn = document.getElementById('modalConfirmBtn');
 
-    courseData.forEach((item) => {
-        const card = document.createElement('div');
-        card.className = 'window-card';
-        card.innerHTML = `
-            <div class="day-tag">${item.day}</div>
-            <div class="day-title">${item.title}</div>
-        `;
-        card.onclick = () => {
-            modalTitle.textContent = `${item.day}：${item.title}`;
-            modalConfirmBtn.href = item.link;
-            videoModal.style.display = 'flex';
-        };
-        gridContainer.appendChild(card);
-    });
+    function renderGrid(data, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        data.forEach((item) => {
+            const card = document.createElement('div');
+            card.className = 'window-card';
+            card.innerHTML = `
+                <div class="day-tag">${item.day}</div>
+                <div class="day-title">${item.title}</div>
+            `;
+            card.onclick = () => {
+                modalTitle.textContent = `${item.day}：${item.title}`;
+                modalConfirmBtn.href = item.link;
+                videoModal.style.display = 'flex';
+            };
+            container.appendChild(card);
+        });
+    }
+
+    renderGrid(week1Data, 'week1Grid');
+    renderGrid(week2Data, 'week2Grid');
+    renderGrid(week3Data, 'week3Grid');
+    renderGrid(week4Data, 'week4Grid');
 
     function closeVideoModal() {
         videoModal.style.display = 'none';
@@ -246,6 +330,41 @@
             closeVideoModal();
         }
     }
+
+    // 语言切换逻辑
+    let currentLang = localStorage.getItem('rui_palace_lang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('rui_palace_lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+
+        const elements = document.querySelectorAll('[data-en][data-zh]');
+        elements.forEach(el => {
+            if (lang === 'zh') {
+                el.textContent = el.getAttribute('data-zh');
+            } else {
+                el.textContent = el.getAttribute('data-en');
+            }
+        });
+
+        const btn = document.getElementById('langToggle');
+        if (btn) {
+            btn.textContent = (lang === 'zh') ? 'EN / 中' : '中文 / EN';
+        }
+    }
+
+    function toggleLanguage() {
+        if (currentLang === 'en') {
+            setLanguage('zh');
+        } else {
+            setLanguage('en');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLang);
+    });
 </script>
 </body>
 </html>
