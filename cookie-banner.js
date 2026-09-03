@@ -1,5 +1,5 @@
 (function() {
-    // 1. 自动注入弹窗所需的 CSS 样式（确保全站视觉统一，不依赖外部 CSS）
+    // 1. 自动注入弹窗所需的 CSS 样式
     const styleId = 'rui-cookie-banner-style';
     if (!document.getElementById(styleId)) {
         const style = document.createElement('style');
@@ -91,7 +91,7 @@
     if (!document.getElementById('cookie-consent')) {
         const bannerDiv = document.createElement('div');
         bannerDiv.id = 'cookie-consent';
-        bannerDiv.style.display = 'none'; // 默认先隐藏，由后续逻辑决定是否展示
+        bannerDiv.style.display = 'none';
         bannerDiv.innerHTML = `
             <div class="modal-box">
                 <h3>蕊宫隐私说明 / Privacy Notice</h3>
@@ -109,12 +109,37 @@
         document.body.appendChild(bannerDiv);
     }
 
-    // 3. 核心合规与状态检查逻辑
+    // 3. 全局暴露重置 Cookie 的函数（供唤起弹窗使用）
+    window.resetCookieConsent = function() {
+        localStorage.removeItem('cookie_consent');
+        document.cookie = "cookie_consent=; domain=rui-palace.com; path=/; max-age=0; SameSite=Lax";
+        let modal = document.getElementById("cookie-consent");
+        if (modal) {
+            modal.style.opacity = "1";
+            modal.style.display = "flex";
+        } else {
+            location.reload();
+        }
+    };
+
+    // 4. 核心逻辑与智能 Footer 注入
     document.addEventListener("DOMContentLoaded", function() {
         const modal = document.getElementById("cookie-consent");
         const acceptBtn = document.getElementById("accept-btn");
         const rejectBtn = document.getElementById("reject-btn");
 
+        // 智能查找 footer 并在其中追加“Cookie-Einstellungen”（自带防重校验，绝不重复）
+        const footer = document.querySelector("footer");
+        if (footer) {
+            if (!footer.innerHTML.includes("Cookie-Einstellungen")) {
+                const settingsSpan = document.createElement("span");
+                settingsSpan.style.marginLeft = "10px";
+                settingsSpan.innerHTML = ` | <a href="javascript:void(0);" onclick="resetCookieConsent()" style="color: inherit; text-decoration: none; cursor: pointer;">Cookie-Einstellungen</a>`;
+                footer.appendChild(settingsSpan);
+            }
+        }
+
+        // 统一检查 Cookie 和 LocalStorage
         const getConsentValue = () => {
             const cookieMatch = document.cookie.split('; ').find(row => row.startsWith('cookie_consent='));
             if (cookieMatch) {
@@ -162,7 +187,7 @@
         }
     });
 
-    // 4. 访问统计与时长记录模块（合规封装版）
+    // 5. 访问统计与时长记录模块（安全合规封装）
     function initAnalytics() {
         const SUPABASE_URL = 'https://tbridsdkmqcbhnqodwzt.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_FmUorhl55A1wfmL3K4nB5w_t3NwSa9S';
