@@ -192,9 +192,9 @@
         const SUPABASE_URL = 'https://tbridsdkmqcbhnqodwzt.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_FmUorhl55A1wfmL3K4nB5w_t3NwSa9S';
 
-        if (typeof supabase === 'undefined') {
+       if (typeof supabase === 'undefined') {
             let script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+            script.src = 'supabase.js'; // 指向您本地服务器上的文件
             document.head.appendChild(script);
         }
 
