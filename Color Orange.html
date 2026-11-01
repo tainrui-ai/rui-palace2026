@@ -14,6 +14,7 @@
             padding: 0;
         }
 
+        /* 严格保留纯原生系统字体栈，零版权隐患 */
         body { 
             font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Songti SC", "SimSun", Arial, sans-serif; 
             background-color: #FDFBF8; 
@@ -22,42 +23,16 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23D4A017' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.08'%3E%3Cpath d='M30,50 C30,35 45,25 60,25 C75,25 85,35 85,45 C85,55 75,60 65,60 C55,60 50,55 50,50 C50,45 55,40 60,40 C65,40 70,45 70,50 M30,50 C15,50 5,60 5,75 C5,90 20,100 40,100 C60,100 70,90 70,75 C70,68 65,62 60,60 M60,25 C60,10 75,2 90,2 C105,2 115,12 115,25 M115,25 C115,35 105,45 90,45 C80,45 75,38 75,30'/%3E%3Cpath d='M120,130 C120,115 135,105 150,105 C165,105 175,115 175,125 C175,135 165,140 155,140 C145,140 140,135 140,130 C140,125 145,120 150,120 C155,120 160,125 160,130 M120,130 C105,130 95,140 95,155 C95,170 110,180 130,180 M150,105 C150,90 165,82 180,82 M150,140 C135,140 125,150 125,165'/%3E%3Cpath d='M120,50 C120,35 135,25 150,25 C165,25 175,35 175,45 C175,55 165,60 155,60 C145,60 140,55 140,50 C140,45 145,40 150,40 C155,40 160,45 160,50 M120,50 C105,50 95,60 95,75 C95,90 110,100 130,100 M150,25 C150,10 165,2 180,2 M150,60 C135,60 125,70 125,85'/%3E%3Cpath d='M30,130 C30,115 45,105 60,105 C75,105 85,115 85,125 C85,135 75,140 65,140 C55,140 50,135 50,130 C50,125 55,120 60,120 C65,120 70,125 70,130 M30,130 C15,130 5,140 5,155 C5,170 20,180 40,180 M60,105 C60,90 75,82 90,82 M60,140 C45,140 35,150 35,165'/%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23D4A017' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.08'%3E%3Cpath d='M30,50 C30,35 45,25 60,25 C75,25 85,35 85,45 C85,55 75,60 65,60 C55,60 50,55 50,50 C50,45 55,40 60,40 C65,40 70,45 70,50 M30,50 C15,50 5,60 5,75 C5,90 20,100 40,100 C60,100 70,90 70,75 C70,68 65,62 60,60 M60,25 C60,10 75,2 90,2 C105,2 115,12 115,25 M115,25 C115,35 105,45 90,45 C80,45 75,38 75,30'/%3E%3Cpath d='M120,130 C120,115 135,105 150,105 C165,105 175,140 155,140 C145,140 140,135 140,130 C140,125 145,120 150,120 C155,120 160,125 160,130 M120,130 C105,130 95,140 95,155 C95,170 110,180 130,180 M150,105 C150,90 165,82 180,82 M150,140 C135,140 125,150 125,165'/%3E%3C/g%3E%3C/svg%3E");
             background-attachment: fixed;
             user-select: none;
         }
 
-        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
-        .max-w-xl { max-width: 36rem; margin-left: auto; margin-right: auto; }
-        .w-full { width: 100%; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-        .pt-8 { padding-top: 2rem; }
-        .pb-6 { padding-bottom: 1.5rem; }
-        .pb-4 { padding-bottom: 1rem; }
-        .text-center { text-align: center; }
-        .relative { position: relative; }
-        .absolute { position: absolute; }
-        .flex { display: flex; }
-        .hidden { display: none; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-3 { gap: 0.75rem; }
-        .gap-4 { gap: 1rem; }
-        .gap-6 { gap: 1.5rem; }
-        .gap-8 { gap: 2rem; }
-        .grid { display: grid; }
-        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-        @media (min-width: 1024px) {
-            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .side-wing-left, .side-wing-right { display: flex !important; }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         .chinese-border { 
@@ -66,7 +41,6 @@
             outline-offset: -8px; 
             background: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border-radius: 24px;
             padding: 32px;
             box-shadow: 0 15px 35px -10px rgba(212, 160, 23, 0.12);
@@ -95,6 +69,9 @@
         }
         .side-wing-left { left: 32px; }
         .side-wing-right { right: 32px; }
+        @media (min-width: 1024px) {
+            .side-wing-left, .side-wing-right { display: flex; }
+        }
 
         .vertical-wing { 
             writing-mode: vertical-rl; 
@@ -129,7 +106,7 @@
             cursor: pointer;
             padding: 12px;
             background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(212, 160, 23, 0.2);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
@@ -194,9 +171,6 @@
             display: flex;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: grab;
-            width: 100%;
-            height: 100%;
-            align-items: center;
         }
         .slider-track:active {
             cursor: grabbing;
@@ -206,10 +180,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
-            padding: 8px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.8);
-            text-align: center;
         }
         .product-thumb.active {
             border-color: #D4A017;
@@ -236,45 +206,37 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 16px;
-            border: 1px solid rgba(212, 160, 23, 0.2);
-            background: linear-gradient(to right, rgba(255,255,255,0.6), rgba(212,160,23,0.05));
+            border: 1px solid rgba(212, 160, 23, 0.25);
+            background: linear-gradient(to right, rgba(255,255,255,0.6), rgba(212,160,23,0.06));
             border-radius: 12px;
             text-decoration: none;
             transition: all 0.3s;
         }
-        .channel-link:hover { border-color: rgba(212, 160, 23, 0.5); transform: translateY(-1px); }
+        .channel-link:hover { border-color: rgba(212, 160, 23, 0.6); transform: translateY(-1px); }
 
-        .border-b { border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .border-t { border-top: 1px solid rgba(0,0,0,0.05); }
-        .rounded-full { border-radius: 9999px; }
-        .rounded-xl { border-radius: 0.75rem; }
-        .font-serif { font-family: "Songti SC", "SimSun", serif; }
-        .font-mono { font-family: monospace; }
-        .font-bold { font-weight: 700; }
-        .font-semibold { font-weight: 600; }
-        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-        .text-xs { font-size: 0.75rem; line-height: 1rem; }
-        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-        .text-neutral-400 { color: #a3a3a3; }
-        .text-neutral-500 { color: #737373; }
-        .text-neutral-600 { color: #525252; }
-        .text-neutral-800 { color: #262626; }
-        .text-white { color: #ffffff; }
-        .bg-white { background-color: #ffffff; }
-        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
-        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-        .transition { transition: all 0.3s ease; }
-        .line-through { text-decoration: line-through; }
-        .cursor-pointer { cursor: pointer; }
-        .overflow-hidden { overflow: hidden; }
-        input, select, textarea { width: 100%; padding: 8px 12px; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; outline: none; background: #fff; }
-        input:focus, select:focus, textarea:focus { border-color: #D4A017; }
+        .grid-main {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 1024px) {
+            .grid-main { grid-template-columns: 1fr 1fr; }
+        }
+        .grid-thumbs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .grid-colors {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- 4弧花瓣海棠窗 SVG ClipPath -->
-    <svg width="0" height="0" class="absolute block" aria-hidden="true">
+    <!-- SVG 海棠窗形态定义 -->
+    <svg width="0" height="0" style="position:absolute; display:block;" aria-hidden="true">
         <defs>
             <clipPath id="begonia-clip" clipPathUnits="objectBoundingBox">
                 <path d="M 0.5,0.02 C 0.63,0.02 0.71,0.09 0.76,0.22 C 0.89,0.27 0.98,0.36 0.98,0.5 C 0.98,0.64 0.89,0.73 0.76,0.78 C 0.71,0.91 0.63,0.98 0.5,0.98 C 0.37,0.98 0.29,0.91 0.24,0.78 C 0.11,0.73 0.02,0.64 0.02,0.5 C 0.02,0.36 0.11,0.27 0.24,0.22 C 0.29,0.09 0.37,0.02 0.5,0.02 Z" />
@@ -282,24 +244,24 @@
         </defs>
     </svg>
 
-    <!-- Header 头部导航区 -->
-    <header class="relative pt-8 pb-6 border-b text-center max-w-7xl mx-auto w-full px-6">
+    <!-- 顶部 Header -->
+    <header style="position:relative; padding-top:32px; padding-bottom:24px; border-bottom:1px solid rgba(212, 160, 23, 0.2); text-align:center;" class="container">
         <div class="side-wing-left">
-            <button onclick="returnToPrevious()" class="bg-transparent border-0 cursor-pointer flex items-center gap-1.5 text-neutral-400 p-1 hover:text-[#D4A017]">
-                <span class="text-xs">⇠</span>
+            <button onclick="returnToPrevious()" style="background:transparent; border:0; cursor:pointer; display:flex; align-items:center; gap:6px; color:#a3a3a3; padding:4px;">
+                <span style="font-size:12px;">⇠</span>
                 <span class="dynamic-sub" data-zh="归隐" data-en="RETURN">归隐</span>
             </button>
-            <div class="flex flex-col items-center">
+            <div style="display:flex; flex-direction:column; align-items:center;">
                 <span class="vertical-wing" data-zh="蕊宫 · 芭蕉格物" data-en="RUI PALACE · PLANTAIN">蕊宫 · 芭蕉格物</span>
             </div>
             <div></div>
         </div>
 
         <h1 id="main-title" class="dynamic-title" data-zh="芭蕉橙 · 暖阳入心" data-en="Plantain Orange & Sunlit Shadow">芭蕉橙 · 暖阳入心</h1>
-        <p class="dynamic-sub mb-3" data-zh="PLANTAIN ORANGE & SUNLIT SHADOW SPECTRUM" data-en="PLANTAIN ORANGE & SUNLIT SHADOW SPECTRUM" style="margin-bottom: 12px;">PLANTAIN ORANGE & SUNLIT SHADOW SPECTRUM</p>
+        <p class="dynamic-sub" style="margin-bottom:12px;" data-zh="PLANTAIN ORANGE & SUNLIT SHADOW SPECTRUM" data-en="PLANTAIN ORANGE & SUNLIT SHADOW SPECTRUM">PLANTAIN ORANGE & SUNLIT SHADOW SPECTRUM</p>
         
-        <div class="max-w-xl mx-auto px-4">
-            <p id="main-desc" class="dynamic-text" style="line-height: 1.6;"
+        <div style="max-width:576px; margin:0 auto; padding:0 16px;">
+            <p id="main-desc" class="dynamic-text" style="line-height:1.6;"
                 data-zh="“雨打芭蕉声渐歇，余晖如橙映心扉。”<br>在静谧的午后，于婆娑绿影间，寻那一抹温暖人心的自然色泽。"
                 data-en="&ldquo;The rain on plantain leaves gradually fades, leaving a sunlit orange to brighten the soul.&rdquo;<br>In the quiet afternoon, amidst the dancing shadows, we seek that heart-warming organic hue.">
                 “雨打芭蕉声渐歇，余晖如橙映心扉。”<br>在静谧的午后，于婆娑绿影间，寻那一抹温暖人心的自然色泽。
@@ -310,238 +272,248 @@
             <button onclick="toggleLanguage()" id="langBtn" class="lang-switch-btn">
                 EN / 中
             </button>
-            <div class="flex flex-col items-center">
+            <div style="display:flex; flex-direction:column; align-items:center;">
                 <span class="vertical-wing" data-zh="仙骨怀真 · 暖橙长存" data-en="IMMORTAL SPIRIT · WARMTH ENDURES">仙骨怀真 · 暖橙长存</span>
             </div>
             <div></div>
         </div>
     </header>
 
-    <!-- 核心 Hero 产品展示中心 -->
-    <section class="max-w-7xl mx-auto w-full px-6 pt-8 pb-4">
-        <div class="chinese-border hero-podium relative overflow-hidden flex flex-col items-center text-center" style="padding: 32px;">
+    <!-- 核心 Hero 海棠画廊展示中心 -->
+    <section class="container" style="padding-top:32px; padding-bottom:16px;">
+        <div class="chinese-border hero-podium" style="position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; text-align:center; padding:32px 16px;">
             
-            <div class="flex items-center gap-2" style="margin-bottom: 16px; background: rgba(212,160,23,0.1); padding: 4px 16px; border-radius: 9999px; border: 1px solid rgba(212,160,23,0.2);">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #D4A017; display: inline-block;"></span>
-                <span class="dynamic-sub font-semibold text-xs" style="color: #D4A017; letter-spacing: 0.15em;" data-zh="臻选主打 · 海棠画廊" data-en="HERO COLLECTION · BEGONIA GALLERY">臻选主打 · 海棠画廊</span>
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; background:rgba(212, 160, 23, 0.1); padding:4px 16px; border-radius:9999px; border:1px solid rgba(212, 160, 23, 0.2);">
+                <span style="width:8px; height:8px; border-radius:50%; background:#D4A017; display:inline-block;"></span>
+                <span class="dynamic-sub" style="font-weight:600; color:#D4A017; font-size:12px; letter-spacing:0.15em;" data-zh="臻选主打 · 海棠画廊" data-en="HERO COLLECTION · BEGONIA GALLERY">臻选主打 · 海棠画廊</span>
             </div>
 
-            <h2 id="hero-product-title" class="text-3xl font-serif font-bold text-neutral-800" style="margin-bottom: 8px; letter-spacing: 0.05em;" 
+            <h2 id="hero-product-title" style="font-size:2rem; font-family:serif; font-weight:bold; color:#262626; letter-spacing:0.05em; margin-bottom:8px;" 
                 data-zh="芭蕉橙 · 暖阳玛瑙手串" 
                 data-en="Plantain Orange · Sunlit Agate Bracelet">
                 芭蕉橙 · 暖阳玛瑙手串
             </h2>
-            <p id="hero-product-subtitle" class="dynamic-sub text-neutral-500 max-w-lg" style="margin-bottom: 16px;" 
+            <p id="hero-product-subtitle" class="dynamic-sub" style="color:#737373; margin-bottom:16px; max-width:512px;" 
                 data-zh="Plantain Orange · Warmth Endures Agate Bracelet" 
                 data-en="Plantain Orange · Warmth Endures Agate Bracelet">
                 Plantain Orange · Warmth Endures Agate Bracelet
             </p>
 
-            <div class="flex items-center justify-center gap-2 text-xs font-serif" style="color: #D4A017; margin-bottom: 12px; opacity: 0.85;">
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:12px; color:#D4A017; font-size:12px; font-family:serif; opacity:0.85;">
                 <span>⇠</span>
                 <span data-zh="支持左右滑动 / 点击放大全貌" data-en="Slide Left & Right / Click to Enlarge">支持左右滑动 / 点击放大全貌</span>
                 <span>⇢</span>
             </div>
 
             <!-- 海棠花窗交互视口 -->
-            <div class="relative" style="width: 380px; height: 380px; margin: 16px 0; display: flex; align-items: center; justify-content: center;">
-                <div class="absolute" style="inset: 16px; border-radius: 50%; background: radial-gradient(circle, rgba(212,160,23,0.25) 0%, transparent 70%); filter: blur(20px);"></div>
+            <div style="position:relative; width:320px; height:320px; margin:16px 0; display:flex; align-items:center; justify-content:center; user-select:none;">
+                
+                <div style="position:absolute; inset:16px; border-radius:50%; background:radial-gradient(circle, rgba(212,160,23,0.25) 0%, rgba(222,139,29,0.3) 50%, transparent 100%); filter:blur(24px);"></div>
 
-                <button onclick="prevProduct()" class="absolute" style="left: -20px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.9); color: #D4A017; border: 1px solid rgba(212,160,23,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">❮</button>
-                <button onclick="nextProduct()" class="absolute" style="right: -20px; z-index: 30; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.9); color: #D4A017; border: 1px solid rgba(212,160,23,0.2); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">❯</button>
+                <button onclick="prevProduct()" style="position:absolute; left:-12px; z-index:30; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.9); color:#D4A017; border:1px solid rgba(212, 160, 23, 0.2); cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.1);" title="上一个款式">
+                    ❮
+                </button>
+                <button onclick="nextProduct()" style="position:absolute; right:-12px; z-index:30; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.9); color:#D4A017; border:1px solid rgba(212, 160, 23, 0.2); cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.1);" title="下一个款式">
+                    ❯
+                </button>
 
-                <div class="absolute" style="inset: 0; z-index: 20; pointer-events: none;">
-                    <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
-                        <path d="M 50,2 C 63,2 71,9 76,22 C 89,27 98,36 98,50 C 98,64 89,73 76,78 C 71,91 63,98 50,98 C 37,98 29,91 24,78 C 11,73 2,64 2,50 C 2,36 11,27 24,22 C 29,9 37,2 50,2 Z" fill="none" stroke="#3b2d13" stroke-width="3" stroke-linejoin="round" />
-                        <path d="M 50,4 C 62,4 69.5,10.5 74.2,22.8 C 86.5,27.5 95,35.8 95,50 C 95,64.2 86.5,72.5 74.2,77.2 C 69.5,89.5 62,96 50,96 C 38,96 30.5,89.5 25.8,77.2 C 13.5,72.5 5,64.2 5,50 C 5,35.8 13.5,27.5 25.8,22.8 C 30.5,10.5 38,4 50,4 Z" fill="none" stroke="#D4A017" stroke-width="0.8" opacity="0.65" />
+                <div style="position:absolute; inset:0; z-index:20; pointer-events:none; filter:drop-shadow(0 10px 15px rgba(0,0,0,0.1));">
+                    <svg viewBox="0 0 100 100" style="width:100%; height:100%;">
+                        <path d="M 50,2 C 63,2 71,9 76,22 C 89,27 98,36 98,50 C 98,64 89,73 76,78 C 71,91 63,98 50,98 C 37,98 29,91 24,78 C 11,73 2,64 2,50 C 2,36 11,27 24,22 C 29,9 37,2 50,2 Z" 
+                              fill="none" stroke="#3b2d13" stroke-width="3" stroke-linejoin="round" />
+                        <path d="M 50,4 C 62,4 69.5,10.5 74.2,22.8 C 86.5,27.5 95,35.8 95,50 C 95,64.2 86.5,72.5 74.2,77.2 C 69.5,89.5 62,96 50,96 C 38,96 30.5,89.5 25.8,77.2 C 13.5,72.5 5,64.2 5,50 C 5,35.8 13.5,27.5 25.8,22.8 C 30.5,10.5 38,4 50,4 Z" 
+                              fill="none" stroke="#D4A017" stroke-width="0.8" opacity="0.65" />
                     </svg>
                 </div>
 
-                <div class="relative begonia-window-clip" style="width: 92%; height: 92%; background: #FAF7F2; overflow: hidden; z-index: 10; display: flex; align-items: center; justify-content: center;">
-                    <div id="slider-track" class="slider-track">
-                        <div style="width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 32px; cursor: pointer; position: relative;" onclick="openLightbox(0)">
-                            <img src="images/zimo-bracelet.jpg" alt="芭蕉橙玛瑙手链" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='https://placehold.co/600x600/d4a017/ffffff?text=Plantain+Orange+Agate';">
+                <div class="begonia-window-clip" style="position:relative; width:92%; height:92%; background:#FAF7F2; overflow:hidden; z-index:10; display:flex; align-items:center; justify-content:center;">
+                    <div style="position:absolute; inset:0; opacity:0.1; pointer-events:none; background-image:radial-gradient(#D4A017 1.5px, transparent 1.5px); background-size:16px 16px;"></div>
+
+                    <div id="slider-track" class="slider-track" style="width:100%; height:100%; align-items:center;">
+                        <div style="width:100%; height:100%; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:32px; cursor:pointer; position:relative;" onclick="openLightbox(0)">
+                            <img src="https://placehold.co/600x600/d4a017/ffffff?text=Plantain+Orange+Agate" alt="芭蕉橙玛瑙手链展示" style="width:100%; height:100%; object-fit:contain; pointer-events:none;">
                         </div>
-                        <div style="width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 32px; cursor: pointer; position: relative;" onclick="openLightbox(1)">
-                            <img src="images/zimo-bracelet.jpg" alt="落阳黄水晶手链" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='https://placehold.co/600x600/de8b1d/ffffff?text=Setting+Sun+Citrine';">
+                        <div style="width:100%; height:100%; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:32px; cursor:pointer; position:relative;" onclick="openLightbox(1)">
+                            <img src="https://placehold.co/600x600/de8b1d/ffffff?text=Setting+Sun+Citrine" alt="落阳黄水晶手链" style="width:100%; height:100%; object-fit:contain; pointer-events:none;">
                         </div>
-                        <div style="width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 32px; cursor: pointer; position: relative;" onclick="openLightbox(2)">
-                            <img src="images/zimo-bracelet.jpg" alt="蕉叶金蜜蜡手链" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='https://placehold.co/600x600/efa12b/ffffff?text=Amber+Gold+Bracelet';">
+                        <div style="width:100%; height:100%; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:32px; cursor:pointer; position:relative;" onclick="openLightbox(2)">
+                            <img src="https://placehold.co/600x600/efa12b/ffffff?text=Amber+Gold+Beeswax" alt="蕉叶金蜜蜡手链" style="width:100%; height:100%; object-fit:contain; pointer-events:none;">
                         </div>
-                        <div style="width: 100%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 32px; cursor: pointer; position: relative;" onclick="openLightbox(3)">
-                            <img src="images/zimo-bracelet.jpg" alt="凝霞白玉髓手链" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='https://placehold.co/600x600/fdebc7/333333?text=Ningxia+White+Chalcedony';">
+                        <div style="width:100%; height:100%; flex-shrink:0; display:flex; align-items:center; justify-content:center; padding:32px; cursor:pointer; position:relative;" onclick="openLightbox(3)">
+                            <img src="https://placehold.co/600x600/fdebc7/333333?text=Ningxia+White+Chalcedony" alt="凝霞白玉髓手链" style="width:100%; height:100%; object-fit:contain; pointer-events:none;">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <p id="hero-product-desc" class="poetry-text-style text-sm text-neutral-600 max-w-xl" style="margin: 16px 0;"
+            <p id="hero-product-desc" class="poetry-text-style" style="font-size:0.875rem; color:#525252; max-width:576px; margin:16px 0; line-height:1.7;"
                 data-zh="“雨打芭蕉声断续，斜阳映橙意未终。” 精选天然暖阳橙色玛瑙，质地温润，抚平心绪，带来春日般的暖意与生机。"
                 data-en="&ldquo;The rain hits the plantain leaves in broken rhythms, while the setting sun paints a lingering orange across the soul.&rdquo; Select natural warm orange agate bringing inner peace and gentle vitality.">
                 “雨打芭蕉声断续，斜阳映橙意未终。” 精选天然暖阳橙色玛瑙，质地温润，抚平心绪，带来春日般的暖意与生机。
             </p>
 
-            <div style="margin-top: 8px; display: flex; flex-direction: column; align-items: center; gap: 24px;">
-                <div style="text-align: center;">
-                    <span class="text-xs text-neutral-400" style="text-transform: uppercase; letter-spacing: 0.1em; display: block;" data-zh="结缘售价 (含典藏木盒)" data-en="SPECIAL PRICE (INCL. BOX)">结缘售价</span>
-                    <div style="display: flex; align-items: baseline; justify-content: center; gap: 8px;">
-                        <span id="hero-price" class="text-3xl font-serif font-bold" style="color: #D4A017;"> € 62,00</span>
-                        <span class="text-xs text-neutral-400 line-through"> € 105,00 </span>
+            <div style="margin-top:8px; display:flex; flex-direction:column; align-items:center; gap:24px;">
+                <div style="text-align:center;">
+                    <span style="font-size:10px; color:#a3a3a3; text-transform:uppercase; letter-spacing:0.1em; display:block;" data-zh="结缘售价 (含典藏木盒)" data-en="SPECIAL PRICE (INCL. BOX)">结缘售价</span>
+                    <div style="display:flex; align-items:baseline; justify-content:center; gap:8px;">
+                        <span id="hero-price" style="font-size:1.875rem; font-family:serif; font-weight:bold; color:#D4A017;"> € 62,00</span>
+                        <span style="font-size:12px; color:#a3a3a3; text-decoration:line-through;"> € 105,00 </span>
                     </div>
                 </div>
-                <button onclick="openModal()" class="transition shadow-lg" style="padding: 12px 32px; border-radius: 9999px; background: #D4A017; color: white; font-size: 12px; letter-spacing: 0.15em; border: none; cursor: pointer;">
-                    <span data-zh="立即臻藏 / Buy Now" data-en="BUY NOW / 立即臻藏">立即臻藏 / Buy Now</span> ➔
+                <button onclick="openModal()" style="padding:14px 32px; border-radius:9999px; background:#D4A017; color:white; font-size:12px; letter-spacing:0.15em; border:none; cursor:pointer; display:flex; align-items:center; gap:12px; box-shadow:0 10px 15px -3px rgba(212, 160, 23, 0.3);">
+                    <span data-zh="立即臻藏 / Buy Now" data-en="BUY NOW / 立即臻藏">立即臻藏 / Buy Now</span>
+                    <span style="font-size:14px;">➔</span>
                 </button>
             </div>
 
-            <div class="border-t" style="margin-top: 32px; padding-top: 24px; width: 100%; max-width: 400px;">
-                <p class="text-xs text-neutral-400 font-serif" style="margin-bottom: 12px; letter-spacing: 0.1em;" data-zh="—— 点击切换同系列款式 ——" data-en="—— SELECT VARIATION ——">—— 点击切换同系列款式 ——</p>
-                <div class="grid grid-cols-4" style="gap: 12px;">
-                    <div onclick="switchProduct(0)" id="thumb-0" class="product-thumb active">
-                        <div style="width: 24px; height: 24px; margin: 0 auto 4px auto; border-radius: 50%; background: #D4A017;"></div>
-                        <span class="text-xs font-serif font-bold" style="font-size: 10px;" data-zh="暖阳玛瑙" data-en="Sunlit Agate">暖阳玛瑙</span>
+            <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(0,0,0,0.05); width:100%; max-width:448px;">
+                <p style="font-size:11px; color:#a3a3a3; font-family:serif; margin-bottom:12px; letter-spacing:0.05em;" data-zh="—— 点击切换同系列款式 ——" data-en="—— SELECT VARIATION ——">—— 点击切换同系列款式 ——</p>
+                <div class="grid-thumbs">
+                    <div onclick="switchProduct(0)" id="thumb-0" class="product-thumb active" style="padding:8px; border-radius:12px; background:rgba(255,255,255,0.8); text-align:center;">
+                        <div style="width:24px; height:24px; margin:0 auto 4px; border-radius:50%; background:#D4A017;"></div>
+                        <span style="font-size:10px; font-family:serif; display:block;" data-zh="暖阳玛瑙" data-en="Sunlit Agate">暖阳玛瑙</span>
                     </div>
-                    <div onclick="switchProduct(1)" id="thumb-1" class="product-thumb">
-                        <div style="width: 24px; height: 24px; margin: 0 auto 4px auto; border-radius: 50%; background: #DE8B1D;"></div>
-                        <span class="text-xs font-serif font-bold" style="font-size: 10px;" data-zh="落阳黄晶" data-en="Citrine">落阳黄晶</span>
+                    <div onclick="switchProduct(1)" id="thumb-1" class="product-thumb" style="padding:8px; border-radius:12px; background:rgba(255,255,255,0.8); text-align:center;">
+                        <div style="width:24px; height:24px; margin:0 auto 4px; border-radius:50%; background:#DE8B1D;"></div>
+                        <span style="font-size:10px; font-family:serif; display:block;" data-zh="落阳黄晶" data-en="Citrine">落阳黄晶</span>
                     </div>
-                    <div onclick="switchProduct(2)" id="thumb-2" class="product-thumb">
-                        <div style="width: 24px; height: 24px; margin: 0 auto 4px auto; border-radius: 50%; background: #EFA12B;"></div>
-                        <span class="text-xs font-serif font-bold" style="font-size: 10px;" data-zh="蕉叶金蜜" data-en="Amber Gold">蕉叶金蜜</span>
+                    <div onclick="switchProduct(2)" id="thumb-2" class="product-thumb" style="padding:8px; border-radius:12px; background:rgba(255,255,255,0.8); text-align:center;">
+                        <div style="width:24px; height:24px; margin:0 auto 4px; border-radius:50%; background:#EFA12B;"></div>
+                        <span style="font-size:10px; font-family:serif; display:block;" data-zh="蕉叶金蜜" data-en="Amber Gold">蕉叶金蜜</span>
                     </div>
-                    <div onclick="switchProduct(3)" id="thumb-3" class="product-thumb">
-                        <div style="width: 24px; height: 24px; margin: 0 auto 4px auto; border-radius: 50%; background: #FDEBC7; border: 1px solid rgba(0,0,0,0.1);"></div>
-                        <span class="text-xs font-serif font-bold" style="font-size: 10px;" data-zh="凝霞白髓" data-en="White Jade">凝霞白髓</span>
+                    <div onclick="switchProduct(3)" id="thumb-3" class="product-thumb" style="padding:8px; border-radius:12px; background:rgba(255,255,255,0.8); text-align:center;">
+                        <div style="width:24px; height:24px; margin:0 auto 4px; border-radius:50%; background:#FDEBC7; border:1px solid rgba(0,0,0,0.1);"></div>
+                        <span style="font-size:10px; font-family:serif; display:block;" data-zh="凝霞白髓" data-en="White Jade">凝霞白髓</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main 核心布局区 -->
-    <main class="max-w-7xl mx-auto w-full px-6 py-4 grid grid-cols-1 lg:grid-cols-2" style="gap: 32px;">
+    <!-- 双阁主体布局 -->
+    <main class="container grid-main" style="padding-top:16px; padding-bottom:16px;">
         <!-- 西阁：色卡 -->
-        <section class="chinese-border flex flex-col justify-between" style="gap: 16px;">
-            <div class="flex justify-between items-center border-b" style="padding-bottom: 12px;">
-                <h3 class="dynamic-text font-semibold text-neutral-800 flex items-center gap-2" data-zh="西阁 · 芭蕉橙色卡" data-en="West Pavilion &bull; Plantain Palette">
-                    <span style="width: 10px; height: 10px; border-radius: 50%; background: #D4A017; display: inline-block;"></span>
+        <section class="chinese-border" style="display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid rgba(212, 160, 23, 0.2);">
+                <h3 class="dynamic-text" style="font-weight:600; color:#262626; display:flex; align-items:center; gap:8px;" data-zh="西阁 · 芭蕉橙色卡" data-en="West Pavilion &bull; Plantain Palette">
+                    <span style="width:10px; height:10px; border-radius:50%; background:#D4A017;"></span>
                     西阁 · 芭蕉橙色卡
                 </h3>
-                <span class="dynamic-text text-xs text-neutral-400" data-zh="点击色块复制 HEX" data-en="Click to copy HEX">点击色块复制 HEX</span>
+                <span class="dynamic-text" style="font-size:12px; color:#a3a3a3;" data-zh="点击色块复制 HEX" data-en="Click block to copy HEX">点击色块复制 HEX</span>
             </div>
-            <div class="grid grid-cols-3" id="color-grid" style="gap: 10px;"></div>
-            <div id="dynamic-pad" onclick="copyHex()" style="width: 100%; height: 64px; border-radius: 12px; padding: 12px; color: white; cursor: pointer; position: relative; background: #D4A017; display: flex; flex-direction: column; justify-content: space-between;">
-                <p id="dynamic-name" class="font-serif text-xs font-bold" style="letter-spacing: 0.15em;">芭蕉橙</p>
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <p id="dynamic-hex" class="text-xs font-mono" style="opacity: 0.9; letter-spacing: 0.05em;">#D4A017</p>
-                    <span id="copy-badge" class="text-xs font-serif" style="font-size: 9px; border: 1px solid rgba(255,255,255,0.4); padding: 2px 6px; border-radius: 4px; background: rgba(0,0,0,0.1);" data-zh="点击复制" data-en="CLICK TO COPY">点击复制</span>
+            <div class="grid-colors" id="color-grid"></div>
+            <div id="dynamic-pad" onclick="copyHex()" style="width:100%; height:64px; border-radius:12px; padding:12px; color:white; cursor:pointer; position:relative; background-color:#D4A017; transition:background-color 0.5s; display:flex; flex-direction:column; justify-content:space-between;">
+                <p id="dynamic-name" style="font-family:serif; font-size:12px; letter-spacing:0.1em; font-weight:bold;">芭蕉橙</p>
+                <div style="display:flex; align-items:center; justify-content:space-between;">
+                    <p id="dynamic-hex" style="font-size:10px; font-family:monospace; opacity:0.9;">#D4A017</p>
+                    <span id="copy-badge" style="font-size:9px; border:1px solid rgba(255,255,255,0.4); padding:2px 6px; border-radius:4px; background:rgba(0,0,0,0.1);" data-zh="点击复制" data-en="CLICK TO COPY">点击复制</span>
                 </div>
             </div>
-            <input type="range" id="color-slider" min="0" max="5" value="0" style="width: 100%; accent-color: #D4A017; cursor: pointer;">
+            <input type="range" id="color-slider" min="0" max="5" value="0" style="width:100%; height:4px; background:#e5e5e5; border-radius:4px; cursor:pointer;">
         </section>
 
         <!-- 东阁：视听与诗词 -->
-        <section class="chinese-border flex flex-col justify-between" style="gap: 16px;">
-            <div class="flex justify-between items-center border-b" style="padding-bottom: 12px;">
-                <h3 class="dynamic-text font-semibold text-neutral-800 flex items-center gap-2" data-zh="东阁 · 听风听雨观象台" data-en="East Pavilion &bull; Observatory">
-                    <span style="width: 10px; height: 10px; border-radius: 50%; background: #D4A017; display: inline-block;"></span>
+        <section class="chinese-border" style="display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid rgba(212, 160, 23, 0.2);">
+                <h3 class="dynamic-text" style="font-weight:600; color:#262626; display:flex; align-items:center; gap:8px;" data-zh="东阁 · 听风听雨观象台" data-en="East Pavilion &bull; Observatory">
+                    <span style="width:10px; height:10px; border-radius:50%; background:#D4A017;"></span>
                     东阁 · 听风听雨观象台
                 </h3>
-                <span class="dynamic-text text-xs text-neutral-400" data-zh="暖橙流光 · 视听长青" data-en="Warm Orange Glow & Eternal Vision">暖橙流光 · 视听长青</span>
+                <span class="dynamic-text" style="font-size:12px; color:#a3a3a3;" data-zh="暖橙流光 · 视听长青" data-en="Warm Orange Glow & Eternal Vision">暖橙流光 · 视听长青</span>
             </div>
 
             <div class="video-wrapper" id="video-wrapper">
                 <div id="video-placeholder" class="video-placeholder" onclick="loadYouTubeVideo()">
                     <div class="play-btn">
-                        <span class="text-sm" style="margin-left: 2px;">▶</span>
+                        <span style="font-size:14px; margin-left:2px;">▶</span>
                     </div>
-                    <p class="dynamic-text text-white text-xs" style="margin-bottom: 4px;" data-zh="点击加载东阁影像（连接至 YouTube）" data-en="Click to load video (YouTube)">点击加载东阁影像（连接至 YouTube）</p>
-                    <p class="dynamic-text text-neutral-400" style="font-size: 9px;" data-zh="加载即代表同意 Google 隐私政策" data-en="Subject to Google Privacy Policy">加载即代表同意 Google 隐私政策</p>
+                    <p class="dynamic-text" style="color:white; font-size:12px; margin-bottom:4px;" data-zh="点击加载东阁影像（将连接至 YouTube）" data-en="Click to load video (Connects to YouTube)">点击加载东阁影像（将连接至 YouTube）</p>
+                    <p class="dynamic-text" style="font-size:9px; color:#a3a3a3;" data-zh="加载即代表您同意 Google 的隐私政策" data-en="Loading implies consent to Google's privacy policy">加载即代表您同意 Google 的隐私政策</p>
                 </div>
-                <div id="youtube-container" style="width: 100%; height: 100%;"></div>
+                <div id="youtube-container" style="width:100%; height:100%;"></div>
             </div>
 
             <a href="Color Apricot Blossom.html" id="channel-link" class="channel-link">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #D4A017;"></span>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="width:8px; height:8px; border-radius:50%; background:#D4A017;"></span>
                     <div>
-                        <h4 class="dynamic-text text-xs font-semibold text-neutral-800" data-zh="下一站：杏花春雨，烟柳画桥" data-en="Next Station: Apricot Blossom Rain">下一站：杏花春雨，烟柳画桥</h4>
-                        <p class="dynamic-text text-neutral-400" style="font-size: 10px; margin-top: 2px;" data-zh="“新橙去旧展新颜，竟是人间第一流”" data-en="&ldquo;As the fresh orange sheds the old, it unfolds the finest grace of the world.&rdquo;">“新橙去旧展新颜，竟是人间第一流”</p>
+                        <h4 class="dynamic-text" style="font-size:12px; font-weight:600; color:#262626;" data-zh="下一站：杏花春雨，烟柳画桥" data-en="Next Station: Apricot Blossom Rain">下一站：杏花春雨，烟柳画桥</h4>
+                        <p class="dynamic-text" style="font-size:10px; color:#a3a3a3; margin-top:2px;" data-zh="“新橙去旧展新颜，竟是人间第一流”" data-en="&ldquo;As the fresh orange sheds the old, it unfolds the finest grace of the world.&rdquo;">“新橙去旧展新颜，竟是人间第一流”</p>
                     </div>
                 </div>
-                <span class="text-xs font-bold" style="color: #D4A017;">➔</span>
+                <span style="font-size:12px; color:#D4A017; font-weight:bold;">➔</span>
             </a>
 
-            <div class="border-t" style="padding-top: 12px; display: flex; flex-direction: column; justify-content: space-between; min-height: 80px;">
-                <div id="poetry-container" style="margin-bottom: 8px;">
-                    <p id="poetry-text" class="poetry-text-style text-xs">“雨打芭蕉声断续，斜阳映橙意未终。”</p>
-                    <p id="poetry-source" class="poetry-source-style text-right" style="margin-top: 4px; text-align: right;">—— 蕊宫原创</p>
+            <div style="padding-top:12px; border-top:1px solid rgba(212, 160, 23, 0.2); display:flex; flex-direction:column; justify-content:space-between; min-height:80px;">
+                <div id="poetry-container" style="margin-bottom:8px;">
+                    <p id="poetry-text" class="poetry-text-style" style="font-size:12px;">“雨打芭蕉声断续，斜阳映橙意未终。”</p>
+                    <p id="poetry-source" class="poetry-source-style" style="text-align:right; margin-top:4px;">—— 蕊宫原创</p>
                 </div>
-                <button id="next-poetry" class="dynamic-sub font-medium" style="text-align: left; background: transparent; border: 0; cursor: pointer; padding: 0; color: #D4A017; font-size: 11px;" data-zh="换一首诗 ➔" data-en="Next Verse ➔">换一首诗 ➔</button>
+                <button id="next-poetry" class="dynamic-sub" style="text-align:left; font-weight:500; background:transparent; border:0; cursor:pointer; padding:0; color:#D4A017; font-size:11px;" data-zh="换一首诗 ➔" data-en="Next Verse ➔">换一首诗 ➔</button>
             </div>
         </section>
     </main>
 
-    <!-- 超大尺寸高清图片灯箱弹窗 -->
-    <div id="imageLightbox" class="modal" style="background: rgba(0,0,0,0.9); padding: 24px;" onclick="closeLightbox()">
-        <div class="relative" style="width: 100%; height: 100%; max-width: 1200px; max-height: 96vh; display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
-            <button onclick="closeLightbox()" class="absolute shadow-lg" style="top: 16px; right: 16px; z-index: 50; color: rgba(255,255,255,0.8); background: rgba(0,0,0,0.5); border: none; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer;">✕</button>
-            <img id="lightbox-img" src="" alt="手链超清大图" style="max-width: 95vw; max-height: 92vh; object-fit: contain; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+    <!-- 灯箱弹窗 -->
+    <div id="imageLightbox" class="modal" onclick="closeLightbox()">
+        <div style="position:relative; width:100%; height:100%; max-width:1280px; max-height:96vh; display:flex; align-items:center; justify-content:center;" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" style="position:absolute; top:16px; right:16px; z-index:50; color:white; background:rgba(0,0,0,0.5); border:none; border-radius:50%; width:48px; height:48px; font-size:24px; cursor:pointer;">✕</button>
+            <img id="lightbox-img" src="" alt="手链超清大图" style="max-width:95vw; max-height:92vh; object-fit:contain; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
         </div>
     </div>
 
     <!-- 结缘预订 Modal 弹窗 -->
     <div id="buyModal" class="modal">
-        <div class="chinese-border shadow-2xl relative" style="background: #FDFBF8; max-width: 440px; width: 100%; margin: 16px; padding: 24px;">
-            <button onclick="closeModal()" style="position: absolute; top: 16px; right: 16px; background: transparent; border: none; color: #737373; font-size: 16px; cursor: pointer;">✕</button>
-            <div style="text-align: center; margin-bottom: 16px;">
-                <span style="display: inline-block; width: 32px; height: 32px; border-radius: 50%; background: rgba(212,160,23,0.1); color: #D4A017; font-size: 14px; line-height: 32px; margin-bottom: 8px;">✦</span>
-                <h3 id="modal-product-title" class="text-sm font-serif font-bold text-neutral-800" data-zh="【芭蕉橙】手串 · 臻藏结缘" data-en="[Plantain Orange] Bracelet Reservation">【芭蕉橙】手串 · 臻藏结缘</h3>
-                <p class="text-xs text-neutral-500" style="margin-top: 4px;" data-zh="请填写您的礼品寄送与手围信息" data-en="Please enter your delivery & size info">请填写您的礼品寄送与手围信息</p>
+        <div style="background:#FDFBF8; border:1px solid rgba(212, 160, 23, 0.2); border-radius:16px; padding:24px; max-width:448px; width:100%; margin:0 16px; position:relative; box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+            <button onclick="closeModal()" style="position:absolute; top:16px; right:16px; color:#a3a3a3; background:none; border:none; font-size:18px; cursor:pointer;">✕</button>
+            <div style="text-align:center; margin-bottom:16px;">
+                <span style="display:inline-block; width:32px; height:32px; border-radius:50%; background:rgba(212, 160, 23, 0.1); color:#D4A017; font-size:14px; line-height:32px; margin-bottom:8px;">✦</span>
+                <h3 id="modal-product-title" style="font-size:1.125rem; font-family:serif; font-weight:bold; color:#262626;" data-zh="【芭蕉橙】手串 · 臻藏结缘" data-en="[Plantain Orange] Bracelet Reservation">【芭蕉橙】手串 · 臻藏结缘</h3>
+                <p style="font-size:12px; color:#737373; margin-top:4px;" data-zh="请填写您的礼品寄送与手围信息" data-en="Please enter your delivery & size info">请填写您的礼品寄送与手围信息</p>
             </div>
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="display:flex; flex-direction:column; gap:12px;">
                 <input type="hidden" id="modal-product-hidden" name="已选款式/Product" value="芭蕉橙 · 暖阳玛瑙手串">
                 <input type="hidden" name="_subject" value="【蕊宫新订单】来自官网的芭蕉橙手链预订通知">
                 <input type="hidden" name="_replyto" value="mail@rui-palace.com">
 
                 <div>
-                    <label class="block text-xs text-neutral-600" style="margin-bottom: 4px; display: block;" data-zh="尊姓大名" data-en="Full Name">尊姓大名</label>
-                    <input type="text" name="顾客姓名/Name" required placeholder="例如：张女士 / Alice">
+                    <label style="display:block; font-size:12px; color:#525252; margin-bottom:4px;" data-zh="尊姓大名" data-en="Full Name">尊姓大名</label>
+                    <input type="text" name="顾客姓名/Name" required placeholder="例如：张女士 / Alice" style="width:100%; padding:8px 12px; font-size:12px; border:1px solid #e5e5e5; border-radius:8px; background:white;">
                 </div>
                 <div>
-                    <label class="block text-xs text-neutral-600" style="margin-bottom: 4px; display: block;" data-zh="联系电话 / 微信" data-en="Phone / WeChat">联系电话 / 微信</label>
-                    <input type="text" name="联系方式/Contact" required placeholder="用于接收订单确认与快递通知">
+                    <label style="display:block; font-size:12px; color:#525252; margin-bottom:4px;" data-zh="联系电话 / 微信" data-en="Phone / WeChat">联系电话 / 微信</label>
+                    <input type="text" name="联系方式/Contact" required placeholder="用于接收订单确认与快递通知" style="width:100%; padding:8px 12px; font-size:12px; border:1px solid #e5e5e5; border-radius:8px; background:white;">
                 </div>
                 <div>
-                    <label class="block text-xs text-neutral-600" style="margin-bottom: 4px; display: block;" data-zh="手围尺寸 (cm)" data-en="Wrist Size (cm)">手围尺寸 (cm)</label>
-                    <select name="手围尺寸/WristSize">
+                    <label style="display:block; font-size:12px; color:#525252; margin-bottom:4px;" data-zh="手围尺寸 (cm)" data-en="Wrist Size (cm)">手围尺寸 (cm)</label>
+                    <select name="手围尺寸/WristSize" style="width:100%; padding:8px 12px; font-size:12px; border:1px solid #e5e5e5; border-radius:8px; background:white;">
                         <option value="14.0cm - 15.0cm (纤细精巧)">14.0cm - 15.0cm (纤细精巧)</option>
                         <option value="15.0cm - 16.5cm (标准男女通戴)" selected>15.0cm - 16.5cm (标准男女通戴)</option>
                         <option value="16.5cm - 18.0cm (宽裕适中)">16.5cm - 18.0cm (宽裕适中)</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs text-neutral-600" style="margin-bottom: 4px; display: block;" data-zh="寄送地址与备注" data-en="Shipping Address & Notes">寄送地址与备注</label>
-                    <textarea name="寄送地址与备注/AddressAndNotes" rows="2" placeholder="请输入收货地址或礼盒需求"></textarea>
+                    <label style="display:block; font-size:12px; color:#525252; margin-bottom:4px;" data-zh="寄送地址与备注" data-en="Shipping Address & Notes">寄送地址与备注</label>
+                    <textarea name="寄送地址与备注/AddressAndNotes" rows="2" placeholder="请输入收货地址或礼盒需求" style="width:100%; padding:8px 12px; font-size:12px; border:1px solid #e5e5e5; border-radius:8px; background:white;"></textarea>
                 </div>
-                <button type="submit" class="transition" style="width: 100%; padding: 10px; margin-top: 8px; background: #D4A017; color: white; border: none; border-radius: 12px; font-size: 12px; letter-spacing: 0.1em; cursor: pointer;">
+                <button type="submit" style="width:100%; padding:10px; margin-top:8px; background:#D4A017; color:white; font-size:12px; border-radius:12px; letter-spacing:0.1em; border:none; cursor:pointer;">
                     <span id="modal-submit-btn" data-zh="确认提交订单" data-en="Confirm Order">确认提交订单</span>
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- 页脚 Footer -->
-    <footer class="max-w-7xl mx-auto w-full px-6 py-6 border-t flex flex-col sm:flex-row justify-between items-center text-neutral-400" style="font-size: 10px; gap: 8px;">
-        <p>© 2026 蕊宫 - <span class="font-mono">Rui Palace. All rights reserved.</span> 保持纯粹，珍藏人性。</p>
-        <p style="display: flex; gap: 8px;">
-            <a href="impressum.html" style="color: inherit; text-decoration: none;" data-zh="法律声明 (Impressum)" data-en="Legal Notice (Impressum)">法律声明 (Impressum)</a> 
+    <!-- 页脚 -->
+    <footer class="container" style="padding-top:24px; padding-bottom:24px; border-top:1px solid rgba(212, 160, 23, 0.3); display:flex; flex-direction:column; justify-content:space-between; align-items:center; font-size:10px; color:#a3a3a3; gap:8px;">
+        <p>© 2026 蕊宫 - <span style="font-family:monospace;">Rui Palace. All rights reserved.</span> 保持纯粹，珍藏人性。</p>
+        <p style="display:flex; gap:8px;">
+            <a href="impressum.html" style="color:inherit; text-decoration:none;" data-zh="法律声明 (Impressum)" data-en="Legal Notice (Impressum)">法律声明 (Impressum)</a> 
             <span>|</span> 
-            <a href="Datenschutz.html" style="color: inherit; text-decoration: none;" data-zh="隐私政策 (Datenschutz)" data-en="Privacy Policy (Datenschutz)">隐私政策 (Datenschutz)</a>
+            <a href="Datenschutz.html" style="color:inherit; text-decoration:none;" data-zh="隐私政策 (Datenschutz)" data-en="Privacy Policy (Datenschutz)">隐私政策 (Datenschutz)</a>
         </p>
     </footer>
 
-    <!-- 业务逻辑脚本 -->
+    <!-- 交互逻辑脚本 -->
     <script>
         let currentLang = 'zh';
         let currentProductIdx = 0;
@@ -557,7 +529,7 @@
                 desc_zh: "“雨打芭蕉声断续，斜阳映橙意未终。” 精选天然暖阳橙色玛瑙，质地温润，抚平心绪，带来春日般的暖意与生机。",
                 desc_en: "“The rain hits the plantain leaves in broken rhythms, while the setting sun paints a lingering orange across the soul.” Select natural warm orange agate bringing inner peace and gentle vitality.",
                 price: " € 62,00",
-                img: "images/zimo-bracelet.jpg"
+                img: "https://placehold.co/600x600/d4a017/ffffff?text=Plantain+Orange+Agate"
             },
             {
                 title_zh: "落阳黄水晶手串",
@@ -567,7 +539,7 @@
                 desc_zh: "“落阳铺水光如金，黄晶璀璨耀客心。” 晶莹璀璨的天然黄水晶，如夕阳余晖般温暖治愈，凝聚财气与光明。",
                 desc_en: "“Brilliant natural citrine radiating warm sunlight and glowing golden radiance.”",
                 price: " € 72,00",
-                img: "images/zimo-bracelet.jpg"
+                img: "https://placehold.co/600x600/de8b1d/ffffff?text=Setting+Sun+Citrine"
             },
             {
                 title_zh: "蕉叶金蜜蜡手串",
@@ -577,7 +549,7 @@
                 desc_zh: "“蕉叶清幽金珀润，岁月沉香暖乾坤。” 上乘天然蜜蜡，触手温润，散发如蕉叶间金色阳光般的醇厚光泽。",
                 desc_en: "“Exquisite natural beeswax emitting a mellow and warm golden sunlight radiance.”",
                 price: " € 98,00",
-                img: "images/zimo-bracelet.jpg"
+                img: "https://placehold.co/600x600/efa12b/ffffff?text=Amber+Gold+Beeswax"
             },
             {
                 title_zh: "凝霞白玉髓手串",
@@ -587,7 +559,7 @@
                 desc_zh: "“凝霞散彩初迎日，白玉无瑕映晚晴。” 纯净细腻的白玉髓，如云霞初凝，温润典雅，尽显东方韵味。",
                 desc_en: "“Pure and delicate white chalcedony radiating gentle and immaculate elegance.”",
                 price: " € 54,00",
-                img: "images/zimo-bracelet.jpg"
+                img: "https://placehold.co/600x600/fdebc7/333333?text=Ningxia+White+Chalcedony"
             }
         ];
 
@@ -607,7 +579,7 @@
         ];
 
         function returnToPrevious() {
-            window.location.href = `index.html?lang=${currentLang}`;
+            window.location.href = `https://www.rui-palace.com/aesthetics?lang=${currentLang}`;
         }
 
         function updateSliderPosition() {
@@ -657,8 +629,8 @@
             grid.innerHTML = colors.map((c, idx) => `
                 <div onclick="selectGridColor(${idx})" class="color-card">
                     <div class="color-block" style="background-color:${c.hex}"></div>
-                    <p class="dynamic-text" style="font-size: 10px; font-weight: bold; color: #262626; line-height: 1.2;">${currentLang === 'zh' ? c.name_zh : c.name_en}</p>
-                    <p style="font-size: 9px; color: #a3a3a3; font-family: monospace;">${c.hex}</p>
+                    <p class="dynamic-text" style="font-size:10px; font-weight:bold; color:#262626; line-height:1.2;">${currentLang === 'zh' ? c.name_zh : c.name_en}</p>
+                    <p style="font-size:9px; color:#a3a3a3; font-family:monospace;">${c.hex}</p>
                 </div>
             `).join('');
         }
@@ -725,7 +697,7 @@
             if (placeholder) { placeholder.style.display = 'none'; }
             if (container) {
                 container.innerHTML = `
-                    <iframe style="width: 100%; height: 100%; border: 0;" 
+                    <iframe style="width:100%; height:100%; border:none;" 
                             src="https://www.youtube-nocookie.com/embed/fM3HhVfDESE?autoplay=1" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
@@ -784,12 +756,16 @@
             const lightboxImg = document.getElementById('lightbox-img');
             
             if (lightboxImg) lightboxImg.src = currentImgSrc;
-            if (lightbox) lightbox.classList.add('active');
+            if (lightbox) {
+                lightbox.classList.add('active');
+            }
         }
 
         function closeLightbox() {
             const lightbox = document.getElementById('imageLightbox');
-            if (lightbox) lightbox.classList.remove('active');
+            if (lightbox) {
+                lightbox.classList.remove('active');
+            }
         }
 
         document.addEventListener('keydown', (e) => {
