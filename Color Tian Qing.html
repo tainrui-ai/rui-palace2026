@@ -396,6 +396,7 @@
             <input type="range" id="color-slider" min="0" max="5" value="1" style="width: 100%; height: 4px; background: #e5e5e5; border-radius: 4px; appearance: none; cursor: pointer;">
         </section>
 
+        <!-- 东阁 · 研墨观象台 (修复嵌入链接逻辑) -->
         <section class="chinese-border" style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px;">
                 <h3 class="dynamic-text" style="font-weight: 600; color: #262626; display: flex; align-items: center; gap: 8px;" data-zh="东阁 · 研墨观象台" data-en="East Pavilion • Observatory" data-lang="en">East Pavilion • Observatory</h3>
@@ -423,7 +424,7 @@
         </section>
     </main>
 
-    <!-- 结缘模态框：恢复与暮山紫完全一致的 PayPal 动态挂载逻辑 -->
+    <!-- 结缘模态框 -->
     <div id="buyModal" class="modal">
         <div class="chinese-border" style="background: #FFF; width: 100%; max-width: 520px; padding: 32px 24px; position: relative; border-radius: 24px; text-align: center; max-height: 90vh; overflow-y: auto;">
             <button onclick="closeModal()" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 18px; cursor: pointer; color: #737373; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%;" onmouseover="this.style.background='rgba(0,0,0,0.05)'" onmouseout="this.style.background='transparent'">✕</button>
@@ -478,7 +479,6 @@
 
                 <div style="margin-top: 8px;">
                     <p style="font-size: 11px; color: #737373; margin-bottom: 10px; text-align: center;" data-zh="请选择支付结算方式 (€65.00 含快递)" data-en="Select payment method (€65.00 incl. shipping)" data-lang="en">Select payment method (€65.00 incl. shipping)</p>
-                    <!-- 动态渲染 PayPal 支付按钮的容器 -->
                     <div id="paypal-button-container"></div>
                 </div>
             </div>
@@ -659,14 +659,18 @@
             if (slider) updateDynamicPad(slider.value);
         }
 
+        // 核心修复点：将点击加载的 iframe src 修改为嵌入专用的 /embed/ 路径
         function loadYouTubeVideo() {
             const container = document.getElementById('youtube-container');
             const placeholder = document.getElementById('video-placeholder');
             if (placeholder) { placeholder.style.display = 'none'; }
             if (container) {
                 container.innerHTML = `
-                  
-                    <iframe style="width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/74mTVx_yk-s" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe style="width: 100%; height: 100%; border: none;" 
+                            src="https://www.youtube.com/embed/74mTVx_yk-s?autoplay=1" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
                 `;
             }
         }
@@ -677,7 +681,6 @@
             if (modalTitle) modalTitle.innerText = currentLang === 'zh' ? `【${p.title_zh}】· 臻藏结缘` : `[${p.title_en}] Reservation`;
             document.getElementById('buyModal').classList.add('active');
             
-            // 每次打开弹窗时安全渲染 PayPal 按钮
             setTimeout(renderPayPalButtons, 100);
         }
 
@@ -737,15 +740,14 @@
             }).catch(err => console.log('邮件发送提示:', err));
         }
 
-        // 与暮山紫完全相同的标准 PayPal SDK 渲染逻辑
         function renderPayPalButtons() {
             const container = document.getElementById('paypal-button-container');
             if (!container) return;
 
-            container.innerHTML = ''; // 清空以防重复渲染
+            container.innerHTML = '';
 
             if (typeof paypal === 'undefined') {
-                container.innerHTML = '<p style="font-size:12px; color:#d9534f; text-align:center; padding:10px;">支付组件加载中或被拦截，请检查网络或广告插件后刷新重试</p>';
+                container.innerHTML = '<p style="font-size:12px; color:#d9534f; text-align:center; padding:10px;">支付组件加载中或被拦截，请检查网络后刷新重试</p>';
                 return;
             }
 
